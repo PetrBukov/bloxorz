@@ -66,7 +66,7 @@ export const globalStyles = css`
     border: 3px solid var(--trueBlack);
   }
 `
-export const MainLayout = styled.main`
+export const Main = styled.main`
   background: var(--spaceViolet) url(${whitegrit});
   background-size: 500px;
   display: grid;

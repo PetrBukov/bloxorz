@@ -1,14 +1,16 @@
 import React from 'react'
 import { Global } from '@emotion/react'
 
-import { MainLayout, globalStyles } from './App.styles'
+import { Main, globalStyles } from './App.styles'
+import { Footer } from './components/Footer'
 
 const App: React.FC = () => {
   return (
-    <MainLayout>
+    <React.Fragment>
       <Global styles={globalStyles} />
-      Hello Bloxorz
-    </MainLayout>
+      <Main />
+      <Footer />
+    </React.Fragment>
   )
 }
 
