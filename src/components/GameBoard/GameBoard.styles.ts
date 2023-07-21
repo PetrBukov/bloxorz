@@ -17,6 +17,8 @@ export const GameBoardContainer = styled.div<
     totalRows: number
   }
 >`
+  position: relative;
+
   display: grid;
   width: ${({ width }) => width};
   height: ${({ height }) => height};

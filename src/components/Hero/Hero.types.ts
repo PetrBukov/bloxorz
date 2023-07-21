@@ -5,4 +5,9 @@ export type HeroBlockSizes = {
   height: string
 }
 
+export type HeroBlockPosition = {
+  top: string
+  left: string
+}
+
 export type HeroProps = Hero

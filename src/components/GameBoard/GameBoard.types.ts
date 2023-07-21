@@ -1,6 +1,6 @@
-import { GameBoard } from '../../types/game'
+import { Game } from '../../types/game'
 
-export type GameBoardProps = GameBoard
+export type GameBoardProps = Game
 
 export type BoardSizes = {
   width: string

@@ -1,13 +1,12 @@
 import React from 'react'
 
 import { HeroBlock } from './Hero.styles'
-import { calculateHeroBlockSizes } from './Hero.utils'
+import { calculateHeroBlockPosition, calculateHeroBlockSizes } from './Hero.utils'
 import { HeroProps } from './Hero.types'
 
-export const Hero: React.FC<HeroProps> = ({ size }) => {
+export const Hero: React.FC<HeroProps> = ({ size, position }) => {
   const heroBlockSizes = calculateHeroBlockSizes(size)
+  const heroBlockPosition = calculateHeroBlockPosition(position)
 
-  console.log({ heroBlockSizes })
-
-  return <HeroBlock {...heroBlockSizes} />
+  return <HeroBlock {...heroBlockSizes} {...heroBlockPosition} />
 }

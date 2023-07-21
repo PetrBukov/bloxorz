@@ -4,8 +4,9 @@ import { TileType } from '../../types/game'
 import { EmptyTitle, GameBoardContainer, SurfaceTitle, TargetTitle } from './GameBoard.styles'
 import { GameBoardProps } from './GameBoard.types'
 import { calculateBoardSizes } from './GameBoard.utils'
+import { Hero } from '../Hero'
 
-export const GameBoard: React.FC<GameBoardProps> = ({ tiles, size }) => {
+export const GameBoard: React.FC<GameBoardProps> = ({ board: { tiles, size }, hero }) => {
   const boardSizes = calculateBoardSizes(size)
 
   return (
@@ -23,6 +24,7 @@ export const GameBoard: React.FC<GameBoardProps> = ({ tiles, size }) => {
           }
         }
       })}
+      <Hero {...hero} />
     </GameBoardContainer>
   )
 }

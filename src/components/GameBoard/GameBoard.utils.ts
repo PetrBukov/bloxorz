@@ -7,6 +7,6 @@ export const calculateBoardSizes = (dimensions: Dimensions): BoardSizes => {
 
   return {
     width: `${width * TILE_WIDTH + (width - 1) * GAP_BETWEEN_TILES}px`,
-    height: `${height * TILE_WIDTH + (width - 1) * GAP_BETWEEN_TILES}px`,
+    height: `${height * TILE_WIDTH + (height - 1) * GAP_BETWEEN_TILES}px`,
   }
 }
