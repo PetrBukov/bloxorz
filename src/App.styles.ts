@@ -1,6 +1,4 @@
 import { css } from '@emotion/react'
-import styled from '@emotion/styled'
-import whitegrit from './assets/images/whitegrit.png'
 
 export const globalStyles = css`
   :root {
@@ -65,12 +63,4 @@ export const globalStyles = css`
     border-radius: 6px;
     border: 3px solid var(--trueBlack);
   }
-`
-export const Main = styled.main`
-  background: var(--spaceViolet) url(${whitegrit});
-  background-size: 500px;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  padding: 12px 24px 38px 24px;
 `

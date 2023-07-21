@@ -1,4 +1,4 @@
-import { GameLevel } from '../../types/game'
+import { GameLevel } from '../types/game'
 
 export const TEST_GAME_LEVEL: GameLevel = {
   size: {

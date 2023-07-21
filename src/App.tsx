@@ -2,19 +2,18 @@ import React from 'react'
 import { Global } from '@emotion/react'
 import 'normalize.css'
 
-import { Main, globalStyles } from './App.styles'
-import { Footer } from './components/Footer'
-import { GameBoard } from './components/GameBoard'
+import { globalStyles } from './App.styles'
+import { GameCenter } from './providers'
+import { Content, Footer, Header } from './components'
 
 const App: React.FC = () => {
   return (
-    <React.Fragment>
+    <GameCenter>
       <Global styles={globalStyles} />
-      <Main>
-        <GameBoard />
-      </Main>
+      <Header />
+      <Content />
       <Footer />
-    </React.Fragment>
+    </GameCenter>
   )
 }
 

@@ -1,12 +1,9 @@
 import React from 'react'
-import { generateGameBoard } from '../../utils/generateGameBoard'
-import { TEST_GAME_LEVEL } from './GameBoard.constants'
 import { TileType } from '../../types/game'
 import { EmptyTitle, GameBoardContainer, SurfaceTitle, TargetTitle } from './GameBoard.styles'
+import { GameBoardProps } from './GameBoard.types'
 
-export const GameBoard: React.FC = () => {
-  const { tiles } = generateGameBoard(TEST_GAME_LEVEL)
-  console.log(tiles)
+export const GameBoard: React.FC<GameBoardProps> = ({ tiles }) => {
   return (
     <GameBoardContainer>
       {tiles.map((tile, index) => {

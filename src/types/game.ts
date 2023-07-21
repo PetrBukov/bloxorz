@@ -1,12 +1,5 @@
-export type Dimensions = {
-  width: number
-  height: number
-}
-
-export type Coordinates = {
-  x: number
-  y: number
-}
+import { Coordinates, Dimensions } from './common'
+import { Hero } from './hero'
 
 export type Surface = {
   position: Coordinates
@@ -32,10 +25,14 @@ export type Tile = {
 
 export type GameBoard = {
   size: Dimensions
-  start: Coordinates
   target: Coordinates
   // Despite, game board is often a rectangle with rows and columns
   // we store all the tiles in the flat list but not as a list of lists
   // because it's much easier to work with a flat structure.
   tiles: Array<Tile>
+}
+
+export type Game = {
+  board: GameBoard
+  hero: Hero
 }

@@ -1,0 +1,5 @@
+export { Button } from './Button'
+export { Content } from './Content'
+export { Footer } from './Footer'
+export { GameBoard } from './GameBoard'
+export { Header } from './Header'

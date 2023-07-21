@@ -1,4 +1,5 @@
-import { GameBoard, TileType, GameLevel, Coordinates, Dimensions, Surface } from '../types/game'
+import { Coordinates, Dimensions } from '../types/common'
+import { GameBoard, TileType, GameLevel, Surface } from '../types/game'
 
 const getTotalTilesAmount = (gameLevelSize: Dimensions) =>
   gameLevelSize.height * gameLevelSize.width
@@ -39,13 +40,12 @@ const getSurfaceTileIndexes = (surface: Surface, gameLevelSize: Dimensions): Arr
 }
 
 export const generateGameBoard = (gameLevel: GameLevel): GameBoard => {
-  const { size: gameLevelSize, surfaces, start, target } = gameLevel
+  const { size: gameLevelSize, surfaces, target } = gameLevel
 
   // 1 - Create game board
   const gameBoard: GameBoard = {
     size: gameLevelSize,
     target,
-    start,
     tiles: [],
   }
 
