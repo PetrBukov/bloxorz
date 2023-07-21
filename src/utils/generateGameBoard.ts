@@ -45,7 +45,6 @@ export const generateGameBoard = (gameLevel: GameLevel): GameBoard => {
   // 1 - Create game board
   const gameBoard: GameBoard = {
     size: gameLevelSize,
-    target,
     tiles: [],
   }
 
