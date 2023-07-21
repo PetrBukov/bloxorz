@@ -35,6 +35,86 @@ export const gameCenterReducer = (
       }
     }
 
+    case 'moveUp': {
+      if (state.currentGame) {
+        return {
+          ...state,
+          currentGame: {
+            ...state.currentGame,
+            hero: {
+              ...state.currentGame.hero,
+              position: {
+                ...state.currentGame.hero.position,
+                y: state.currentGame.hero.position.y - 1,
+              },
+            },
+          },
+        }
+      }
+
+      return state
+    }
+
+    case 'moveDown': {
+      if (state.currentGame) {
+        return {
+          ...state,
+          currentGame: {
+            ...state.currentGame,
+            hero: {
+              ...state.currentGame.hero,
+              position: {
+                ...state.currentGame.hero.position,
+                y: state.currentGame.hero.position.y + 1,
+              },
+            },
+          },
+        }
+      }
+
+      return state
+    }
+
+    case 'moveLeft': {
+      if (state.currentGame) {
+        return {
+          ...state,
+          currentGame: {
+            ...state.currentGame,
+            hero: {
+              ...state.currentGame.hero,
+              position: {
+                ...state.currentGame.hero.position,
+                x: state.currentGame.hero.position.x - 1,
+              },
+            },
+          },
+        }
+      }
+
+      return state
+    }
+
+    case 'moveRight': {
+      if (state.currentGame) {
+        return {
+          ...state,
+          currentGame: {
+            ...state.currentGame,
+            hero: {
+              ...state.currentGame.hero,
+              position: {
+                ...state.currentGame.hero.position,
+                x: state.currentGame.hero.position.x + 1,
+              },
+            },
+          },
+        }
+      }
+
+      return state
+    }
+
     default: {
       // @ts-ignore
       // TypeScript thinks that "Property 'type' does not exist on type 'never'"
