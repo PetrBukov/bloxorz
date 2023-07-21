@@ -7,6 +7,7 @@ import { calculateBoardSizes } from './GameBoard.utils'
 import { Hero } from '../Hero'
 import { KEYBOARD } from '../../constants/keyboard'
 import { useGameCenter } from '../../providers/GameCenter'
+import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
 
 export const GameBoard: React.FC<GameBoardProps> = ({ board: { tiles, size }, hero }) => {
   const { dispatch } = useGameCenter()
@@ -16,19 +17,19 @@ export const GameBoard: React.FC<GameBoardProps> = ({ board: { tiles, size }, he
     const { key } = event
     switch (key) {
       case KEYBOARD.ArrowUp: {
-        dispatch({ type: 'moveUp' })
+        dispatch({ type: GameCenterActionType.moveUp })
         break
       }
       case KEYBOARD.ArrowDown: {
-        dispatch({ type: 'moveDown' })
+        dispatch({ type: GameCenterActionType.moveDown })
         break
       }
       case KEYBOARD.ArrowLeft: {
-        dispatch({ type: 'moveLeft' })
+        dispatch({ type: GameCenterActionType.moveLeft })
         break
       }
       case KEYBOARD.ArrowRight: {
-        dispatch({ type: 'moveRight' })
+        dispatch({ type: GameCenterActionType.moveRight })
         break
       }
       default: {

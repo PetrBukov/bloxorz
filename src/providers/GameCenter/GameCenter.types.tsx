@@ -1,12 +1,21 @@
 import { Game } from '../../types/game'
 
+export enum GameCenterActionType {
+  startNewGame = 'startNewGame',
+  cancelCurrentGame = 'cancelCurrentGame',
+  moveUp = 'moveUp',
+  moveRight = 'moveRight',
+  moveDown = 'moveDown',
+  moveLeft = 'moveLeft',
+}
+
 export type GameCenterAction =
-  | { type: 'startNewGame'; levelNumber: number }
-  | { type: 'cancelCurrentGame' }
-  | { type: 'moveUp' }
-  | { type: 'moveRight' }
-  | { type: 'moveDown' }
-  | { type: 'moveLeft' }
+  | { type: GameCenterActionType.startNewGame; levelNumber: number }
+  | { type: GameCenterActionType.cancelCurrentGame }
+  | { type: GameCenterActionType.moveUp }
+  | { type: GameCenterActionType.moveRight }
+  | { type: GameCenterActionType.moveDown }
+  | { type: GameCenterActionType.moveLeft }
 
 export type GameCenterDispatch = (action: GameCenterAction) => void
 

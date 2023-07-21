@@ -1,13 +1,14 @@
 import { LEVELS } from '../../constants/levels'
+import { calculateHeroBlockSizeAfterMoving } from '../../utils/calculateHeroBlockSizeAfterMoving'
 import { generateGameBoard } from '../../utils/generateGameBoard'
-import { GameCenterAction, GameCenterState } from './GameCenter.types'
+import { GameCenterAction, GameCenterActionType, GameCenterState } from './GameCenter.types'
 
 export const gameCenterReducer = (
   state: GameCenterState,
   action: GameCenterAction,
 ): GameCenterState => {
   switch (action.type) {
-    case 'startNewGame': {
+    case GameCenterActionType.startNewGame: {
       const { levelNumber } = action
 
       const gameLevel = LEVELS[levelNumber]
@@ -28,21 +29,22 @@ export const gameCenterReducer = (
       }
     }
 
-    case 'cancelCurrentGame': {
+    case GameCenterActionType.cancelCurrentGame: {
       return {
         ...state,
         currentGame: null,
       }
     }
 
-    case 'moveUp': {
+    case GameCenterActionType.moveUp: {
       if (state.currentGame) {
+        const size = calculateHeroBlockSizeAfterMoving(state.currentGame.hero.size, action.type)
         return {
           ...state,
           currentGame: {
             ...state.currentGame,
             hero: {
-              ...state.currentGame.hero,
+              size,
               position: {
                 ...state.currentGame.hero.position,
                 y: state.currentGame.hero.position.y - 1,
@@ -55,14 +57,15 @@ export const gameCenterReducer = (
       return state
     }
 
-    case 'moveDown': {
+    case GameCenterActionType.moveDown: {
       if (state.currentGame) {
+        const size = calculateHeroBlockSizeAfterMoving(state.currentGame.hero.size, action.type)
         return {
           ...state,
           currentGame: {
             ...state.currentGame,
             hero: {
-              ...state.currentGame.hero,
+              size,
               position: {
                 ...state.currentGame.hero.position,
                 y: state.currentGame.hero.position.y + 1,
@@ -75,14 +78,15 @@ export const gameCenterReducer = (
       return state
     }
 
-    case 'moveLeft': {
+    case GameCenterActionType.moveLeft: {
       if (state.currentGame) {
+        const size = calculateHeroBlockSizeAfterMoving(state.currentGame.hero.size, action.type)
         return {
           ...state,
           currentGame: {
             ...state.currentGame,
             hero: {
-              ...state.currentGame.hero,
+              size,
               position: {
                 ...state.currentGame.hero.position,
                 x: state.currentGame.hero.position.x - 1,
@@ -95,14 +99,15 @@ export const gameCenterReducer = (
       return state
     }
 
-    case 'moveRight': {
+    case GameCenterActionType.moveRight: {
       if (state.currentGame) {
+        const size = calculateHeroBlockSizeAfterMoving(state.currentGame.hero.size, action.type)
         return {
           ...state,
           currentGame: {
             ...state.currentGame,
             hero: {
-              ...state.currentGame.hero,
+              size,
               position: {
                 ...state.currentGame.hero.position,
                 x: state.currentGame.hero.position.x + 1,

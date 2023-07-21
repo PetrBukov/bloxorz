@@ -2,6 +2,7 @@ import React, { useCallback } from 'react'
 import { HeaderContainer } from './Header.styles'
 import { Button } from '../Button'
 import { useGameCenter } from '../../providers/GameCenter'
+import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
 
 export const Header: React.FC = () => {
   const { dispatch, state } = useGameCenter()
@@ -9,12 +10,12 @@ export const Header: React.FC = () => {
   const hasCurrentGame = Boolean(state.currentGame)
 
   const onStartNewGame = useCallback(() => {
-    dispatch({ type: 'startNewGame', levelNumber: 0 })
+    dispatch({ type: GameCenterActionType.startNewGame, levelNumber: 0 })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const onCancelGame = useCallback(() => {
-    dispatch({ type: 'cancelCurrentGame' })
+    dispatch({ type: GameCenterActionType.cancelCurrentGame })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
