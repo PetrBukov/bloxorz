@@ -1,6 +1,8 @@
 import { LEVELS } from '../../constants/levels'
+import { GameStatus } from '../../types/game'
 import { calculateHeroBlockPositionAfterMoving } from '../../utils/calculateHeroBlockPositionAfterMoving'
 import { calculateHeroBlockSizeAfterMoving } from '../../utils/calculateHeroBlockSizeAfterMoving'
+import { checkGameForFailure } from '../../utils/checkForGameFail'
 import { generateGameBoard } from '../../utils/generateGameBoard'
 import { GameCenterAction, GameCenterActionType, GameCenterState } from './GameCenter.types'
 
@@ -18,6 +20,7 @@ export const gameCenterReducer = (
       return {
         ...state,
         currentGame: {
+          status: GameStatus.active,
           hero: {
             position: gameLevel.start,
             size: {
@@ -38,17 +41,26 @@ export const gameCenterReducer = (
     }
 
     case GameCenterActionType.moveUp: {
-      if (state.currentGame) {
+      if (state.currentGame && state.currentGame.status === GameStatus.active) {
         const size = calculateHeroBlockSizeAfterMoving(state.currentGame.hero.size, action.type)
         const position = calculateHeroBlockPositionAfterMoving({
           ...state.currentGame.hero,
           actionType: action.type,
         })
 
+        const isFailure = checkGameForFailure({
+          heroSize: size,
+          heroPosition: position,
+          gameLevelSize: state.currentGame.board.size,
+          gameBoardTiles: state.currentGame.board.tiles,
+        })
+        const status = isFailure ? GameStatus.failure : state.currentGame.status
+
         return {
           ...state,
           currentGame: {
             ...state.currentGame,
+            status,
             hero: {
               size,
               position,
@@ -61,17 +73,26 @@ export const gameCenterReducer = (
     }
 
     case GameCenterActionType.moveDown: {
-      if (state.currentGame) {
+      if (state.currentGame && state.currentGame.status === GameStatus.active) {
         const size = calculateHeroBlockSizeAfterMoving(state.currentGame.hero.size, action.type)
         const position = calculateHeroBlockPositionAfterMoving({
           ...state.currentGame.hero,
           actionType: action.type,
         })
 
+        const isFailure = checkGameForFailure({
+          heroSize: size,
+          heroPosition: position,
+          gameLevelSize: state.currentGame.board.size,
+          gameBoardTiles: state.currentGame.board.tiles,
+        })
+        const status = isFailure ? GameStatus.failure : state.currentGame.status
+
         return {
           ...state,
           currentGame: {
             ...state.currentGame,
+            status,
             hero: {
               size,
               position,
@@ -84,17 +105,26 @@ export const gameCenterReducer = (
     }
 
     case GameCenterActionType.moveLeft: {
-      if (state.currentGame) {
+      if (state.currentGame && state.currentGame.status === GameStatus.active) {
         const size = calculateHeroBlockSizeAfterMoving(state.currentGame.hero.size, action.type)
         const position = calculateHeroBlockPositionAfterMoving({
           ...state.currentGame.hero,
           actionType: action.type,
         })
 
+        const isFailure = checkGameForFailure({
+          heroSize: size,
+          heroPosition: position,
+          gameLevelSize: state.currentGame.board.size,
+          gameBoardTiles: state.currentGame.board.tiles,
+        })
+        const status = isFailure ? GameStatus.failure : state.currentGame.status
+
         return {
           ...state,
           currentGame: {
             ...state.currentGame,
+            status,
             hero: {
               size,
               position,
@@ -107,17 +137,26 @@ export const gameCenterReducer = (
     }
 
     case GameCenterActionType.moveRight: {
-      if (state.currentGame) {
+      if (state.currentGame && state.currentGame.status === GameStatus.active) {
         const size = calculateHeroBlockSizeAfterMoving(state.currentGame.hero.size, action.type)
         const position = calculateHeroBlockPositionAfterMoving({
           ...state.currentGame.hero,
           actionType: action.type,
         })
 
+        const isFailure = checkGameForFailure({
+          heroSize: size,
+          heroPosition: position,
+          gameLevelSize: state.currentGame.board.size,
+          gameBoardTiles: state.currentGame.board.tiles,
+        })
+        const status = isFailure ? GameStatus.failure : state.currentGame.status
+
         return {
           ...state,
           currentGame: {
             ...state.currentGame,
+            status,
             hero: {
               size,
               position,

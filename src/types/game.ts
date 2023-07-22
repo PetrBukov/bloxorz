@@ -31,7 +31,14 @@ export type GameBoard = {
   tiles: Array<Tile>
 }
 
+export enum GameStatus {
+  active = 'active',
+  failure = 'failure',
+  victory = 'victory',
+}
+
 export type Game = {
+  status: GameStatus
   board: GameBoard
   hero: Hero
 }

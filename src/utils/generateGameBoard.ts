@@ -1,5 +1,6 @@
 import { Coordinates, Dimensions } from '../types/common'
-import { GameBoard, TileType, GameLevel, Surface } from '../types/game'
+import { GameBoard, TileType, GameLevel } from '../types/game'
+import { getRectangleTileIndexes } from './getRectangleTileIndexes'
 
 const getTotalTilesAmount = (gameLevelSize: Dimensions) =>
   gameLevelSize.height * gameLevelSize.width
@@ -10,33 +11,6 @@ const getTileIndex = (position: Coordinates, gameLevelSize: Dimensions) => {
   const tilesPerRowAmount = gameLevelSize.width
 
   return rowNumber * tilesPerRowAmount + columnNumber
-}
-
-const getSurfaceTileIndexes = (surface: Surface, gameLevelSize: Dimensions): Array<number> => {
-  const surfaceTileIndexes: Array<number> = []
-
-  const tilesPerRowAmount = gameLevelSize.width
-  const { position: surfacePosition, size: surfaceSize } = surface
-
-  const firstRowIndex = surfacePosition.y
-  const lastRowIndex = surfacePosition.y + surfaceSize.height - 1
-
-  for (let currentRowIndex = firstRowIndex; currentRowIndex <= lastRowIndex; currentRowIndex++) {
-    const prevRowTilesAmount = currentRowIndex * tilesPerRowAmount
-
-    const firstColumnIndex = surfacePosition.x + prevRowTilesAmount
-    const lastColumnIndex = surfacePosition.x + surfaceSize.width - 1 + prevRowTilesAmount
-
-    for (
-      let currentColumnIndex = firstColumnIndex;
-      currentColumnIndex <= lastColumnIndex;
-      currentColumnIndex++
-    ) {
-      surfaceTileIndexes.push(currentColumnIndex)
-    }
-  }
-
-  return surfaceTileIndexes
 }
 
 export const generateGameBoard = (gameLevel: GameLevel): GameBoard => {
@@ -58,7 +32,11 @@ export const generateGameBoard = (gameLevel: GameLevel): GameBoard => {
 
   // 3 - Replace some empty tiles with surface tiles
   for (let surface of surfaces) {
-    const surfaceTileIndexes = getSurfaceTileIndexes(surface, gameLevelSize)
+    const surfaceTileIndexes = getRectangleTileIndexes({
+      rectanglePosition: surface.position,
+      rectangleSize: surface.size,
+      gameLevelSize,
+    })
 
     surfaceTileIndexes.forEach(surfaceIndex => {
       gameBoard.tiles[surfaceIndex].type = TileType.surface
