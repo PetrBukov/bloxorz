@@ -1,48 +1,51 @@
-import { GameCenterActionType } from '../providers/GameCenter/GameCenter.types'
+import {
+  GameCenterActionType,
+  HeroBlockMovingActionType,
+} from '../providers/GameCenter/GameCenter.types'
 import { Dimensions } from '../types/common'
-
-type KeyboardActions =
-  | GameCenterActionType.moveDown
-  | GameCenterActionType.moveLeft
-  | GameCenterActionType.moveRight
-  | GameCenterActionType.moveUp
+import { checkForHorizontalBlock } from './checkForHorizontalBlock'
+import { checkForSquareBlock } from './checkForSquareBlock'
+import { checkForVerticalBlock } from './checkForVerticalBlock'
 
 export const calculateHeroBlockSizeAfterMoving = (
   size: Dimensions,
-  actionType: KeyboardActions,
+  actionType: HeroBlockMovingActionType,
 ): Dimensions => {
-  const squareBlock = size.width === size.height
-  const horizontalBlock = size.width > size.height
-  const verticalBlock = size.height > size.width
+  const isSquareBlock = checkForSquareBlock(size)
+  const isHorizontalBlock = checkForHorizontalBlock(size)
+  const isVerticalBlock = checkForVerticalBlock(size)
 
   switch (true) {
-    case actionType === GameCenterActionType.moveUp && squareBlock:
-    case actionType === GameCenterActionType.moveRight && verticalBlock:
-    case actionType === GameCenterActionType.moveDown && squareBlock:
-    case actionType === GameCenterActionType.moveLeft && verticalBlock: {
+    case actionType === GameCenterActionType.moveUp && isSquareBlock:
+    case actionType === GameCenterActionType.moveRight && isVerticalBlock:
+    case actionType === GameCenterActionType.moveDown && isSquareBlock:
+    case actionType === GameCenterActionType.moveLeft && isVerticalBlock: {
       return {
         width: 1,
         height: 2,
       }
     }
-    case actionType === GameCenterActionType.moveUp && horizontalBlock:
-    case actionType === GameCenterActionType.moveRight && squareBlock:
-    case actionType === GameCenterActionType.moveDown && horizontalBlock:
-    case actionType === GameCenterActionType.moveLeft && squareBlock: {
+
+    case actionType === GameCenterActionType.moveUp && isHorizontalBlock:
+    case actionType === GameCenterActionType.moveRight && isSquareBlock:
+    case actionType === GameCenterActionType.moveDown && isHorizontalBlock:
+    case actionType === GameCenterActionType.moveLeft && isSquareBlock: {
       return {
         width: 2,
         height: 1,
       }
     }
-    case actionType === GameCenterActionType.moveUp && verticalBlock:
-    case actionType === GameCenterActionType.moveRight && horizontalBlock:
-    case actionType === GameCenterActionType.moveDown && verticalBlock:
-    case actionType === GameCenterActionType.moveLeft && horizontalBlock: {
+
+    case actionType === GameCenterActionType.moveUp && isVerticalBlock:
+    case actionType === GameCenterActionType.moveRight && isHorizontalBlock:
+    case actionType === GameCenterActionType.moveDown && isVerticalBlock:
+    case actionType === GameCenterActionType.moveLeft && isHorizontalBlock: {
       return {
         width: 1,
         height: 1,
       }
     }
+
     default:
       return size
   }

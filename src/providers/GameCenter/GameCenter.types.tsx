@@ -9,6 +9,12 @@ export enum GameCenterActionType {
   moveLeft = 'moveLeft',
 }
 
+export type HeroBlockMovingActionType =
+  | GameCenterActionType.moveDown
+  | GameCenterActionType.moveLeft
+  | GameCenterActionType.moveRight
+  | GameCenterActionType.moveUp
+
 export type GameCenterAction =
   | { type: GameCenterActionType.startNewGame; levelNumber: number }
   | { type: GameCenterActionType.cancelCurrentGame }
