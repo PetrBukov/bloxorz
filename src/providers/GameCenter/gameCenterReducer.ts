@@ -1,9 +1,8 @@
 import { LEVELS } from '../../constants/levels'
 import { GameStatus } from '../../types/game'
+import { calculateGameStatusAfterBlockMoving } from '../../utils/calculateGameStatusAfterBlockMoving'
 import { calculateHeroBlockPositionAfterMoving } from '../../utils/calculateHeroBlockPositionAfterMoving'
 import { calculateHeroBlockSizeAfterMoving } from '../../utils/calculateHeroBlockSizeAfterMoving'
-import { checkGameForFailure } from '../../utils/checkForGameFail'
-import { checkForVictory } from '../../utils/checkForVictory'
 import { generateGameBoard } from '../../utils/generateGameBoard'
 import { GameCenterAction, GameCenterActionType, GameCenterState } from './GameCenter.types'
 
@@ -41,88 +40,9 @@ export const gameCenterReducer = (
       }
     }
 
-    case GameCenterActionType.moveUp: {
-      if (state.currentGame && state.currentGame.status === GameStatus.active) {
-        const size = calculateHeroBlockSizeAfterMoving(state.currentGame.hero.size, action.type)
-        const position = calculateHeroBlockPositionAfterMoving({
-          ...state.currentGame.hero,
-          actionType: action.type,
-        })
-
-        const isFailure = checkGameForFailure({
-          heroSize: size,
-          heroPosition: position,
-          gameLevelSize: state.currentGame.board.size,
-          gameBoardTiles: state.currentGame.board.tiles,
-        })
-        const isVictory = checkForVictory({
-          heroSize: size,
-          heroPosition: position,
-          target: state.currentGame.board.target,
-        })
-        const status = isFailure
-          ? GameStatus.failure
-          : isVictory
-          ? GameStatus.victory
-          : state.currentGame.status
-
-        return {
-          ...state,
-          currentGame: {
-            ...state.currentGame,
-            status,
-            hero: {
-              size,
-              position,
-            },
-          },
-        }
-      }
-
-      return state
-    }
-
-    case GameCenterActionType.moveDown: {
-      if (state.currentGame && state.currentGame.status === GameStatus.active) {
-        const size = calculateHeroBlockSizeAfterMoving(state.currentGame.hero.size, action.type)
-        const position = calculateHeroBlockPositionAfterMoving({
-          ...state.currentGame.hero,
-          actionType: action.type,
-        })
-
-        const isFailure = checkGameForFailure({
-          heroSize: size,
-          heroPosition: position,
-          gameLevelSize: state.currentGame.board.size,
-          gameBoardTiles: state.currentGame.board.tiles,
-        })
-        const isVictory = checkForVictory({
-          heroSize: size,
-          heroPosition: position,
-          target: state.currentGame.board.target,
-        })
-        const status = isFailure
-          ? GameStatus.failure
-          : isVictory
-          ? GameStatus.victory
-          : state.currentGame.status
-
-        return {
-          ...state,
-          currentGame: {
-            ...state.currentGame,
-            status,
-            hero: {
-              size,
-              position,
-            },
-          },
-        }
-      }
-
-      return state
-    }
-
+    case GameCenterActionType.moveUp:
+    case GameCenterActionType.moveRight:
+    case GameCenterActionType.moveDown:
     case GameCenterActionType.moveLeft: {
       if (state.currentGame && state.currentGame.status === GameStatus.active) {
         const size = calculateHeroBlockSizeAfterMoving(state.currentGame.hero.size, action.type)
@@ -130,64 +50,13 @@ export const gameCenterReducer = (
           ...state.currentGame.hero,
           actionType: action.type,
         })
-
-        const isFailure = checkGameForFailure({
-          heroSize: size,
+        const status = calculateGameStatusAfterBlockMoving({
           heroPosition: position,
+          heroSize: size,
           gameLevelSize: state.currentGame.board.size,
           gameBoardTiles: state.currentGame.board.tiles,
-        })
-        const isVictory = checkForVictory({
-          heroSize: size,
-          heroPosition: position,
           target: state.currentGame.board.target,
         })
-        const status = isFailure
-          ? GameStatus.failure
-          : isVictory
-          ? GameStatus.victory
-          : state.currentGame.status
-
-        return {
-          ...state,
-          currentGame: {
-            ...state.currentGame,
-            status,
-            hero: {
-              size,
-              position,
-            },
-          },
-        }
-      }
-
-      return state
-    }
-
-    case GameCenterActionType.moveRight: {
-      if (state.currentGame && state.currentGame.status === GameStatus.active) {
-        const size = calculateHeroBlockSizeAfterMoving(state.currentGame.hero.size, action.type)
-        const position = calculateHeroBlockPositionAfterMoving({
-          ...state.currentGame.hero,
-          actionType: action.type,
-        })
-
-        const isFailure = checkGameForFailure({
-          heroSize: size,
-          heroPosition: position,
-          gameLevelSize: state.currentGame.board.size,
-          gameBoardTiles: state.currentGame.board.tiles,
-        })
-        const isVictory = checkForVictory({
-          heroSize: size,
-          heroPosition: position,
-          target: state.currentGame.board.target,
-        })
-        const status = isFailure
-          ? GameStatus.failure
-          : isVictory
-          ? GameStatus.victory
-          : state.currentGame.status
 
         return {
           ...state,
