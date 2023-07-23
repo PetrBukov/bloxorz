@@ -1,5 +1,6 @@
 import { Coordinates, Dimensions } from '../types/common'
 import { Tile, TileType } from '../types/game'
+import { checkForHeroBlockOutOfMap } from './checkForHeroBlockOutOfMap'
 import { getRectangleTileIndexes } from './getRectangleTileIndexes'
 
 export const checkGameForFailure = ({
@@ -15,13 +16,24 @@ export const checkGameForFailure = ({
 }) => {
   let isFailure = false
 
+  // 1 - Check cases when Hero Block is out of Map
+  const isHeroBlockOutOfMap = checkForHeroBlockOutOfMap({
+    heroPosition,
+    heroSize,
+    gameLevelSize,
+  })
+  console.log({ isHeroBlockOutOfMap })
+  if (isHeroBlockOutOfMap) {
+    isFailure = true
+    return isFailure
+  }
+
+  // 2 - Check cases when Hero Block is on the empty Tile
   const heroBlockIndexes = getRectangleTileIndexes({
     rectangleSize: heroSize,
     rectanglePosition: heroPosition,
     gameLevelSize,
   })
-
-  console.log({ heroBlockIndexes })
 
   heroBlockIndexes.forEach(tileIndex => {
     if (!gameBoardTiles[tileIndex] || gameBoardTiles[tileIndex].type === TileType.empty) {
