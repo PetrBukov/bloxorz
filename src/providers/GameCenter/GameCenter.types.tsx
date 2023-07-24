@@ -16,7 +16,7 @@ export type HeroBlockMovingActionType =
   | GameCenterActionType.moveUp
 
 export type GameCenterAction =
-  | { type: GameCenterActionType.startNewGame; levelNumber: number }
+  | { type: GameCenterActionType.startNewGame; levelName: string }
   | { type: GameCenterActionType.cancelCurrentGame }
   | { type: GameCenterActionType.moveUp }
   | { type: GameCenterActionType.moveRight }

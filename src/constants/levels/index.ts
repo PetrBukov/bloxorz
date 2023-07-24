@@ -1,3 +1,3 @@
-import { LEVEL_8 } from './level_8'
+import { LEVEL_9 } from './level_9'
 
-export const LEVELS = [LEVEL_8]
+export const LEVEL_LIST = [LEVEL_9]

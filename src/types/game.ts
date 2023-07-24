@@ -7,10 +7,12 @@ export type Surface = {
 }
 
 export type GameLevel = {
+  name: string
   size: Dimensions
   surfaces: Array<Surface>
   start: Coordinates
   target: Coordinates
+  moves: [topRate: number, middleRate: number]
 }
 
 export enum TileType {
@@ -39,7 +41,14 @@ export enum GameStatus {
 }
 
 export type Game = {
+  levelName: string
   status: GameStatus
   board: GameBoard
   hero: Hero
+  moves: number
 }
+
+// We use GameScore instead of a number type because in the future we may want to change this
+// type from number to some object with several props and it would be easier to refactor code
+// if we mark every place where we work with GameScore in advance
+export type GameScore = number

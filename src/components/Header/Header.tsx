@@ -10,7 +10,7 @@ export const Header: React.FC = () => {
   const hasCurrentGame = Boolean(state.currentGame)
 
   const onStartNewGame = useCallback(() => {
-    dispatch({ type: GameCenterActionType.startNewGame, levelNumber: 0 })
+    dispatch({ type: GameCenterActionType.startNewGame, levelName: '9' })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

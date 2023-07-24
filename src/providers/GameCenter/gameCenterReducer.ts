@@ -1,9 +1,9 @@
-import { LEVELS } from '../../constants/levels'
 import { GameStatus } from '../../types/game'
 import { calculateGameStatusAfterBlockMoving } from '../../utils/calculateGameStatusAfterBlockMoving'
 import { calculateHeroBlockPositionAfterMoving } from '../../utils/calculateHeroBlockPositionAfterMoving'
 import { calculateHeroBlockSizeAfterMoving } from '../../utils/calculateHeroBlockSizeAfterMoving'
 import { generateGameBoard } from '../../utils/generateGameBoard'
+import { getLevelByName } from '../../utils/getLevelByName'
 import { GameCenterAction, GameCenterActionType, GameCenterState } from './GameCenter.types'
 
 export const gameCenterReducer = (
@@ -12,14 +12,19 @@ export const gameCenterReducer = (
 ): GameCenterState => {
   switch (action.type) {
     case GameCenterActionType.startNewGame: {
-      const { levelNumber } = action
+      const { levelName } = action
 
-      const gameLevel = LEVELS[levelNumber]
+      const gameLevel = getLevelByName(levelName)
+      if (!gameLevel) {
+        return state
+      }
+
       const board = generateGameBoard(gameLevel)
 
       return {
         ...state,
         currentGame: {
+          levelName,
           status: GameStatus.active,
           hero: {
             position: gameLevel.start,
@@ -29,6 +34,7 @@ export const gameCenterReducer = (
             },
           },
           board,
+          moves: 0,
         },
       }
     }
@@ -46,10 +52,12 @@ export const gameCenterReducer = (
     case GameCenterActionType.moveLeft: {
       if (state.currentGame && state.currentGame.status === GameStatus.active) {
         const size = calculateHeroBlockSizeAfterMoving(state.currentGame.hero.size, action.type)
+
         const position = calculateHeroBlockPositionAfterMoving({
           ...state.currentGame.hero,
           actionType: action.type,
         })
+
         const status = calculateGameStatusAfterBlockMoving({
           heroPosition: position,
           heroSize: size,
@@ -58,10 +66,13 @@ export const gameCenterReducer = (
           target: state.currentGame.board.target,
         })
 
+        const moves = state.currentGame.moves + 1
+
         return {
           ...state,
           currentGame: {
             ...state.currentGame,
+            moves,
             status,
             hero: {
               size,

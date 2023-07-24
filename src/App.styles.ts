@@ -18,6 +18,7 @@ export const globalStyles = css`
     --spaceViolet: #463944;
     --yellow: #f7c845;
     --red: #ff4949;
+    --green: #56c6c0;
   }
 
   html {
