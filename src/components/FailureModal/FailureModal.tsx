@@ -6,7 +6,7 @@ import { useGameCenter } from '../../providers/GameCenter'
 import { GameStatus } from '../../types/game'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
 import { Modal } from '../Modal/Modal'
-import { ModalVariant } from '../Modal'
+import { TitleVariant } from '../Title'
 
 export const FailureModal: React.FC = () => {
   const { state, dispatch } = useGameCenter()
@@ -18,12 +18,19 @@ export const FailureModal: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state])
 
+  const onCancelGame = useCallback(() => {
+    if (state.currentGame) {
+      dispatch({ type: GameCenterActionType.cancelCurrentGame })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state])
+
   if (!state.currentGame || state.currentGame.status !== GameStatus.failure) {
     return null
   }
 
   return (
-    <Modal title="Try Again!" variant={ModalVariant.error}>
+    <Modal titleText="Try Again!" titleVariant={TitleVariant.error}>
       <FailureModalContent>
         <FailureModalText>
           We're sure it's just an absolute accident. Press the button "Replay" soon and show us what
@@ -33,7 +40,7 @@ export const FailureModal: React.FC = () => {
           <Button variant="outlined" onClick={onReplayGame}>
             Replay
           </Button>
-          <Button variant="outlined" disabled>
+          <Button variant="outlined" onClick={onCancelGame}>
             Menu
           </Button>
         </FailureModalActions>

@@ -14,15 +14,32 @@ import { calculateGameScore } from '../../utils/calculateGameScore'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
 import { getLevelByName } from '../../utils/getLevelByName'
 import { Modal } from '../Modal/Modal'
-import { ModalVariant } from '../Modal'
 import { getScoreValueColor, getTitleByGameScore } from './VictoryModal.utils'
+import { TitleVariant } from '../Title'
+import { getNextLevelByName } from '../../utils/getNextLevelByName'
 
 export const VictoryModal: React.FC = () => {
   const { state, dispatch } = useGameCenter()
 
+  const nextLevel = getNextLevelByName(state?.currentGame?.levelName || '')
+
   const onReplayGame = useCallback(() => {
     if (state.currentGame) {
       dispatch({ type: GameCenterActionType.startNewGame, levelName: state.currentGame.levelName })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state])
+
+  const onNextLevelStart = useCallback(() => {
+    if (nextLevel) {
+      dispatch({ type: GameCenterActionType.startNewGame, levelName: nextLevel.name })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state])
+
+  const onCancelGame = useCallback(() => {
+    if (state.currentGame) {
+      dispatch({ type: GameCenterActionType.cancelCurrentGame })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state])
@@ -44,7 +61,7 @@ export const VictoryModal: React.FC = () => {
   const gameScoreValueColor = getScoreValueColor(gameScore)
 
   return (
-    <Modal title={title} variant={ModalVariant.success}>
+    <Modal titleText={title} titleVariant={TitleVariant.success}>
       <VictoryModalContent>
         <Rating gameScore={gameScore} />
         <VictoryModalScores>
@@ -59,10 +76,10 @@ export const VictoryModal: React.FC = () => {
           <Button variant="outlined" onClick={onReplayGame}>
             Replay
           </Button>
-          <Button variant="outlined" disabled>
+          <Button variant="outlined" onClick={onNextLevelStart}>
             Next
           </Button>
-          <Button variant="outlined" disabled>
+          <Button variant="outlined" onClick={onCancelGame}>
             Menu
           </Button>
         </VictoryModalActions>

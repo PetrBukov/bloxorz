@@ -1,10 +1,6 @@
-export enum ModalVariant {
-  error = 'error',
-  info = 'info',
-  success = 'success',
-}
+import { TitleVariant } from '../Title/Title.types'
 
 export type ModalProps = {
-  title: string
-  variant: ModalVariant
+  titleText: string
+  titleVariant: TitleVariant
 }

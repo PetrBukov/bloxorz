@@ -1,18 +1,18 @@
 import React, { PropsWithChildren } from 'react'
 
 import { ModalProps } from './Modal.types'
-import { ModalContainer, ModalOverlay, ModalTitle } from './Modal.styles'
-import { getTitleColor } from './Modal.utils'
+import { ModalContainer, ModalOverlay } from './Modal.styles'
+import { Title } from '../Title/Title'
 
-export const Modal: React.FC<PropsWithChildren<ModalProps>> = ({ title, variant, children }) => {
-  const titleColor = getTitleColor(variant)
-
+export const Modal: React.FC<PropsWithChildren<ModalProps>> = ({
+  titleText,
+  titleVariant,
+  children,
+}) => {
   return (
     <ModalOverlay>
       <ModalContainer>
-        <ModalTitle color={titleColor}>
-          <span>{title}</span>
-        </ModalTitle>
+        <Title text={titleText} variant={titleVariant} />
         {children}
       </ModalContainer>
     </ModalOverlay>
