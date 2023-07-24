@@ -40,6 +40,7 @@ export enum GameStatus {
   active = 'active',
   failure = 'failure',
   victory = 'victory',
+  paused = 'paused',
 }
 
 export type Game = {

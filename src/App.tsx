@@ -4,17 +4,19 @@ import 'normalize.css'
 
 import { globalStyles } from './App.styles'
 import { GameCenter } from './providers'
-import { Content, FailureModal, Footer, Header, VictoryModal } from './components'
+import { Content, FailureModal, Footer, Nav, VictoryModal } from './components'
+import { PausedModal } from './components/PausedModal'
 
 const App: React.FC = () => {
   return (
     <GameCenter>
       <Global styles={globalStyles} />
-      <Header />
+      <Nav />
       <Content />
       <Footer />
       <VictoryModal />
       <FailureModal />
+      <PausedModal />
     </GameCenter>
   )
 }

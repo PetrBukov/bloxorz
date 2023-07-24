@@ -46,6 +46,34 @@ export const gameCenterReducer = (
       }
     }
 
+    case GameCenterActionType.pauseCurrentGame: {
+      if (state.currentGame && state.currentGame.status === GameStatus.active) {
+        return {
+          ...state,
+          currentGame: {
+            ...state.currentGame,
+            status: GameStatus.paused,
+          },
+        }
+      }
+
+      return state
+    }
+
+    case GameCenterActionType.continueCurrentGame: {
+      if (state.currentGame && state.currentGame.status === GameStatus.paused) {
+        return {
+          ...state,
+          currentGame: {
+            ...state.currentGame,
+            status: GameStatus.active,
+          },
+        }
+      }
+
+      return state
+    }
+
     case GameCenterActionType.moveUp:
     case GameCenterActionType.moveRight:
     case GameCenterActionType.moveDown:

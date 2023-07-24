@@ -3,6 +3,8 @@ import { Game } from '../../types/game'
 export enum GameCenterActionType {
   startNewGame = 'startNewGame',
   cancelCurrentGame = 'cancelCurrentGame',
+  pauseCurrentGame = 'pauseCurrentGame',
+  continueCurrentGame = 'continueCurrentGame',
   moveUp = 'moveUp',
   moveRight = 'moveRight',
   moveDown = 'moveDown',
@@ -18,6 +20,8 @@ export type HeroBlockMovingActionType =
 export type GameCenterAction =
   | { type: GameCenterActionType.startNewGame; levelName: string }
   | { type: GameCenterActionType.cancelCurrentGame }
+  | { type: GameCenterActionType.pauseCurrentGame }
+  | { type: GameCenterActionType.continueCurrentGame }
   | { type: GameCenterActionType.moveUp }
   | { type: GameCenterActionType.moveRight }
   | { type: GameCenterActionType.moveDown }
