@@ -3,12 +3,9 @@ import React, { useCallback } from 'react'
 import { Button } from '../Button'
 import {
   VictoryModalActions,
-  VictoryModalContainer,
   VictoryModalContent,
-  VictoryModalOverlay,
   VictoryModalScores,
   VictoryModalScoresItem,
-  VictoryModalTitle,
 } from './VictoryModal.styles'
 import { Rating } from '../Rating'
 import { useGameCenter } from '../../providers/GameCenter'
@@ -16,6 +13,9 @@ import { GameStatus } from '../../types/game'
 import { calculateGameScore } from '../../utils/calculateGameScore'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
 import { getLevelByName } from '../../utils/getLevelByName'
+import { Modal } from '../Modal/Modal'
+import { ModalVariant } from '../Modal'
+import { getScoreValueColor, getTitleByGameScore } from './VictoryModal.utils'
 
 export const VictoryModal: React.FC = () => {
   const { state, dispatch } = useGameCenter()
@@ -36,39 +36,37 @@ export const VictoryModal: React.FC = () => {
   } = state
 
   const level = getLevelByName(levelName)
-  const designMoves = level?.moves
+  const designMoves = level?.moves?.[0]
 
   const gameScore = calculateGameScore(moves, levelName)
+  const title = getTitleByGameScore(gameScore)
+
+  const gameScoreValueColor = getScoreValueColor(gameScore)
 
   return (
-    <VictoryModalOverlay>
-      <VictoryModalContainer>
-        <VictoryModalTitle className="page-title">
-          <span>Congratulations</span>
-        </VictoryModalTitle>
-        <VictoryModalContent>
-          <Rating gameScore={gameScore} />
-          <VictoryModalScores>
-            <VictoryModalScoresItem gameScore={gameScore}>
-              Your moves: <span>{moves}</span>
-            </VictoryModalScoresItem>
-            <VictoryModalScoresItem gameScore={gameScore}>
-              Design moves: <span>{designMoves}</span>
-            </VictoryModalScoresItem>
-          </VictoryModalScores>
-          <VictoryModalActions>
-            <Button variant="outlined" onClick={onReplayGame}>
-              Replay
-            </Button>
-            <Button variant="outlined" disabled>
-              Next
-            </Button>
-            <Button variant="outlined" disabled>
-              Menu
-            </Button>
-          </VictoryModalActions>
-        </VictoryModalContent>
-      </VictoryModalContainer>
-    </VictoryModalOverlay>
+    <Modal title={title} variant={ModalVariant.success}>
+      <VictoryModalContent>
+        <Rating gameScore={gameScore} />
+        <VictoryModalScores>
+          <VictoryModalScoresItem valueColor={gameScoreValueColor}>
+            Your moves: <span>{moves}</span>
+          </VictoryModalScoresItem>
+          <VictoryModalScoresItem valueColor={gameScoreValueColor}>
+            Design moves: <span>{designMoves}</span>
+          </VictoryModalScoresItem>
+        </VictoryModalScores>
+        <VictoryModalActions>
+          <Button variant="outlined" onClick={onReplayGame}>
+            Replay
+          </Button>
+          <Button variant="outlined" disabled>
+            Next
+          </Button>
+          <Button variant="outlined" disabled>
+            Menu
+          </Button>
+        </VictoryModalActions>
+      </VictoryModalContent>
+    </Modal>
   )
 }
