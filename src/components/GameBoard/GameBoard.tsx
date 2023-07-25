@@ -3,15 +3,21 @@ import React, { useCallback, useEffect } from 'react'
 import { TileType } from '../../types/game'
 import { EmptyTitle, GameBoardContainer, SurfaceTitle, TargetTitle } from './GameBoard.styles'
 import { GameBoardProps } from './GameBoard.types'
-import { calculateBoardSizes } from './GameBoard.utils'
+import { calculateBoardSizesPx } from './GameBoard.utils'
 import { Hero } from '../Hero'
 import { KEYBOARD } from '../../constants/keyboard'
 import { useGameCenter } from '../../providers/GameCenter'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
 
-export const GameBoard: React.FC<GameBoardProps> = ({ board: { tiles, size }, hero, status }) => {
+export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
   const { dispatch } = useGameCenter()
-  const boardSizes = calculateBoardSizes(size)
+  const {
+    board: { size, tiles },
+    hero,
+    status,
+  } = currentGame
+
+  const boardSizesPx = calculateBoardSizesPx(size)
 
   const handleUserKeyPress = useCallback((event: globalThis.KeyboardEvent) => {
     const { key } = event
@@ -47,7 +53,7 @@ export const GameBoard: React.FC<GameBoardProps> = ({ board: { tiles, size }, he
   }, [handleUserKeyPress])
 
   return (
-    <GameBoardContainer {...boardSizes} totalColumns={size.width} totalRows={size.height}>
+    <GameBoardContainer {...boardSizesPx} totalColumns={size.width} totalRows={size.height}>
       {tiles.map((tile, index) => {
         switch (tile.type) {
           case TileType.surface: {

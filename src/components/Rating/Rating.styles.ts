@@ -60,7 +60,9 @@ export const RatingStar = styled.div<{ gameScore: GameScore }>`
     content: '⭐️';
     display: block;
 
-    text-shadow: 0 0 rgba(255, 255, 255, 30%);
+    text-shadow:
+      0 0 rgba(255, 255, 255, 40%),
+      0 0 rgba(0, 0, 0, 20%);
   }
 
   &::after {
@@ -73,6 +75,7 @@ export const RatingStar = styled.div<{ gameScore: GameScore }>`
 
     color: var(--yellow);
     transform: scale(1);
+    text-shadow: 0 0 10px var(--yellow);
   }
 
   &:nth-of-type(1)::after {

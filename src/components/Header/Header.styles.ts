@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-export const NavContainer = styled.nav`
+export const HeaderContainer = styled.header`
   position: absolute;
   top: 0px;
 

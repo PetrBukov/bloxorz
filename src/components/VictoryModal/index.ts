@@ -1,1 +1,0 @@
-export { VictoryModal } from './VictoryModal'

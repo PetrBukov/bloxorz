@@ -4,8 +4,7 @@ import 'normalize.css'
 
 import { globalStyles } from './App.styles'
 import { GameCenter } from './providers'
-import { Content, Footer, GameStatusTitle, Nav, VictoryModal } from './components'
-import { PausedModal } from './components/PausedModal'
+import { Content, Footer, GameStatusTitle, Header } from './components'
 import { GameObserver } from './components/GameObserver'
 
 const App: React.FC = () => {
@@ -13,11 +12,9 @@ const App: React.FC = () => {
     <GameCenter>
       <GameObserver>
         <Global styles={globalStyles} />
-        <Nav />
+        <Header />
         <Content />
         <Footer />
-        <VictoryModal />
-        <PausedModal />
         <GameStatusTitle />
       </GameObserver>
     </GameCenter>

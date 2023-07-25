@@ -48,7 +48,9 @@ export const TargetTitle = styled.div<{ gameStatus: GameStatus }>`
     ${({ gameStatus }) => gameStatus === GameStatus.victory && victoryStatusStyles}
   }
 `
-export const GameBoardContainer = styled.div<
+export const GameBoardContainer = styled('div', {
+  shouldForwardProp: prop => prop !== 'width' && prop !== 'height',
+})<
   BoardSizes & {
     totalColumns: number
     totalRows: number

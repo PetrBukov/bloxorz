@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react'
-import { NavContainer, PauseButton } from './Nav.styles'
+import { HeaderContainer, PauseButton } from './Header.styles'
 import { useGameCenter } from '../../providers/GameCenter'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
 
-export const Nav: React.FC = () => {
+export const Header: React.FC = () => {
   const { state, dispatch } = useGameCenter()
 
   const onPauseClick = useCallback(() => {
@@ -16,8 +16,8 @@ export const Nav: React.FC = () => {
   }
 
   return (
-    <NavContainer>
+    <HeaderContainer>
       <PauseButton onClick={onPauseClick}>Pause</PauseButton>
-    </NavContainer>
+    </HeaderContainer>
   )
 }
