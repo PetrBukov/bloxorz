@@ -20,6 +20,7 @@ export const COLORS = {
   yellow: '#f7c845',
   red: '#ff4949',
   green: '#56c6c0',
+  acidGrid: '#dbff05',
 } as const
 
 export const globalStyles = css`
@@ -41,6 +42,7 @@ export const globalStyles = css`
     --yellow: ${COLORS.yellow};
     --red: ${COLORS.red};
     --green: ${COLORS.green};
+    --acidGreen: ${COLORS.acidGrid};
   }
 
   html {

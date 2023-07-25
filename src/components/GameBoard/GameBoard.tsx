@@ -9,7 +9,7 @@ import { KEYBOARD } from '../../constants/keyboard'
 import { useGameCenter } from '../../providers/GameCenter'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
 
-export const GameBoard: React.FC<GameBoardProps> = ({ board: { tiles, size }, hero }) => {
+export const GameBoard: React.FC<GameBoardProps> = ({ board: { tiles, size }, hero, status }) => {
   const { dispatch } = useGameCenter()
   const boardSizes = calculateBoardSizes(size)
 
@@ -54,14 +54,14 @@ export const GameBoard: React.FC<GameBoardProps> = ({ board: { tiles, size }, he
             return <SurfaceTitle key={index} />
           }
           case TileType.target: {
-            return <TargetTitle key={index} />
+            return <TargetTitle key={index} gameStatus={status} />
           }
           default: {
             return <EmptyTitle key={index} />
           }
         }
       })}
-      <Hero {...hero} />
+      <Hero {...hero} gameStatus={status} />
     </GameBoardContainer>
   )
 }

@@ -1,3 +1,4 @@
+import { GameStatus } from '../../types/game'
 import { Hero } from '../../types/hero'
 
 export type HeroBlockSizes = {
@@ -10,4 +11,6 @@ export type HeroBlockPosition = {
   left: string
 }
 
-export type HeroProps = Hero
+export type HeroProps = Hero & {
+  gameStatus: GameStatus
+}
