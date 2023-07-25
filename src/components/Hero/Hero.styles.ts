@@ -13,4 +13,6 @@ export const HeroBlock = styled.div<HeroBlockSizes & HeroBlockPosition>`
 
   background-color: var(--red);
   border-radius: ${HERO_WIDTH / 2}px;
+
+  transition-duration: 0.5s;
 `
