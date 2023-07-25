@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { css, keyframes } from '@emotion/react'
 
 import { HeroBlockPosition, HeroBlockSizes } from './Hero.types'
-import { HERO_WIDTH, TILE_WIDTH } from '../../constants/board'
+import { HERO_WIDTH } from '../../constants/board'
 import { GameStatus } from '../../types/game'
 
 const failureStatus = keyframes`
@@ -11,15 +11,6 @@ const failureStatus = keyframes`
     }
     100% {
         filter: grayscale(1);
-    }
-`
-
-const victoryStatus = keyframes`
-    0% {
-        background-color: var(--green);
-    }
-    100% {
-        background-color: var(--violet);
     }
 `
 
