@@ -22,6 +22,15 @@ export const HeaderContainer = styled.header`
   grid-auto-flow: column;
 `
 
+export const LevelName = styled.div`
+  font-size: 24px;
+  color: var(--white);
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+`
+
 export const closeIconStyles = css`
   &::before,
   &::after {

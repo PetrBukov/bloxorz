@@ -4,6 +4,7 @@ import {
   MovesCounterContainer,
   MovesCounterIndicator,
   MenuButton,
+  LevelName,
 } from './Header.styles'
 import { useGameCenter } from '../../providers/GameCenter'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
@@ -39,6 +40,7 @@ export const Header: React.FC = () => {
       <MenuButton icon={buttonIcon} disabled={pauseButtonDisabled} onClick={onMenuClick}>
         Pause
       </MenuButton>
+      <LevelName>Level {currentGame.levelName}</LevelName>
       <MovesCounterContainer>
         {/* We set key to currentGame.moves to manually run rerender of this element */}
         {/* every time amount of moves changes because it's the easiest way to run animation */}
