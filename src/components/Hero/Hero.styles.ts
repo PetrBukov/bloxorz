@@ -16,7 +16,6 @@ const failureStatus = keyframes`
 
 const failureStatusStyles = css`
   background-color: var(--red);
-  opacity: 1;
   filter: grayscale(0);
 
   animation: ${failureStatus} 0.5s steps(2) infinite;
@@ -25,8 +24,6 @@ const failureStatusStyles = css`
 const victoryStatusStyles = css`
   background-color: var(--acidGreen);
   opacity: 1;
-  transition-duration: 2s;
-  border-radius: 50%;
 `
 
 export const HeroBlock = styled.div<
@@ -39,8 +36,10 @@ export const HeroBlock = styled.div<
   width: ${({ width }) => width};
   height: ${({ height }) => height};
 
-  background-color: var(--violet);
+  background-color: var(--acidGreen);
   border-radius: ${HERO_WIDTH / 2}px;
+  border: 2px solid var(--violet);
+  opacity: 0.8;
 
   transition-duration: 0.5s;
 
