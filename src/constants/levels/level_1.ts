@@ -3,37 +3,27 @@ import { GameLevel } from '../../types/game'
 export const LEVEL_1: GameLevel = {
   name: '1',
   size: {
-    width: 5,
-    height: 8,
+    width: 1,
+    height: 4,
   },
   start: {
-    x: 1,
-    y: 5,
+    x: 0,
+    y: 0,
   },
   target: {
-    x: 3,
-    y: 6,
+    x: 0,
+    y: 3,
   },
-  moves: [8, 12],
+  moves: [2, 3],
   surfaces: [
     {
       position: {
-        x: 1,
-        y: 1,
-      },
-      size: {
-        width: 2,
-        height: 5,
-      },
-    },
-    {
-      position: {
-        x: 3,
-        y: 2,
+        x: 0,
+        y: 0,
       },
       size: {
         width: 1,
-        height: 5,
+        height: 4,
       },
     },
   ],

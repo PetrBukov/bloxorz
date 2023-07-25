@@ -3,37 +3,47 @@ import { GameLevel } from '../../types/game'
 export const LEVEL_2: GameLevel = {
   name: '2',
   size: {
-    width: 5,
-    height: 8,
+    width: 3,
+    height: 4,
   },
   start: {
-    x: 1,
-    y: 5,
+    x: 2,
+    y: 3,
   },
   target: {
-    x: 3,
-    y: 6,
+    x: 0,
+    y: 0,
   },
-  moves: [8, 12],
+  moves: [4, 6],
   surfaces: [
+    {
+      position: {
+        x: 0,
+        y: 0,
+      },
+      size: {
+        width: 1,
+        height: 3,
+      },
+    },
     {
       position: {
         x: 1,
         y: 1,
       },
       size: {
-        width: 2,
-        height: 5,
+        width: 1,
+        height: 2,
       },
     },
     {
       position: {
-        x: 3,
-        y: 2,
+        x: 2,
+        y: 1,
       },
       size: {
         width: 1,
-        height: 5,
+        height: 3,
       },
     },
   ],

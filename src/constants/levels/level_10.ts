@@ -1,39 +1,39 @@
 import { GameLevel } from '../../types/game'
 
-export const LEVEL_9: GameLevel = {
-  name: '9',
+export const LEVEL_10: GameLevel = {
+  name: '10',
   size: {
     width: 3,
     height: 6,
   },
   start: {
     x: 0,
-    y: 4,
+    y: 5,
   },
   target: {
     x: 2,
-    y: 5,
+    y: 0,
   },
-  moves: [8, 12],
+  moves: [10, 14],
   surfaces: [
     {
       position: {
         x: 0,
-        y: 0,
+        y: 3,
       },
       size: {
-        width: 2,
-        height: 5,
+        width: 3,
+        height: 3,
       },
     },
     {
       position: {
         x: 2,
-        y: 1,
+        y: 0,
       },
       size: {
         width: 1,
-        height: 5,
+        height: 3,
       },
     },
   ],
