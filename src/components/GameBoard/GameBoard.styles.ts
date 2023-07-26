@@ -65,3 +65,12 @@ export const GameBoardContainer = styled('div', {
   grid-template-rows: repeat(${({ totalRows }) => totalRows}, 1fr);
   grid-gap: 2px;
 `
+
+export const GameBoardGestureZone = styled.div`
+  display: grid;
+  width: 100%;
+  height: 100%;
+
+  align-items: center;
+  justify-items: center;
+`
