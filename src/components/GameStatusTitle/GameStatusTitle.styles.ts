@@ -91,8 +91,6 @@ export const StatusContainer = styled.div<{ isVisible: boolean }>`
   height: 80px;
   width: 110%;
   background: rgba(0, 0, 0, 80%);
-
-  animation: ${statusBlackLine} 1s linear;
 `
 
 export const StatusInner = styled.div`
