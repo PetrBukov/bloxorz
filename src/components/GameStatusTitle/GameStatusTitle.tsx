@@ -21,7 +21,9 @@ export const GameStatusTitle: React.FC = () => {
     <StatusContainer>
       <StatusInner>
         {gameStatusText.map(text => (
-          <StatusText gameStatus={currentGame.status}>{text}</StatusText>
+          <StatusText key={text} gameStatus={currentGame.status}>
+            {text}
+          </StatusText>
         ))}
       </StatusInner>
     </StatusContainer>
