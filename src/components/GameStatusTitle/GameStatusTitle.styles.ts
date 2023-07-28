@@ -13,12 +13,12 @@ import { GameStatus } from '../../types/game'
 
 const statusTextTop = keyframes`
     0% {
-        opacity: 0;
         left: 0%;
+        opacity: 0;
     }
     100% {
-        opacity: 1;
         left: 50%;
+        opacity: 1;
     }
 `
 
@@ -55,6 +55,7 @@ export const StatusText = styled.div<{ gameStatus: GameStatus }>`
   font-family: simpleStamp, sans-serif;
   font-size: 32px;
   padding: 5px;
+  opacity: 1;
 
   ${({ gameStatus }) => gameStatus === GameStatus.failure && failureStatusTextStyles}
   ${({ gameStatus }) => gameStatus === GameStatus.paused && pausedStatusTextStyles}
@@ -64,7 +65,6 @@ export const StatusText = styled.div<{ gameStatus: GameStatus }>`
     top: -20px;
     left: 50%;
     transform: translateX(-50%) rotate(-2deg);
-    opacity: 1;
     margin-left: 30px;
 
     animation: ${statusTextTop} 2s linear;
@@ -73,7 +73,6 @@ export const StatusText = styled.div<{ gameStatus: GameStatus }>`
     bottom: -20px;
     right: 50%;
     transform: translateX(50%) rotate(-2deg);
-    opacity: 1;
     margin-right: 30px;
 
     animation: ${statusTextBottom} 2s linear;
