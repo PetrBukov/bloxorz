@@ -6,6 +6,7 @@ import { ContentContainer } from './Content.styles'
 import { LevelsMenu } from '../LevelsMenu'
 import { BottomNavigation } from '../BottomNavigation'
 import { GameStatus } from '../../types/game'
+import { GameStatusTitle } from '../GameStatusTitle'
 
 export const Content: React.FC = () => {
   const {
@@ -23,6 +24,9 @@ export const Content: React.FC = () => {
       {!hasCurrentGame && <LevelsMenu />}
 
       {showBottomNavigation && <BottomNavigation currentGame={currentGame} />}
+      {hasCurrentGame && (
+        <GameStatusTitle gameStatus={currentGame?.status} levelName={currentGame?.levelName} />
+      )}
     </ContentContainer>
   )
 }
