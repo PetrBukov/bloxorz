@@ -1,28 +1,28 @@
 import { GameLevel } from '../../types/game'
 
-export const LEVEL_10: GameLevel = {
-  id: 'level-1-10',
-  name: '10',
-  previousLevelId: 'level-1-9',
-  nextLevelId: 'level-1-11',
+export const LEVEL_12: GameLevel = {
+  id: 'level-1-12',
+  name: '12',
+  previousLevelId: 'level-1-11',
+  nextLevelId: null,
   size: {
     width: 3,
-    height: 6,
+    height: 7,
   },
   start: {
     x: 0,
-    y: 5,
+    y: 0,
   },
   target: {
     x: 2,
-    y: 0,
+    y: 6,
   },
-  moves: 10,
+  moves: 12,
   surfaces: [
     {
       position: {
         x: 0,
-        y: 3,
+        y: 0,
       },
       size: {
         width: 3,
@@ -31,12 +31,22 @@ export const LEVEL_10: GameLevel = {
     },
     {
       position: {
+        x: 0,
+        y: 3,
+      },
+      size: {
+        width: 2,
+        height: 4,
+      },
+    },
+    {
+      position: {
         x: 2,
-        y: 0,
+        y: 6,
       },
       size: {
         width: 1,
-        height: 3,
+        height: 1,
       },
     },
   ],
