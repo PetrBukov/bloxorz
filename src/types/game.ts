@@ -6,10 +6,15 @@ export type Surface = {
   size: Dimensions
 }
 
+export type LevelID = string
+
 export type LevelName = string
 
 export type GameLevel = {
+  id: LevelID
   name: LevelName
+  nextLevelId: LevelID | null
+  previousLevelId: LevelID | null
   size: Dimensions
   surfaces: Array<Surface>
   start: Coordinates
@@ -44,7 +49,8 @@ export enum GameStatus {
 }
 
 export type Game = {
-  levelName: string
+  levelId: LevelID
+  levelName: LevelName
   status: GameStatus
   board: GameBoard
   hero: Hero

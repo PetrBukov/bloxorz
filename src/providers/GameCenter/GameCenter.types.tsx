@@ -1,4 +1,4 @@
-import { Game } from '../../types/game'
+import { Game, LevelID } from '../../types/game'
 
 export enum GameCenterActionType {
   startNewGame = 'startNewGame',
@@ -18,7 +18,7 @@ export type HeroBlockMovingActionType =
   | GameCenterActionType.moveUp
 
 export type GameCenterAction =
-  | { type: GameCenterActionType.startNewGame; levelName: string }
+  | { type: GameCenterActionType.startNewGame; levelId: LevelID }
   | { type: GameCenterActionType.cancelCurrentGame }
   | { type: GameCenterActionType.pauseCurrentGame }
   | { type: GameCenterActionType.continueCurrentGame }

@@ -3,7 +3,7 @@ import { calculateGameStatusAfterBlockMoving } from '../../utils/calculateGameSt
 import { calculateHeroBlockPositionAfterMoving } from '../../utils/calculateHeroBlockPositionAfterMoving'
 import { calculateHeroBlockSizeAfterMoving } from '../../utils/calculateHeroBlockSizeAfterMoving'
 import { generateGameBoard } from '../../utils/generateGameBoard'
-import { getLevelByName } from '../../utils/getLevelByName'
+import { getLevelById } from '../../utils/getLevelById'
 import { GameCenterAction, GameCenterActionType, GameCenterState } from './GameCenter.types'
 
 export const gameCenterReducer = (
@@ -12,9 +12,9 @@ export const gameCenterReducer = (
 ): GameCenterState => {
   switch (action.type) {
     case GameCenterActionType.startNewGame: {
-      const { levelName } = action
+      const { levelId } = action
 
-      const gameLevel = getLevelByName(levelName)
+      const gameLevel = getLevelById(levelId)
       if (!gameLevel) {
         return state
       }
@@ -24,7 +24,8 @@ export const gameCenterReducer = (
       return {
         ...state,
         currentGame: {
-          levelName,
+          levelId: gameLevel.id,
+          levelName: gameLevel.name,
           status: GameStatus.active,
           hero: {
             position: gameLevel.start,

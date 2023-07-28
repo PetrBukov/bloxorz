@@ -1,5 +1,5 @@
-import { LevelName } from './game'
+import { LevelID } from './game'
 
 export type User = {
-  completedLevels: Record<LevelName, boolean>
+  completedLevels: Record<LevelID, boolean>
 }

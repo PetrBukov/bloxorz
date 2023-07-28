@@ -2,7 +2,7 @@ import React, { PropsWithChildren, useEffect } from 'react'
 import { useGameCenter } from '../../providers/GameCenter'
 import { GameStatus } from '../../types/game'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
-import { getNextLevelByName } from '../../utils/getNextLevelByName'
+import { getNextLevelById } from '../../utils/getNextLevelById'
 import { useUser } from '../../providers/UserProvider'
 import { UserProviderActionType } from '../../providers/UserProvider/UserProvider.types'
 
@@ -21,7 +21,7 @@ export const GameObserver: React.FC<PropsWithChildren> = ({ children }) => {
       timerId = setTimeout(() => {
         dispatchGameCenter({
           type: GameCenterActionType.startNewGame,
-          levelName: currentGame.levelName,
+          levelId: currentGame.levelId,
         })
       }, 2500)
     }
@@ -40,16 +40,16 @@ export const GameObserver: React.FC<PropsWithChildren> = ({ children }) => {
     if (currentGame && currentGame.status === GameStatus.victory) {
       dispatchUser({
         type: UserProviderActionType.gameLevelCompleted,
-        levelName: currentGame.levelName,
+        levelId: currentGame.levelId,
       })
 
-      const nextLevel = getNextLevelByName(currentGame.levelName)
+      const nextLevel = getNextLevelById(currentGame.levelId)
 
       if (nextLevel) {
         timerId = setTimeout(() => {
           dispatchGameCenter({
             type: GameCenterActionType.startNewGame,
-            levelName: nextLevel.name,
+            levelId: nextLevel.id,
           })
         }, 2500)
       } else {

@@ -10,7 +10,7 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({ currentGame 
   const { dispatch } = useGameCenter()
 
   const onReplayGame = useCallback(() => {
-    dispatch({ type: GameCenterActionType.startNewGame, levelName: currentGame.levelName })
+    dispatch({ type: GameCenterActionType.startNewGame, levelId: currentGame.levelId })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentGame])
 

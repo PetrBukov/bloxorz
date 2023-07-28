@@ -1,3 +1,4 @@
+import { LevelID } from '../../types/game'
 import { User } from '../../types/user'
 
 export enum UserProviderActionType {
@@ -6,7 +7,7 @@ export enum UserProviderActionType {
 
 export type UserProviderAction = {
   type: UserProviderActionType.gameLevelCompleted
-  levelName: string
+  levelId: LevelID
 }
 
 export type UserProviderDispatch = (action: UserProviderAction) => void

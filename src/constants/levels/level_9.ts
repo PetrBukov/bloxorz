@@ -1,7 +1,10 @@
 import { GameLevel } from '../../types/game'
 
 export const LEVEL_9: GameLevel = {
+  id: 'level-1-9',
   name: '9',
+  previousLevelId: 'level-1-8',
+  nextLevelId: 'level-1-10',
   size: {
     width: 3,
     height: 6,

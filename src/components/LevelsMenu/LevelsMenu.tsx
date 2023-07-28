@@ -12,8 +12,8 @@ export const LevelsMenu: React.FC = () => {
     state: { completedLevels },
   } = useUser()
 
-  const onStartNewGame = useCallback((levelName: string) => {
-    dispatch({ type: GameCenterActionType.startNewGame, levelName })
+  const onStartNewGame = useCallback((levelId: string) => {
+    dispatch({ type: GameCenterActionType.startNewGame, levelId })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -21,11 +21,11 @@ export const LevelsMenu: React.FC = () => {
     <LevelsMenuContainer>
       <Title text="Choose level ..." variant={TitleVariant.info} />
       <LevelList>
-        {LEVEL_LIST.map(({ name }) => (
+        {LEVEL_LIST.map(({ id, name }) => (
           <LevelButton
-            key={name}
-            isCompleted={Boolean(completedLevels[name])}
-            onClick={() => onStartNewGame(name)}
+            key={id}
+            isCompleted={Boolean(completedLevels[id])}
+            onClick={() => onStartNewGame(id)}
           >
             {name}
           </LevelButton>

@@ -1,4 +1,4 @@
-import { getLevelByName } from '../../utils/getLevelByName'
+import { getLevelById } from '../../utils/getLevelById'
 import { UserProviderState, UserProviderAction, UserProviderActionType } from './UserProvider.types'
 
 export const userProviderReducer = (
@@ -7,9 +7,9 @@ export const userProviderReducer = (
 ): UserProviderState => {
   switch (action.type) {
     case UserProviderActionType.gameLevelCompleted: {
-      const { levelName } = action
+      const { levelId } = action
 
-      const gameLevel = getLevelByName(levelName)
+      const gameLevel = getLevelById(levelId)
       if (!gameLevel) {
         return state
       }
@@ -18,7 +18,7 @@ export const userProviderReducer = (
         ...state,
         completedLevels: {
           ...state.completedLevels,
-          [levelName]: true,
+          [gameLevel.id]: true,
         },
       }
     }
