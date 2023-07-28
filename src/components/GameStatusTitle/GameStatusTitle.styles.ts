@@ -56,8 +56,9 @@ export const StatusText = styled.div<{ gameStatus: GameStatus }>`
   font-size: 32px;
   padding: 5px;
 
-  background-color: var(--acidGreen);
-  color: var(--black);
+  ${({ gameStatus }) => gameStatus === GameStatus.failure && failureStatusTextStyles}
+  ${({ gameStatus }) => gameStatus === GameStatus.paused && pausedStatusTextStyles}
+  ${({ gameStatus }) => gameStatus === GameStatus.victory && victoryStatusTextStyles}
 
   &:nth-of-type(1) {
     top: -20px;
