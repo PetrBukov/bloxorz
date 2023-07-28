@@ -1,34 +1,28 @@
-import { css, keyframes } from '@emotion/react'
+import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-
-const spinSquare = keyframes`
-  0% {
-   transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(90deg);
-  }
-`
 
 export const HeaderContainer = styled.header`
   position: absolute;
   top: 0px;
 
   width: 100%;
+  height: 76px;
   padding: 16px 24px;
 
   display: grid;
-  justify-content: space-between;
+  justify-content: center;
   grid-auto-flow: column;
 `
 
 export const LevelName = styled.div`
-  font-size: 24px;
-  color: var(--white);
-  font-weight: 600;
+  font-family: simpleStamp, sans-serif;
+  font-size: 32px;
+  color: var(--acidGreen);
 
   display: flex;
   align-items: center;
+
+  padding-top: 4px;
 `
 
 export const closeIconStyles = css`
@@ -45,6 +39,12 @@ export const closeIconStyles = css`
   &::after {
     transform: translateX(-5px) rotate(-45deg);
   }
+`
+
+export const MenuButtonContainer = styled.div`
+  position: absolute;
+  top: 16px;
+  left: 24px;
 `
 
 export const MenuButton = styled.button<{ icon: 'close' | 'pause' }>`
@@ -88,24 +88,4 @@ export const MenuButton = styled.button<{ icon: 'close' | 'pause' }>`
   &:disabled {
     opacity: 0;
   }
-`
-
-export const MovesCounterContainer = styled.div`
-  display: grid;
-  grid-template-columns: 25px minmax(25px, auto);
-  align-items: center;
-  justify-items: end;
-  gap: 16px;
-
-  color: var(--white);
-  font-size: 24px;
-  font-weight: 600;
-`
-export const MovesCounterIndicator = styled.div`
-  background-color: var(--acidGreen);
-  opacity: 0.8;
-  width: 25px;
-  height: 25px;
-
-  animation: ${spinSquare} 0.4s linear;
 `

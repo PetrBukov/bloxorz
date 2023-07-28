@@ -26,6 +26,7 @@ export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
     board: { size, tiles },
     hero,
     status,
+    moves,
   } = currentGame
 
   const swipeHandler = useCallback(
@@ -76,7 +77,7 @@ export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
             }
           }
         })}
-        <Hero {...hero} gameStatus={status} />
+        <Hero {...hero} gameStatus={status} gameMoves={moves} />
       </GameBoardContainer>
     </GameBoardGestureZone>
   )

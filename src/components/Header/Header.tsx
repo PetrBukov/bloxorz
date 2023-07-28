@@ -1,11 +1,5 @@
 import React, { useCallback } from 'react'
-import {
-  HeaderContainer,
-  MovesCounterContainer,
-  MovesCounterIndicator,
-  MenuButton,
-  LevelName,
-} from './Header.styles'
+import { HeaderContainer, MenuButton, LevelName, MenuButtonContainer } from './Header.styles'
 import { useGameCenter } from '../../providers/GameCenter'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
 import { GameStatus } from '../../types/game'
@@ -37,17 +31,12 @@ export const Header: React.FC = () => {
 
   return (
     <HeaderContainer>
-      <MenuButton icon={buttonIcon} disabled={pauseButtonDisabled} onClick={onMenuClick}>
-        Pause
-      </MenuButton>
+      <MenuButtonContainer>
+        <MenuButton icon={buttonIcon} disabled={pauseButtonDisabled} onClick={onMenuClick}>
+          Pause
+        </MenuButton>
+      </MenuButtonContainer>
       <LevelName>Level {currentGame.levelName}</LevelName>
-      <MovesCounterContainer>
-        {/* We set key to currentGame.moves to manually run rerender of this element */}
-        {/* every time amount of moves changes because it's the easiest way to run animation */}
-        {/* of this block on every movement */}
-        <MovesCounterIndicator key={currentGame.moves} />
-        {currentGame.moves}
-      </MovesCounterContainer>
     </HeaderContainer>
   )
 }

@@ -8,13 +8,21 @@ export const checkGameForFailure = ({
   heroPosition,
   gameLevelSize,
   gameBoardTiles,
+  moves,
 }: {
   heroSize: Dimensions
   heroPosition: Coordinates
   gameLevelSize: Dimensions
   gameBoardTiles: Array<Tile>
+  moves: number
 }) => {
   let isFailure = false
+
+  // 1 - Check case when Player run out of moves
+  if (moves <= 0) {
+    isFailure = true
+    return isFailure
+  }
 
   // 1 - Check cases when Hero Block is out of Map
   const isHeroBlockOutOfMap = checkForHeroBlockOutOfMap({

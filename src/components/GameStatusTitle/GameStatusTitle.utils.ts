@@ -1,5 +1,20 @@
-import { COLORS } from '../../App.styles'
-import { GameScore } from '../../types/game'
+import { GameStatus } from '../../types/game'
 
-const SCORE_VALUE_COLORS = [COLORS.white, COLORS.red, COLORS.yellow, COLORS.acidGrid]
-export const getScoreValueColor = (gameScore: GameScore) => SCORE_VALUE_COLORS[gameScore]
+export const getStatusText = (
+  gameStatus?: GameStatus,
+  levelName?: string,
+): [topText: string, bottomText: string] | null => {
+  switch (gameStatus) {
+    case GameStatus.failure: {
+      return ['Oooops ...', 'Try again!']
+    }
+    case GameStatus.paused: {
+      return ['Game is ...', 'Paused']
+    }
+    case GameStatus.victory: {
+      return [`Level ${levelName}`, 'Completed']
+    }
+    default:
+      return null
+  }
+}

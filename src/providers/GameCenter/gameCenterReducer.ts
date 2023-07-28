@@ -34,7 +34,7 @@ export const gameCenterReducer = (
             },
           },
           board,
-          moves: 0,
+          moves: gameLevel.moves,
         },
       }
     }
@@ -81,6 +81,8 @@ export const gameCenterReducer = (
       if (state.currentGame && state.currentGame.status === GameStatus.active) {
         const size = calculateHeroBlockSizeAfterMoving(state.currentGame.hero.size, action.type)
 
+        const moves = state.currentGame.moves - 1
+
         const position = calculateHeroBlockPositionAfterMoving({
           ...state.currentGame.hero,
           actionType: action.type,
@@ -92,9 +94,8 @@ export const gameCenterReducer = (
           gameLevelSize: state.currentGame.board.size,
           gameBoardTiles: state.currentGame.board.tiles,
           target: state.currentGame.board.target,
+          moves,
         })
-
-        const moves = state.currentGame.moves + 1
 
         return {
           ...state,

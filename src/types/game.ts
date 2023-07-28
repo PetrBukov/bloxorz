@@ -6,15 +6,13 @@ export type Surface = {
   size: Dimensions
 }
 
-export type GameLevelMoves = [topRate: number, middleRate: number]
-
 export type GameLevel = {
   name: string
   size: Dimensions
   surfaces: Array<Surface>
   start: Coordinates
   target: Coordinates
-  moves: GameLevelMoves
+  moves: number
 }
 
 export enum TileType {

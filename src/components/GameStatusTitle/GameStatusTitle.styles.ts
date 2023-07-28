@@ -1,4 +1,4 @@
-import { keyframes } from '@emotion/react'
+import { css, keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import { GameStatus } from '../../types/game'
 
@@ -11,18 +11,7 @@ const statusBlackLine = keyframes`
     }
 `
 
-const victoryScores = keyframes`
-    0% {
-        bottom: -10px;
-        opacity: 0;
-    }
-    100% {
-        bottom: 10px;
-        opacity: 1;
-    }
-`
-
-const failureStatusItem1 = keyframes`
+const statusTextTop = keyframes`
     0% {
         opacity: 0;
         left: 0%;
@@ -33,7 +22,7 @@ const failureStatusItem1 = keyframes`
     }
 `
 
-const failureStatusItem2 = keyframes`
+const statusTextBottom = keyframes`
     0% {
         opacity: 0;
         right: 0%;
@@ -44,13 +33,32 @@ const failureStatusItem2 = keyframes`
     }
 `
 
-export const StatusText = styled.div`
+export const failureStatusTextStyles = css`
+  background-color: var(--red);
+  color: var(--white);
+`
+
+export const pausedStatusTextStyles = css`
+  background-color: var(--yellow);
+  color: var(--black);
+`
+
+export const victoryStatusTextStyles = css`
+  background-color: var(--acidGreen);
+  color: var(--black);
+`
+
+export const StatusText = styled.div<{ gameStatus: GameStatus }>`
   position: absolute;
   text-align: center;
   background: none;
   font-family: simpleStamp, sans-serif;
   font-size: 32px;
   padding: 5px;
+
+  ${({ gameStatus }) => gameStatus === GameStatus.failure && failureStatusTextStyles}
+  ${({ gameStatus }) => gameStatus === GameStatus.paused && pausedStatusTextStyles}
+  ${({ gameStatus }) => gameStatus === GameStatus.victory && victoryStatusTextStyles}
 
   &:nth-of-type(1) {
     top: -20px;
@@ -59,7 +67,7 @@ export const StatusText = styled.div`
     opacity: 1;
     margin-left: 30px;
 
-    animation: ${failureStatusItem1} 2s;
+    animation: ${statusTextTop} 2s;
   }
   &:nth-of-type(2) {
     bottom: -20px;
@@ -68,27 +76,18 @@ export const StatusText = styled.div`
     opacity: 1;
     margin-right: 30px;
 
-    animation: ${failureStatusItem2} 2s;
+    animation: ${statusTextBottom} 2s;
   }
 `
 
-export const FailureStatusText = styled(StatusText)`
-  background-color: var(--red);
-  color: var(--white);
-`
-
-export const PausedStatusText = styled(StatusText)`
-  background-color: var(--yellow);
-  color: var(--black);
-`
-
-export const StatusContainer = styled.div<{ gameStatus: GameStatus }>`
+export const StatusContainer = styled.div`
   position: absolute;
   top: 50%;
+  left: -5%;
   transform: translateY(-50%) rotate(2deg);
 
-  height: ${({ gameStatus }) => (gameStatus === GameStatus.victory ? '120px' : '80px')};
-  width: 100%;
+  height: 80px;
+  width: 110%;
   background: rgba(0, 0, 0, 80%);
 
   animation: ${statusBlackLine} 1s linear;
@@ -97,40 +96,4 @@ export const StatusContainer = styled.div<{ gameStatus: GameStatus }>`
 export const StatusInner = styled.div`
   position: relative;
   height: 100%;
-`
-
-export const RatingContainer = styled.div`
-  position: absolute;
-
-  top: -30px;
-  left: 50%;
-  transform: translateX(-50%) rotate(-2deg) scale(1.4);
-`
-
-export const VictoryScores = styled.div`
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  display: grid;
-  justify-items: center;
-  gap: 8px;
-
-  animation: ${victoryScores} 1s linear;
-`
-
-export const VictoryScoresItem = styled.div<{ valueColor: string }>`
-  color: var(--gray400);
-  font-size: 16px;
-
-  &:first-of-type {
-    color: var(--gray200);
-    font-size: 22px;
-    font-weight: 600;
-
-    span {
-      color: ${({ valueColor }) => valueColor};
-    }
-  }
 `

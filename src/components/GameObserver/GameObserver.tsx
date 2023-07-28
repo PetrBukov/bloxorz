@@ -2,6 +2,7 @@ import React, { PropsWithChildren, useEffect } from 'react'
 import { useGameCenter } from '../../providers/GameCenter'
 import { GameStatus } from '../../types/game'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
+import { getNextLevelByName } from '../../utils/getNextLevelByName'
 
 export const GameObserver: React.FC<PropsWithChildren> = ({ children }) => {
   const {
@@ -10,13 +11,49 @@ export const GameObserver: React.FC<PropsWithChildren> = ({ children }) => {
   } = useGameCenter()
 
   useEffect(() => {
+    let timerId: NodeJS.Timeout | null = null
+
     if (currentGame && currentGame.status === GameStatus.failure) {
-      setTimeout(() => {
+      timerId = setTimeout(() => {
         dispatch({
           type: GameCenterActionType.startNewGame,
           levelName: currentGame.levelName,
         })
       }, 2500)
+    }
+
+    return () => {
+      if (timerId) {
+        clearTimeout(timerId)
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentGame])
+
+  useEffect(() => {
+    let timerId: NodeJS.Timeout | null = null
+
+    if (currentGame && currentGame.status === GameStatus.victory) {
+      const nextLevel = getNextLevelByName(currentGame.levelName)
+
+      if (nextLevel) {
+        timerId = setTimeout(() => {
+          dispatch({
+            type: GameCenterActionType.startNewGame,
+            levelName: nextLevel.name,
+          })
+        }, 2500)
+      } else {
+        dispatch({
+          type: GameCenterActionType.cancelCurrentGame,
+        })
+      }
+    }
+
+    return () => {
+      if (timerId) {
+        clearTimeout(timerId)
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentGame])

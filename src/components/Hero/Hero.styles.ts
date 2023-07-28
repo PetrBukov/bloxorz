@@ -43,6 +43,16 @@ export const HeroBlock = styled.div<
 
   transition-duration: 0.5s;
 
+  display: grid;
+  grid-auto-columns: ${HERO_WIDTH - 4}px;
+  grid-auto-rows: ${HERO_WIDTH - 4}px;
+  align-items: center;
+  justify-items: center;
+  font-family: simpleStamp, sans-serif;
+  font-size: 32px;
+  padding-top: 2px;
+  color: var(--violet);
+
   ${({ gameStatus }) => gameStatus === GameStatus.failure && failureStatusStyles}
-  ${({ gameStatus }) => gameStatus === GameStatus.victory && victoryStatusStyles}
+  ${({ gameStatus }) => gameStatus === GameStatus.victory && victoryStatusStyles};
 `

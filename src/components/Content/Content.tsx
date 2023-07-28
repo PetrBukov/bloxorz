@@ -13,10 +13,9 @@ export const Content: React.FC = () => {
   } = useGameCenter()
 
   const hasCurrentGame = !!currentGame
-  const isVictory = hasCurrentGame && currentGame.status === GameStatus.victory
   const isGamePaused = hasCurrentGame && currentGame.status === GameStatus.paused
 
-  const showBottomNavigation = hasCurrentGame && (isGamePaused || isVictory)
+  const showBottomNavigation = hasCurrentGame && isGamePaused
 
   return (
     <ContentContainer>

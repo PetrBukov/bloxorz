@@ -13,4 +13,5 @@ export type HeroBlockPosition = {
 
 export type HeroProps = Hero & {
   gameStatus: GameStatus
+  gameMoves: number
 }

@@ -14,7 +14,7 @@ export const LEVEL_2: GameLevel = {
     x: 0,
     y: 0,
   },
-  moves: [4, 6],
+  moves: 4,
   surfaces: [
     {
       position: {
