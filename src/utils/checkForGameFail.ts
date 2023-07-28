@@ -30,7 +30,7 @@ export const checkGameForFailure = ({
     heroSize,
     gameLevelSize,
   })
-  console.log({ isHeroBlockOutOfMap })
+
   if (isHeroBlockOutOfMap) {
     isFailure = true
     return isFailure

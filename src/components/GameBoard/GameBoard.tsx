@@ -31,7 +31,6 @@ export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
 
   const swipeHandler = useCallback(
     (direction: SwipeDirection) => {
-      console.log({ direction })
       const moveActionType = DIRECTION_TO_ACTION_MAP[direction]
 
       dispatch({ type: moveActionType })
