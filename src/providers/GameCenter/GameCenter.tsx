@@ -25,7 +25,7 @@ export const GameCenter: React.FC<PropsWithChildren> = ({ children }) => {
 export const useGameCenter = () => {
   const context = React.useContext(GameCenterContext)
   if (context === undefined) {
-    throw new Error('useCount must be used within a GameCenterContext')
+    throw new Error('useGameCenter must be used within a GameCenterContext')
   }
 
   return context

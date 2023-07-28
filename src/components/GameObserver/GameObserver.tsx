@@ -3,19 +3,23 @@ import { useGameCenter } from '../../providers/GameCenter'
 import { GameStatus } from '../../types/game'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
 import { getNextLevelByName } from '../../utils/getNextLevelByName'
+import { useUser } from '../../providers/UserProvider'
+import { UserProviderActionType } from '../../providers/UserProvider/UserProvider.types'
 
 export const GameObserver: React.FC<PropsWithChildren> = ({ children }) => {
   const {
     state: { currentGame },
-    dispatch,
+    dispatch: dispatchGameCenter,
   } = useGameCenter()
+
+  const { dispatch: dispatchUser } = useUser()
 
   useEffect(() => {
     let timerId: NodeJS.Timeout | null = null
 
     if (currentGame && currentGame.status === GameStatus.failure) {
       timerId = setTimeout(() => {
-        dispatch({
+        dispatchGameCenter({
           type: GameCenterActionType.startNewGame,
           levelName: currentGame.levelName,
         })
@@ -34,18 +38,23 @@ export const GameObserver: React.FC<PropsWithChildren> = ({ children }) => {
     let timerId: NodeJS.Timeout | null = null
 
     if (currentGame && currentGame.status === GameStatus.victory) {
+      dispatchUser({
+        type: UserProviderActionType.gameLevelCompleted,
+        levelName: currentGame.levelName,
+      })
+
       const nextLevel = getNextLevelByName(currentGame.levelName)
 
       if (nextLevel) {
         timerId = setTimeout(() => {
-          dispatch({
+          dispatchGameCenter({
             type: GameCenterActionType.startNewGame,
             levelName: nextLevel.name,
           })
         }, 2500)
       } else {
         timerId = setTimeout(() => {
-          dispatch({
+          dispatchGameCenter({
             type: GameCenterActionType.cancelCurrentGame,
           })
         }, 2500)

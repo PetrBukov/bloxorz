@@ -4,9 +4,13 @@ import { LEVEL_LIST } from '../../constants/levels'
 import { Title, TitleVariant } from '../Title'
 import { useGameCenter } from '../../providers/GameCenter'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
+import { useUser } from '../../providers/UserProvider'
 
 export const LevelsMenu: React.FC = () => {
   const { dispatch } = useGameCenter()
+  const {
+    state: { completedLevels },
+  } = useUser()
 
   const onStartNewGame = useCallback((levelName: string) => {
     dispatch({ type: GameCenterActionType.startNewGame, levelName })
@@ -18,7 +22,11 @@ export const LevelsMenu: React.FC = () => {
       <Title text="Choose level ..." variant={TitleVariant.info} />
       <LevelList>
         {LEVEL_LIST.map(({ name }) => (
-          <LevelButton key={name} onClick={() => onStartNewGame(name)}>
+          <LevelButton
+            key={name}
+            isCompleted={Boolean(completedLevels[name])}
+            onClick={() => onStartNewGame(name)}
+          >
             {name}
           </LevelButton>
         ))}

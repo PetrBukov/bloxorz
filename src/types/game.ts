@@ -6,8 +6,10 @@ export type Surface = {
   size: Dimensions
 }
 
+export type LevelName = string
+
 export type GameLevel = {
-  name: string
+  name: LevelName
   size: Dimensions
   surfaces: Array<Surface>
   start: Coordinates
