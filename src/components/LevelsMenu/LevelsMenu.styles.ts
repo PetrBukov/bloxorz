@@ -34,6 +34,8 @@ export const LevelButton = styled.button<{ isCompleted: boolean }>`
   font-family: simpleStamp, sans-serif;
   font-size: 50px;
 
+  color: var(--black);
+
   &:hover {
     opacity: 1;
   }
