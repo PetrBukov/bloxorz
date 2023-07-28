@@ -44,9 +44,11 @@ export const GameObserver: React.FC<PropsWithChildren> = ({ children }) => {
           })
         }, 2500)
       } else {
-        dispatch({
-          type: GameCenterActionType.cancelCurrentGame,
-        })
+        timerId = setTimeout(() => {
+          dispatch({
+            type: GameCenterActionType.cancelCurrentGame,
+          })
+        }, 2500)
       }
     }
 
