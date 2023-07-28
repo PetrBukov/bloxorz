@@ -1,3 +1,4 @@
+import { LOCAL_STORAGE_USER_ITEM_NAME, LOCAL_STORAGE_USER_VERSION } from '../../constants/user'
 import { getLevelById } from '../../utils/getLevelById'
 import { UserProviderState, UserProviderAction, UserProviderActionType } from './UserProvider.types'
 
@@ -14,12 +15,20 @@ export const userProviderReducer = (
         return state
       }
 
+      const completedLevels = {
+        ...state.completedLevels,
+        [gameLevel.id]: true,
+      }
+
+      // backup to localStorage
+      localStorage.setItem(
+        LOCAL_STORAGE_USER_ITEM_NAME,
+        JSON.stringify({ completedLevels, version: LOCAL_STORAGE_USER_VERSION }),
+      )
+
       return {
         ...state,
-        completedLevels: {
-          ...state.completedLevels,
-          [gameLevel.id]: true,
-        },
+        completedLevels,
       }
     }
 
