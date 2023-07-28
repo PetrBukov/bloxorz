@@ -67,7 +67,7 @@ export const StatusText = styled.div<{ gameStatus: GameStatus }>`
     opacity: 1;
     margin-left: 30px;
 
-    animation: ${statusTextTop} 2s;
+    animation: ${statusTextTop} 2s linear;
   }
   &:nth-of-type(2) {
     bottom: -20px;
@@ -76,7 +76,7 @@ export const StatusText = styled.div<{ gameStatus: GameStatus }>`
     opacity: 1;
     margin-right: 30px;
 
-    animation: ${statusTextBottom} 2s;
+    animation: ${statusTextBottom} 2s linear;
   }
 `
 
