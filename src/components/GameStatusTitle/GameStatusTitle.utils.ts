@@ -1,9 +1,6 @@
 import { GameStatus } from '../../types/game'
 
-export const getStatusText = (
-  gameStatus?: GameStatus,
-  levelName?: string,
-): [topText: string, bottomText: string] | null => {
+export const getStatusText = (gameStatus?: GameStatus, levelName?: string): Array<string> => {
   switch (gameStatus) {
     case GameStatus.failure: {
       return ['Oooops ...', 'Try again!']
@@ -15,6 +12,6 @@ export const getStatusText = (
       return [`Level ${levelName}`, 'Completed']
     }
     default:
-      return null
+      return []
   }
 }

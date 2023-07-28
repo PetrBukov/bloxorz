@@ -80,11 +80,13 @@ export const StatusText = styled.div<{ gameStatus: GameStatus }>`
   }
 `
 
-export const StatusContainer = styled.div`
+export const StatusContainer = styled.div<{ isVisible: boolean }>`
   position: absolute;
   top: 50%;
   left: -5%;
   transform: translateY(-50%) rotate(2deg);
+
+  display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
 
   height: 80px;
   width: 110%;
