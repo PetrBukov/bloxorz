@@ -12,6 +12,8 @@ export const HeaderContainer = styled.header`
   display: grid;
   justify-content: center;
   grid-auto-flow: column;
+
+  z-index: 1;
 `
 
 export const LevelName = styled.div`

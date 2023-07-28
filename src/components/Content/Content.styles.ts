@@ -3,6 +3,8 @@ import styled from '@emotion/styled'
 import whitegrit from '../../assets/images/whitegrit.png'
 
 export const ContentContainer = styled.main`
+  position: relative;
+  overflow: hidden;
   background: var(--spaceViolet) url(${whitegrit});
   background-size: 500px;
   display: grid;
