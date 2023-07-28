@@ -2,14 +2,14 @@ import { css, keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import { GameStatus } from '../../types/game'
 
-const statusBlackLine = keyframes`
-    0% {
-        background: rgba(0, 0, 0, 0%);
-    }
-    100% {
-        background: rgba(0, 0, 0, 80%);
-    }
-`
+// const statusBlackLine = keyframes`
+//     0% {
+//         background: rgba(0, 0, 0, 0%);
+//     }
+//     100% {
+//         background: rgba(0, 0, 0, 80%);
+//     }
+// `
 
 const statusTextTop = keyframes`
     0% {
