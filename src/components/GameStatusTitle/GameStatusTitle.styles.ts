@@ -65,7 +65,6 @@ export const StatusText = styled.div<{ gameStatus: GameStatus }>`
     top: -20px;
     left: 50%;
     transform: translateX(-50%) rotate(-2deg);
-    margin-left: 30px;
 
     animation: ${statusTextTop} 2s linear;
   }
@@ -73,7 +72,6 @@ export const StatusText = styled.div<{ gameStatus: GameStatus }>`
     bottom: -20px;
     right: 50%;
     transform: translateX(50%) rotate(-2deg);
-    margin-right: 30px;
 
     animation: ${statusTextBottom} 2s linear;
   }
