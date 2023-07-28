@@ -23,7 +23,7 @@ export const LevelsMenuContainer = styled.div`
 `
 
 export const LevelButton = styled.button<{ isCompleted: boolean }>`
-  opacity: 0.9;
+  opacity: 0.8;
 
   padding: 0;
   padding-top: 6px;
@@ -38,5 +38,11 @@ export const LevelButton = styled.button<{ isCompleted: boolean }>`
 
   &:hover {
     opacity: 1;
+  }
+
+  &:disabled {
+    color: var(--white);
+    background-color: var(--red);
+    opacity: 0.4;
   }
 `

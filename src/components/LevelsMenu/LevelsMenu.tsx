@@ -21,10 +21,11 @@ export const LevelsMenu: React.FC = () => {
     <LevelsMenuContainer>
       <Title text="Choose level ..." variant={TitleVariant.info} />
       <LevelList>
-        {LEVEL_LIST.map(({ id, name }) => (
+        {LEVEL_LIST.map(({ id, name, previousLevelId }) => (
           <LevelButton
             key={id}
             isCompleted={Boolean(completedLevels[id])}
+            disabled={!!previousLevelId && !completedLevels[previousLevelId]}
             onClick={() => onStartNewGame(id)}
           >
             {name}
