@@ -2,14 +2,14 @@ import { css, keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import { GameStatus } from '../../types/game'
 
-// const statusBlackLine = keyframes`
-//     0% {
-//         background: rgba(0, 0, 0, 0%);
-//     }
-//     100% {
-//         background: rgba(0, 0, 0, 80%);
-//     }
-// `
+const statusBlackLine = keyframes`
+    0% {
+        background: rgba(0, 0, 0, 0%);
+    }
+    100% {
+        background: rgba(0, 0, 0, 80%);
+    }
+`
 
 const statusTextTop = keyframes`
     0% {
@@ -65,6 +65,7 @@ export const StatusText = styled.div<{ gameStatus: GameStatus }>`
     top: -20px;
     left: 50%;
     transform: translateX(-50%) rotate(-2deg);
+    margin-left: 30px;
 
     animation: ${statusTextTop} 2s linear;
   }
@@ -72,6 +73,7 @@ export const StatusText = styled.div<{ gameStatus: GameStatus }>`
     bottom: -20px;
     right: 50%;
     transform: translateX(50%) rotate(-2deg);
+    margin-right: 30px;
 
     animation: ${statusTextBottom} 2s linear;
   }
@@ -88,6 +90,8 @@ export const StatusContainer = styled.div<{ isVisible: boolean }>`
   height: 80px;
   width: 110%;
   background: rgba(0, 0, 0, 80%);
+
+  animation: ${statusBlackLine} 1s linear;
 `
 
 export const StatusInner = styled.div`
