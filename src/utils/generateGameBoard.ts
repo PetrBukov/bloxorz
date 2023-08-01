@@ -1,5 +1,6 @@
 import { Coordinates, Dimensions } from '../types/common'
-import { GameBoard, TileType, GameLevel } from '../types/game'
+import { GameBoard, GameLevel } from '../types/game'
+import { TileType } from '../types/tile'
 import { getRectangleTileIndexes } from './getRectangleTileIndexes'
 
 const getTotalTilesAmount = (gameLevelSize: Dimensions) =>
@@ -40,7 +41,7 @@ export const generateGameBoard = (gameLevel: GameLevel): GameBoard => {
     })
 
     surfaceTileIndexes.forEach(surfaceIndex => {
-      gameBoard.tiles[surfaceIndex].type = TileType.surface
+      gameBoard.tiles[surfaceIndex].type = surface.type
     })
   }
 

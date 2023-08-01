@@ -5,6 +5,7 @@ import { Title, TitleVariant } from '../Title'
 import { useGameCenter } from '../../providers/GameCenter'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
 import { useUser } from '../../providers/UserProvider'
+import { GameLevelType } from '../../types/game'
 
 export const LevelsMenu: React.FC = () => {
   const { dispatch } = useGameCenter()
@@ -17,11 +18,13 @@ export const LevelsMenu: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const regularLevels = LEVEL_LIST.filter(level => level.type === GameLevelType.regular)
+
   return (
     <LevelsMenuContainer>
       <Title text="Choose level ..." variant={TitleVariant.info} />
       <LevelList>
-        {LEVEL_LIST.map(({ id, name, previousLevelId }) => (
+        {regularLevels.map(({ id, name, previousLevelId }) => (
           <LevelButton
             key={id}
             isCompleted={Boolean(completedLevels[id])}

@@ -2,15 +2,31 @@ import styled from '@emotion/styled'
 
 import whitegrit from '../../assets/images/whitegrit.png'
 import { BoardSizes } from './GameBoard.types'
-import { HERO_WIDTH } from '../../constants/board'
+import { GAP_BETWEEN_TILES, HERO_WIDTH } from '../../constants/board'
 import { GameStatus } from '../../types/game'
 import { css, keyframes } from '@emotion/react'
+import { BlockPosition, BlockSizes } from '../../types/common'
 
-export const SurfaceTitle = styled.div`
+export const SurfaceTile = styled.div`
   background-color: var(--white);
 `
 
-export const EmptyTitle = styled.div``
+export const SurfaceWideRightTile = styled.div`
+  position: relative;
+  background-color: var(--white);
+
+  &::after {
+    position: absolute;
+    content: '';
+    display: block;
+    height: 100%;
+    width: ${GAP_BETWEEN_TILES}px;
+    right: -${GAP_BETWEEN_TILES}px;
+    background-color: var(--white);
+  }
+`
+
+export const EmptyTile = styled.div``
 
 const victoryStatus = keyframes`
     0% {
@@ -26,14 +42,28 @@ const victoryStatusStyles = css`
   animation: ${victoryStatus} 4s steps(2);
 `
 
-export const TargetTitle = styled.div<{ gameStatus: GameStatus }>`
+export const TargetTile = styled.div<{ gameStatus: GameStatus }>`
+  position: relative;
   background-color: var(--acidGreen);
   display: grid;
   align-items: center;
   align-items: center;
   justify-items: center;
 
+  div {
+    z-index: 2;
+    color: var(--acidGreen);
+    font-family: simpleStamp, sans-serif;
+    font-size: 32px;
+    padding-top: 4px;
+  }
+
   &::before {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
     content: '';
     display: block;
     width: ${HERO_WIDTH}px;
@@ -67,10 +97,30 @@ export const GameBoardContainer = styled('div', {
 `
 
 export const GameBoardGestureZone = styled.div`
+  z-index: 5;
   display: grid;
   width: 100%;
   height: 100%;
 
   align-items: center;
   justify-items: center;
+`
+
+export const TileTextContainer = styled('div', {
+  shouldForwardProp: prop => prop !== 'width' && prop !== 'height',
+})<BlockSizes & BlockPosition>`
+  position: absolute;
+  top: ${({ top }) => top};
+  left: ${({ left }) => left};
+  width: ${({ width }) => width};
+  height: ${({ height }) => height};
+
+  display: grid;
+  align-items: center;
+  justify-content: center;
+
+  font-family: simpleStamp, sans-serif;
+  font-size: 24px;
+  padding-top: 4px;
+  color: var(--violet);
 `

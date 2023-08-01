@@ -1,5 +1,5 @@
 import { Coordinates, Dimensions } from '../types/common'
-import { Tile, TileType } from '../types/game'
+import { Tile, TileType } from '../types/tile'
 import { checkForHeroBlockOutOfMap } from './checkForHeroBlockOutOfMap'
 import { getRectangleTileIndexes } from './getRectangleTileIndexes'
 

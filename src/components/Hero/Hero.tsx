@@ -8,9 +8,5 @@ export const Hero: React.FC<HeroProps> = ({ size, position, gameStatus, gameMove
   const heroBlockSizes = calculateHeroBlockSizes(size)
   const heroBlockPosition = calculateHeroBlockPosition(position)
 
-  return (
-    <HeroBlock {...heroBlockSizes} {...heroBlockPosition} gameStatus={gameStatus}>
-      {Boolean(gameMoves) && gameMoves}
-    </HeroBlock>
-  )
+  return <HeroBlock {...heroBlockSizes} {...heroBlockPosition} gameStatus={gameStatus} />
 }

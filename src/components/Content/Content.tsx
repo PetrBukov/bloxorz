@@ -5,8 +5,9 @@ import { GameBoard } from '../GameBoard'
 import { ContentContainer } from './Content.styles'
 import { LevelsMenu } from '../LevelsMenu'
 import { BottomNavigation } from '../BottomNavigation'
-import { GameStatus } from '../../types/game'
+import { GameLevelType, GameStatus } from '../../types/game'
 import { GameStatusTitle } from '../GameStatusTitle'
+import { TutorialTips } from '../TutorialTips'
 
 export const Content: React.FC = () => {
   const {
@@ -18,13 +19,17 @@ export const Content: React.FC = () => {
 
   const showBottomNavigation = hasCurrentGame && isGamePaused
 
+  const showTutorialTips = hasCurrentGame && currentGame.levelType === GameLevelType.tutorial
+  const showStatusTitle = hasCurrentGame && currentGame.levelType !== GameLevelType.tutorial
+
   return (
     <ContentContainer>
+      {showTutorialTips && <TutorialTips levelId={currentGame.levelId} />}
       {hasCurrentGame && <GameBoard currentGame={currentGame} />}
       {!hasCurrentGame && <LevelsMenu />}
 
       {showBottomNavigation && <BottomNavigation currentGame={currentGame} />}
-      {hasCurrentGame && (
+      {showStatusTitle && (
         <GameStatusTitle gameStatus={currentGame?.status} levelName={currentGame?.levelName} />
       )}
     </ContentContainer>

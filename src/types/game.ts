@@ -1,35 +1,35 @@
 import { Coordinates, Dimensions } from './common'
 import { Hero } from './hero'
-
-export type Surface = {
-  position: Coordinates
-  size: Dimensions
-}
+import { Surface } from './surface'
+import { Tile } from './tile'
 
 export type LevelID = string
 
 export type LevelName = string
 
+export enum GameLevelType {
+  regular = 'regular',
+  tutorial = 'tutorial',
+}
+
+export type TileText = {
+  text: string
+  position: Coordinates
+  size: Dimensions
+}
+
 export type GameLevel = {
   id: LevelID
   name: LevelName
+  type: GameLevelType
   nextLevelId: LevelID | null
   previousLevelId: LevelID | null
   size: Dimensions
   surfaces: Array<Surface>
-  start: Coordinates
+  tileTexts?: Array<TileText>
+  hero: Hero
   target: Coordinates
   moves: number
-}
-
-export enum TileType {
-  surface = 'surface',
-  empty = 'empty',
-  target = 'target',
-}
-
-export type Tile = {
-  type: TileType
 }
 
 export type GameBoard = {
@@ -51,8 +51,10 @@ export enum GameStatus {
 export type Game = {
   levelId: LevelID
   levelName: LevelName
+  levelType: GameLevelType
   status: GameStatus
   board: GameBoard
+  tileTexts?: Array<TileText>
   hero: Hero
   moves: number
 }

@@ -1,6 +1,9 @@
 import React, { PropsWithChildren } from 'react'
-import { GameCenterAction, GameCenterDispatch, GameCenterState } from './GameCenter.types'
+import { GameCenterDispatch, GameCenterState } from './GameCenter.types'
 import { gameCenterReducer } from './gameCenterReducer'
+import { useUser } from '../UserProvider'
+import { createGameForLevel } from '../../utils/createGameFromLevel'
+import { TUTORIAL_1 } from '../../constants/levels/tutorial_1'
 
 // Why don't I have an initial value for this context?
 // read this: https://kentcdodds.com/blog/how-to-use-react-context-effectively
@@ -9,11 +12,25 @@ const GameCenterContext = React.createContext<
 >(undefined)
 
 export const GameCenter: React.FC<PropsWithChildren> = ({ children }) => {
-  const [state, dispatch] = React.useReducer<
-    (state: GameCenterState, action: GameCenterAction) => GameCenterState
-  >(gameCenterReducer, {
-    currentGame: null,
-  })
+  const {
+    state: { completedLevels },
+  } = useUser()
+
+  const [state, dispatch] = React.useReducer(
+    gameCenterReducer,
+    {
+      currentGame: null,
+    },
+    defaultState => {
+      if (!completedLevels[TUTORIAL_1.id]) {
+        return {
+          currentGame: createGameForLevel(TUTORIAL_1),
+        }
+      }
+
+      return defaultState
+    },
+  )
 
   // TODO: memoize this value
   // this article may help: http://kcd.im/optimize-context

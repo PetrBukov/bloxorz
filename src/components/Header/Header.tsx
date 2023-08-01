@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { HeaderContainer, MenuButton, LevelName, MenuButtonContainer } from './Header.styles'
 import { useGameCenter } from '../../providers/GameCenter'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
-import { GameStatus } from '../../types/game'
+import { GameLevelType, GameStatus } from '../../types/game'
 
 export const Header: React.FC = () => {
   const {
@@ -21,7 +21,7 @@ export const Header: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentGame])
 
-  if (!currentGame) {
+  if (!currentGame || currentGame.levelType === GameLevelType.tutorial) {
     return null
   }
 

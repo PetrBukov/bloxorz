@@ -2,7 +2,7 @@ import { GameStatus } from '../../types/game'
 import { calculateGameStatusAfterBlockMoving } from '../../utils/calculateGameStatusAfterBlockMoving'
 import { calculateHeroBlockPositionAfterMoving } from '../../utils/calculateHeroBlockPositionAfterMoving'
 import { calculateHeroBlockSizeAfterMoving } from '../../utils/calculateHeroBlockSizeAfterMoving'
-import { generateGameBoard } from '../../utils/generateGameBoard'
+import { createGameForLevel } from '../../utils/createGameFromLevel'
 import { getLevelById } from '../../utils/getLevelById'
 import { GameCenterAction, GameCenterActionType, GameCenterState } from './GameCenter.types'
 
@@ -19,24 +19,9 @@ export const gameCenterReducer = (
         return state
       }
 
-      const board = generateGameBoard(gameLevel)
-
       return {
         ...state,
-        currentGame: {
-          levelId: gameLevel.id,
-          levelName: gameLevel.name,
-          status: GameStatus.active,
-          hero: {
-            position: gameLevel.start,
-            size: {
-              width: 1,
-              height: 1,
-            },
-          },
-          board,
-          moves: gameLevel.moves,
-        },
+        currentGame: createGameForLevel(gameLevel),
       }
     }
 

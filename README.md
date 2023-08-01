@@ -1,3 +1,3 @@
-# Bloxorz Game
+# Puzzle-Slime Game
 
-This is a puzzle game. The aim of this game is to get block to fall into the square hole at the end of each stage.
+This is a puzzle game. The aim of this game is to get slime to fill up the round hole at the end of each level.

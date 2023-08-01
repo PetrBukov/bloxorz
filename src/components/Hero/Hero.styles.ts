@@ -1,9 +1,9 @@
 import styled from '@emotion/styled'
 import { css, keyframes } from '@emotion/react'
 
-import { HeroBlockPosition, HeroBlockSizes } from './Hero.types'
 import { HERO_WIDTH } from '../../constants/board'
 import { GameStatus } from '../../types/game'
+import { BlockPosition, BlockSizes } from '../../types/common'
 
 const failureStatus = keyframes`
     0% {
@@ -26,9 +26,7 @@ const victoryStatusStyles = css`
   opacity: 1;
 `
 
-export const HeroBlock = styled.div<
-  HeroBlockSizes & HeroBlockPosition & { gameStatus: GameStatus }
->`
+export const HeroBlock = styled.div<BlockSizes & BlockPosition & { gameStatus: GameStatus }>`
   position: absolute;
   top: ${({ top }) => top};
   left: ${({ left }) => left};
@@ -42,16 +40,6 @@ export const HeroBlock = styled.div<
   opacity: 0.8;
 
   transition-duration: 0.5s;
-
-  display: grid;
-  grid-auto-columns: ${HERO_WIDTH - 4}px;
-  grid-auto-rows: ${HERO_WIDTH - 4}px;
-  align-items: center;
-  justify-items: center;
-  font-family: simpleStamp, sans-serif;
-  font-size: 32px;
-  padding-top: 2px;
-  color: var(--violet);
 
   ${({ gameStatus }) => gameStatus === GameStatus.failure && failureStatusStyles}
   ${({ gameStatus }) => gameStatus === GameStatus.victory && victoryStatusStyles};

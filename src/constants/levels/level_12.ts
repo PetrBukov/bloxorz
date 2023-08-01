@@ -1,17 +1,25 @@
-import { GameLevel } from '../../types/game'
+import { GameLevel, GameLevelType } from '../../types/game'
+import { TileType } from '../../types/tile'
 
 export const LEVEL_12: GameLevel = {
   id: 'level-1-12',
   name: '12',
+  type: GameLevelType.regular,
   previousLevelId: 'level-1-11',
   nextLevelId: null,
   size: {
     width: 3,
     height: 7,
   },
-  start: {
-    x: 0,
-    y: 0,
+  hero: {
+    position: {
+      x: 0,
+      y: 0,
+    },
+    size: {
+      width: 1,
+      height: 1,
+    },
   },
   target: {
     x: 2,
@@ -20,6 +28,7 @@ export const LEVEL_12: GameLevel = {
   moves: 12,
   surfaces: [
     {
+      type: TileType.surface,
       position: {
         x: 0,
         y: 0,
@@ -30,6 +39,7 @@ export const LEVEL_12: GameLevel = {
       },
     },
     {
+      type: TileType.surface,
       position: {
         x: 0,
         y: 3,
@@ -40,6 +50,7 @@ export const LEVEL_12: GameLevel = {
       },
     },
     {
+      type: TileType.surface,
       position: {
         x: 2,
         y: 6,

@@ -21,6 +21,7 @@ export const userProviderReducer = (
       }
 
       // backup to localStorage
+      // TODO: Move this side effect out of this reducer! It should be pure!
       localStorage.setItem(
         LOCAL_STORAGE_USER_ITEM_NAME,
         JSON.stringify({ completedLevels, version: LOCAL_STORAGE_USER_VERSION }),

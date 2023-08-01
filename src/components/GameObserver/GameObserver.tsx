@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useEffect } from 'react'
 import { useGameCenter } from '../../providers/GameCenter'
-import { GameStatus } from '../../types/game'
+import { GameLevelType, GameStatus } from '../../types/game'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
 import { getNextLevelById } from '../../utils/getNextLevelById'
 import { useUser } from '../../providers/UserProvider'
@@ -53,11 +53,12 @@ export const GameObserver: React.FC<PropsWithChildren> = ({ children }) => {
           })
         }, 2500)
       } else {
+        const time = currentGame.levelType === GameLevelType.tutorial ? 1000 : 2500
         timerId = setTimeout(() => {
           dispatchGameCenter({
             type: GameCenterActionType.cancelCurrentGame,
           })
-        }, 2500)
+        }, time)
       }
     }
 

@@ -10,8 +10,10 @@ import { LEVEL_9 } from './level_9'
 import { LEVEL_10 } from './level_10'
 import { LEVEL_11 } from './level_11'
 import { LEVEL_12 } from './level_12'
+import { TUTORIAL_1 } from './tutorial_1'
 
 export const LEVEL_LIST = [
+  TUTORIAL_1,
   LEVEL_1,
   LEVEL_2,
   LEVEL_3,

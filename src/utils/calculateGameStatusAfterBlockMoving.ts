@@ -1,5 +1,6 @@
 import { Coordinates, Dimensions } from '../types/common'
-import { GameStatus, Tile } from '../types/game'
+import { GameStatus } from '../types/game'
+import { Tile } from '../types/tile'
 import { checkGameForFailure } from './checkForGameFail'
 import { checkForVictory } from './checkForVictory'
 

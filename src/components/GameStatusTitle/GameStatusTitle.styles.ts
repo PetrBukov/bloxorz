@@ -80,6 +80,8 @@ export const StatusText = styled.div<{ gameStatus: GameStatus }>`
 `
 
 export const StatusContainer = styled.div<{ isVisible: boolean }>`
+  z-index: 25;
+
   position: absolute;
   top: 50%;
   left: -5%;

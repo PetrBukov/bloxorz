@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect } from 'react'
 
-import { TileType } from '../../types/game'
 import {
-  EmptyTitle,
+  EmptyTile,
   GameBoardContainer,
   GameBoardGestureZone,
-  SurfaceTitle,
-  TargetTitle,
+  SurfaceTile,
+  SurfaceWideRightTile,
+  TargetTile,
+  TileTextContainer,
 } from './GameBoard.styles'
 import { GameBoardProps } from './GameBoard.types'
 import { calculateBoardSizesPx } from './GameBoard.utils'
@@ -19,6 +20,49 @@ import {
 } from './GameBoard.constants'
 import { useSwipe } from '../../hooks/useSwipe'
 import { SwipeDirection } from '../../hooks'
+import { Tile, TileType } from '../../types/tile'
+import { calculateBlockPosition } from '../../utils/calculateBlockPosition'
+import { calculateBlockSizes } from '../../utils/calculateBlockSizes'
+import { GameStatus, TileText } from '../../types/game'
+
+const renderTileTexts = (tileTexts?: Array<TileText>) => {
+  return (
+    tileTexts &&
+    tileTexts.map(({ text, position, size }, index) => {
+      const blockPositions = calculateBlockPosition(position)
+      const blockSizes = calculateBlockSizes(size)
+
+      return (
+        <TileTextContainer key={text} className="" {...blockPositions} {...blockSizes}>
+          {text}
+        </TileTextContainer>
+      )
+    })
+  )
+}
+
+const renderTiles = (tiles: Array<Tile>, gameStatus: GameStatus, moves: number) => {
+  return tiles.map((tile, index) => {
+    switch (tile.type) {
+      case TileType.surface: {
+        return <SurfaceTile key={index} />
+      }
+      case TileType.surfaceWideRight: {
+        return <SurfaceWideRightTile key={index} />
+      }
+      case TileType.target: {
+        return (
+          <TargetTile key={index} gameStatus={gameStatus}>
+            <div>{Boolean(moves) && moves < 99 && moves}</div>
+          </TargetTile>
+        )
+      }
+      default: {
+        return <EmptyTile key={index} />
+      }
+    }
+  })
+}
 
 export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
   const { dispatch } = useGameCenter()
@@ -27,6 +71,7 @@ export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
     hero,
     status,
     moves,
+    tileTexts,
   } = currentGame
 
   const swipeHandler = useCallback(
@@ -63,19 +108,8 @@ export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
   return (
     <GameBoardGestureZone id={GESTURE_ZONE_ID}>
       <GameBoardContainer {...boardSizesPx} totalColumns={size.width} totalRows={size.height}>
-        {tiles.map((tile, index) => {
-          switch (tile.type) {
-            case TileType.surface: {
-              return <SurfaceTitle key={index} />
-            }
-            case TileType.target: {
-              return <TargetTitle key={index} gameStatus={status} />
-            }
-            default: {
-              return <EmptyTitle key={index} />
-            }
-          }
-        })}
+        {renderTiles(tiles, status, moves)}
+        {renderTileTexts(tileTexts)}
         <Hero {...hero} gameStatus={status} gameMoves={moves} />
       </GameBoardContainer>
     </GameBoardGestureZone>
