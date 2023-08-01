@@ -30,8 +30,4 @@ export const TutorialContainer = styled.div`
   div:nth-of-type(3) {
     grid-row: 5;
   }
-
-  div:last-of-type {
-    grid-row: 6;
-  }
 `
