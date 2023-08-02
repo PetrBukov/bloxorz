@@ -1,5 +1,5 @@
 import { GameLevel, GameLevelType } from '../../types/game'
-import { TileType } from '../../types/tile'
+import { GameBoardActionType, TileType } from '../../types/tile'
 
 export const LEVEL_9: GameLevel = {
   id: 'level-1-9',
@@ -21,14 +21,9 @@ export const LEVEL_9: GameLevel = {
       height: 1,
     },
   },
-  target: {
-    x: 2,
-    y: 5,
-  },
   moves: 8,
   surfaces: [
     {
-      type: TileType.surface,
       position: {
         x: 0,
         y: 0,
@@ -37,9 +32,11 @@ export const LEVEL_9: GameLevel = {
         width: 2,
         height: 5,
       },
+      tile: {
+        type: TileType.surface,
+      },
     },
     {
-      type: TileType.surface,
       position: {
         x: 2,
         y: 1,
@@ -47,6 +44,25 @@ export const LEVEL_9: GameLevel = {
       size: {
         width: 1,
         height: 5,
+      },
+      tile: {
+        type: TileType.surface,
+      },
+    },
+    {
+      position: {
+        x: 2,
+        y: 5,
+      },
+      size: {
+        width: 1,
+        height: 1,
+      },
+      tile: {
+        type: TileType.gameAction,
+        action: {
+          type: GameBoardActionType.levelCompleted,
+        },
       },
     },
   ],

@@ -1,8 +1,8 @@
 import { Coordinates, Dimensions } from './common'
-import { TileType } from './tile'
+import { Tile } from './tile'
 
 export type Surface = {
-  type: TileType
   position: Coordinates
   size: Dimensions
+  tile: Tile
 }

@@ -5,7 +5,6 @@ import {
   GameBoardContainer,
   GameBoardGestureZone,
   SurfaceTile,
-  SurfaceWideRightTile,
   TargetTile,
   TileTextContainer,
 } from './GameBoard.styles'
@@ -20,7 +19,7 @@ import {
 } from './GameBoard.constants'
 import { useSwipe } from '../../hooks/useSwipe'
 import { SwipeDirection } from '../../hooks'
-import { Tile, TileType } from '../../types/tile'
+import { GameBoardActionType, Tile, TileGameAction, TileType } from '../../types/tile'
 import { calculateBlockPosition } from '../../utils/calculateBlockPosition'
 import { calculateBlockSizes } from '../../utils/calculateBlockSizes'
 import { GameStatus, TileText } from '../../types/game'
@@ -41,21 +40,38 @@ const renderTileTexts = (tileTexts?: Array<TileText>) => {
   )
 }
 
+const renderTileGameAction = (
+  tile: TileGameAction,
+  gameStatus: GameStatus,
+  moves: number,
+  key: number,
+) => {
+  const { action } = tile
+
+  switch (action.type) {
+    case GameBoardActionType.levelCompleted: {
+      return (
+        <TargetTile key={key} gameStatus={gameStatus}>
+          <div>{Boolean(moves) && moves < 99 && moves}</div>
+        </TargetTile>
+      )
+    }
+    default: {
+      return <EmptyTile key={key} />
+    }
+  }
+}
+
 const renderTiles = (tiles: Array<Tile>, gameStatus: GameStatus, moves: number) => {
   return tiles.map((tile, index) => {
     switch (tile.type) {
       case TileType.surface: {
-        return <SurfaceTile key={index} />
+        const { options } = tile
+
+        return <SurfaceTile key={index} {...options} />
       }
-      case TileType.surfaceWideRight: {
-        return <SurfaceWideRightTile key={index} />
-      }
-      case TileType.target: {
-        return (
-          <TargetTile key={index} gameStatus={gameStatus}>
-            <div>{Boolean(moves) && moves < 99 && moves}</div>
-          </TargetTile>
-        )
+      case TileType.gameAction: {
+        return renderTileGameAction(tile, gameStatus, moves, index)
       }
       default: {
         return <EmptyTile key={index} />

@@ -6,15 +6,9 @@ import { GAP_BETWEEN_TILES, HERO_WIDTH } from '../../constants/board'
 import { GameStatus } from '../../types/game'
 import { css, keyframes } from '@emotion/react'
 import { BlockPosition, BlockSizes } from '../../types/common'
+import { TileSurfaceOptions } from '../../types/tile'
 
-export const SurfaceTile = styled.div`
-  background-color: var(--white);
-`
-
-export const SurfaceWideRightTile = styled.div`
-  position: relative;
-  background-color: var(--white);
-
+export const surfaceWideRightStyles = css`
   &::after {
     position: absolute;
     content: '';
@@ -24,6 +18,13 @@ export const SurfaceWideRightTile = styled.div`
     right: -${GAP_BETWEEN_TILES}px;
     background-color: var(--white);
   }
+`
+
+export const SurfaceTile = styled.div<TileSurfaceOptions>`
+  position: relative;
+  background-color: var(--white);
+
+  ${({ wideRight }) => wideRight && surfaceWideRightStyles}
 `
 
 export const EmptyTile = styled.div``

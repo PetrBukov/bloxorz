@@ -9,20 +9,19 @@ export const calculateGameStatusAfterBlockMoving = ({
   heroPosition,
   gameLevelSize,
   gameBoardTiles,
-  target,
   moves,
 }: {
   heroSize: Dimensions
   heroPosition: Coordinates
   gameLevelSize: Dimensions
   gameBoardTiles: Array<Tile>
-  target: Coordinates
   moves: number
 }): GameStatus => {
   const isVictory = checkForVictory({
     heroSize,
     heroPosition,
-    target,
+    gameBoardTiles,
+    gameLevelSize,
   })
   if (isVictory) {
     return GameStatus.victory

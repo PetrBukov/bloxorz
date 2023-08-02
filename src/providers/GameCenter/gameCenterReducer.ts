@@ -79,7 +79,6 @@ export const gameCenterReducer = (
           heroSize: size,
           gameLevelSize: state.currentGame.board.size,
           gameBoardTiles: state.currentGame.board.tiles,
-          target: state.currentGame.board.target,
           moves,
         })
 
