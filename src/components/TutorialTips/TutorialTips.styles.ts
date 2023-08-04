@@ -7,6 +7,7 @@ export const TutorialTipsContainer = styled.div`
 
   width: 100%;
   height: 100%;
+  padding: 12px 24px 38px 24px;
 
   display: grid;
   align-items: center;

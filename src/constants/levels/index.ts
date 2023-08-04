@@ -11,9 +11,21 @@ import { LEVEL_10 } from './level_10'
 import { LEVEL_11 } from './level_11'
 import { LEVEL_12 } from './level_12'
 import { TUTORIAL_1 } from './tutorial_1'
+import { STAGE_1 } from './stage_1'
+import { STAGE_2 } from './stage_2'
+import { LEVEL_13 } from './level_13'
+import { LEVEL_14 } from './level_14'
+import { LEVEL_15 } from './level_15'
+import { LEVEL_16 } from './level_16'
+import { STAGE_3 } from './stage_3'
+import { LEVEL_17 } from './level_17'
+import { LEVEL_18 } from './level_18'
 
 export const LEVEL_LIST = [
   TUTORIAL_1,
+  STAGE_1,
+  STAGE_2,
+  STAGE_3,
   LEVEL_1,
   LEVEL_2,
   LEVEL_3,
@@ -26,4 +38,10 @@ export const LEVEL_LIST = [
   LEVEL_10,
   LEVEL_11,
   LEVEL_12,
+  LEVEL_13,
+  LEVEL_14,
+  LEVEL_15,
+  LEVEL_16,
+  LEVEL_17,
+  LEVEL_18,
 ]

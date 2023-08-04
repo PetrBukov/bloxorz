@@ -1,3 +1,4 @@
+import { Direction } from '../../types/common'
 import { Game, LevelID } from '../../types/game'
 
 export enum GameCenterActionType {
@@ -5,30 +6,24 @@ export enum GameCenterActionType {
   cancelCurrentGame = 'cancelCurrentGame',
   pauseCurrentGame = 'pauseCurrentGame',
   continueCurrentGame = 'continueCurrentGame',
-  moveUp = 'moveUp',
-  moveRight = 'moveRight',
-  moveDown = 'moveDown',
-  moveLeft = 'moveLeft',
+  moveHeroBlock = 'moveHeroBlock',
+  applyActiveAction = 'applyActiveAction',
 }
-
-export type HeroBlockMovingActionType =
-  | GameCenterActionType.moveDown
-  | GameCenterActionType.moveLeft
-  | GameCenterActionType.moveRight
-  | GameCenterActionType.moveUp
 
 export type GameCenterAction =
   | { type: GameCenterActionType.startNewGame; levelId: LevelID }
   | { type: GameCenterActionType.cancelCurrentGame }
   | { type: GameCenterActionType.pauseCurrentGame }
   | { type: GameCenterActionType.continueCurrentGame }
-  | { type: GameCenterActionType.moveUp }
-  | { type: GameCenterActionType.moveRight }
-  | { type: GameCenterActionType.moveDown }
-  | { type: GameCenterActionType.moveLeft }
+  | { type: GameCenterActionType.moveHeroBlock; direction: Direction }
+  | { type: GameCenterActionType.applyActiveAction }
 
 export type GameCenterDispatch = (action: GameCenterAction) => void
 
+export type CompletedLevels = Record<LevelID, boolean>
+
 export type GameCenterState = {
-  currentGame: Game | null
+  currentGame: Game
+  nextGame: Game | null
+  completedLevels: CompletedLevels
 }

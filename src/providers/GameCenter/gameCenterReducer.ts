@@ -1,10 +1,10 @@
+import { STAGE_1 } from '../../constants/levels/stage_1'
 import { GameStatus } from '../../types/game'
-import { calculateGameStatusAfterBlockMoving } from '../../utils/calculateGameStatusAfterBlockMoving'
-import { calculateHeroBlockPositionAfterMoving } from '../../utils/calculateHeroBlockPositionAfterMoving'
-import { calculateHeroBlockSizeAfterMoving } from '../../utils/calculateHeroBlockSizeAfterMoving'
 import { createGameForLevel } from '../../utils/createGameFromLevel'
 import { getLevelById } from '../../utils/getLevelById'
 import { GameCenterAction, GameCenterActionType, GameCenterState } from './GameCenter.types'
+import { calculateStateAfterActionApplied } from './utils/calculateStateAfterActionApplied'
+import { calculateStateAfterMoving } from './utils/calculateStateAfterMoving'
 
 export const gameCenterReducer = (
   state: GameCenterState,
@@ -21,14 +21,14 @@ export const gameCenterReducer = (
 
       return {
         ...state,
-        currentGame: createGameForLevel(gameLevel),
+        currentGame: createGameForLevel(gameLevel, state.completedLevels),
       }
     }
 
     case GameCenterActionType.cancelCurrentGame: {
       return {
         ...state,
-        currentGame: null,
+        currentGame: createGameForLevel(STAGE_1, state.completedLevels),
       }
     }
 
@@ -60,40 +60,17 @@ export const gameCenterReducer = (
       return state
     }
 
-    case GameCenterActionType.moveUp:
-    case GameCenterActionType.moveRight:
-    case GameCenterActionType.moveDown:
-    case GameCenterActionType.moveLeft: {
-      if (state.currentGame && state.currentGame.status === GameStatus.active) {
-        const size = calculateHeroBlockSizeAfterMoving(state.currentGame.hero.size, action.type)
+    case GameCenterActionType.moveHeroBlock: {
+      if (state.currentGame.status === GameStatus.active) {
+        return calculateStateAfterMoving(state, action.direction)
+      }
 
-        const moves = state.currentGame.moves - 1
+      return state
+    }
 
-        const position = calculateHeroBlockPositionAfterMoving({
-          ...state.currentGame.hero,
-          actionType: action.type,
-        })
-
-        const status = calculateGameStatusAfterBlockMoving({
-          heroPosition: position,
-          heroSize: size,
-          gameLevelSize: state.currentGame.board.size,
-          gameBoardTiles: state.currentGame.board.tiles,
-          moves,
-        })
-
-        return {
-          ...state,
-          currentGame: {
-            ...state.currentGame,
-            moves,
-            status,
-            hero: {
-              size,
-              position,
-            },
-          },
-        }
+    case GameCenterActionType.applyActiveAction: {
+      if (state.currentGame.status === GameStatus.actionProcessing) {
+        return calculateStateAfterActionApplied(state)
       }
 
       return state

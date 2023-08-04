@@ -1,6 +1,6 @@
 import { css, keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
-import { GameStatus } from '../../types/game'
+import { StatusTextVariant } from './GameStatusTitle.types'
 
 const statusBlackLine = keyframes`
     0% {
@@ -38,17 +38,17 @@ export const failureStatusTextStyles = css`
   color: var(--white);
 `
 
-export const pausedStatusTextStyles = css`
-  background-color: var(--yellow);
-  color: var(--black);
+export const infoStatusTextStyles = css`
+  background-color: var(--violet);
+  color: var(--acidGreen);
 `
 
-export const victoryStatusTextStyles = css`
+export const successStatusTextStyles = css`
   background-color: var(--acidGreen);
   color: var(--black);
 `
 
-export const StatusText = styled.div<{ gameStatus: GameStatus }>`
+export const StatusText = styled.div<{ variant: StatusTextVariant }>`
   position: absolute;
   text-align: center;
   background: none;
@@ -57,9 +57,9 @@ export const StatusText = styled.div<{ gameStatus: GameStatus }>`
   padding: 5px;
   opacity: 100%;
 
-  ${({ gameStatus }) => gameStatus === GameStatus.failure && failureStatusTextStyles}
-  ${({ gameStatus }) => gameStatus === GameStatus.paused && pausedStatusTextStyles}
-  ${({ gameStatus }) => gameStatus === GameStatus.victory && victoryStatusTextStyles}
+  ${({ variant }) => variant === StatusTextVariant.failure && failureStatusTextStyles}
+  ${({ variant }) => variant === StatusTextVariant.info && infoStatusTextStyles}
+  ${({ variant }) => variant === StatusTextVariant.success && successStatusTextStyles}
 
   &:nth-of-type(1) {
     top: -20px;

@@ -1,6 +1,13 @@
-import { GameStatus } from '../../types/game'
+import { LevelID } from '../../types/game'
+import { GameBoardAction } from '../../types/tile'
 
 export type GameStatusTitleProps = {
-  gameStatus: GameStatus
-  levelName: string
+  levelId: LevelID
+  activeAction: GameBoardAction
+}
+
+export enum StatusTextVariant {
+  success = 'success',
+  failure = 'failure',
+  info = 'info',
 }

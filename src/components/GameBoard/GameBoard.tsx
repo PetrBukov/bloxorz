@@ -4,6 +4,8 @@ import {
   EmptyTile,
   GameBoardContainer,
   GameBoardGestureZone,
+  LevelTile,
+  StageTile,
   SurfaceTile,
   TargetTile,
   TileTextContainer,
@@ -12,17 +14,15 @@ import { GameBoardProps } from './GameBoard.types'
 import { calculateBoardSizesPx } from './GameBoard.utils'
 import { Hero } from '../Hero'
 import { useGameCenter } from '../../providers/GameCenter'
-import {
-  GESTURE_ZONE_ID,
-  DIRECTION_TO_ACTION_MAP,
-  KEY_PRESS_TO_ACTION_MAP,
-} from './GameBoard.constants'
+import { GESTURE_ZONE_ID, KEY_PRESS_TO_DIRECTION_MAP } from './GameBoard.constants'
 import { useSwipe } from '../../hooks/useSwipe'
 import { SwipeDirection } from '../../hooks'
 import { GameBoardActionType, Tile, TileGameAction, TileType } from '../../types/tile'
 import { calculateBlockPosition } from '../../utils/calculateBlockPosition'
 import { calculateBlockSizes } from '../../utils/calculateBlockSizes'
-import { GameStatus, TileText } from '../../types/game'
+import { GameStatus, LevelID, TileText } from '../../types/game'
+import { getLevelById } from '../../utils/getLevelById'
+import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
 
 const renderTileTexts = (tileTexts?: Array<TileText>) => {
   return (
@@ -32,7 +32,7 @@ const renderTileTexts = (tileTexts?: Array<TileText>) => {
       const blockSizes = calculateBlockSizes(size)
 
       return (
-        <TileTextContainer key={text} className="" {...blockPositions} {...blockSizes}>
+        <TileTextContainer key={text} {...blockPositions} {...blockSizes}>
           {text}
         </TileTextContainer>
       )
@@ -44,6 +44,7 @@ const renderTileGameAction = (
   tile: TileGameAction,
   gameStatus: GameStatus,
   moves: number,
+  levelId: LevelID,
   key: number,
 ) => {
   const { action } = tile
@@ -56,13 +57,40 @@ const renderTileGameAction = (
         </TargetTile>
       )
     }
+    case GameBoardActionType.moveToAnotherLevel: {
+      const level = getLevelById(action.levelId)
+      const levelName = level?.name || '?'
+
+      return (
+        <LevelTile key={key} tileStatus={tile.status}>
+          <div>{levelName}</div>
+        </LevelTile>
+      )
+    }
+    case GameBoardActionType.moveToAnotherStage: {
+      const currentStage = getLevelById(levelId)
+      const isNextStage = currentStage?.nextLevelId === action.stageId
+
+      return (
+        <StageTile
+          key={key}
+          tileStatus={tile.status}
+          direction={isNextStage ? 'right' : 'left'}
+        ></StageTile>
+      )
+    }
     default: {
       return <EmptyTile key={key} />
     }
   }
 }
 
-const renderTiles = (tiles: Array<Tile>, gameStatus: GameStatus, moves: number) => {
+const renderTiles = (
+  tiles: Array<Tile>,
+  gameStatus: GameStatus,
+  moves: number,
+  levelId: LevelID,
+) => {
   return tiles.map((tile, index) => {
     switch (tile.type) {
       case TileType.surface: {
@@ -71,7 +99,7 @@ const renderTiles = (tiles: Array<Tile>, gameStatus: GameStatus, moves: number) 
         return <SurfaceTile key={index} {...options} />
       }
       case TileType.gameAction: {
-        return renderTileGameAction(tile, gameStatus, moves, index)
+        return renderTileGameAction(tile, gameStatus, moves, levelId, index)
       }
       default: {
         return <EmptyTile key={index} />
@@ -88,14 +116,13 @@ export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
     status,
     moves,
     tileTexts,
+    activeAction,
+    levelId,
   } = currentGame
 
   const swipeHandler = useCallback(
-    (direction: SwipeDirection) => {
-      const moveActionType = DIRECTION_TO_ACTION_MAP[direction]
-
-      dispatch({ type: moveActionType })
-    },
+    (direction: SwipeDirection) =>
+      dispatch({ type: GameCenterActionType.moveHeroBlock, direction }),
     [dispatch],
   )
 
@@ -106,9 +133,9 @@ export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
   const handleUserKeyPress = useCallback((event: globalThis.KeyboardEvent) => {
     const { key } = event
 
-    const moveActionType = KEY_PRESS_TO_ACTION_MAP[key]
-    if (moveActionType) {
-      dispatch({ type: moveActionType })
+    const direction = KEY_PRESS_TO_DIRECTION_MAP[key]
+    if (direction) {
+      dispatch({ type: GameCenterActionType.moveHeroBlock, direction })
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -123,10 +150,15 @@ export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
 
   return (
     <GameBoardGestureZone id={GESTURE_ZONE_ID}>
-      <GameBoardContainer {...boardSizesPx} totalColumns={size.width} totalRows={size.height}>
-        {renderTiles(tiles, status, moves)}
+      <GameBoardContainer
+        {...boardSizesPx}
+        totalColumns={size.width}
+        totalRows={size.height}
+        gameStatus={status}
+      >
+        {renderTiles(tiles, status, moves, levelId)}
+        <Hero {...hero} activeActionType={activeAction?.type} />
         {renderTileTexts(tileTexts)}
-        <Hero {...hero} gameStatus={status} gameMoves={moves} />
       </GameBoardContainer>
     </GameBoardGestureZone>
   )

@@ -21,7 +21,7 @@ export const Header: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentGame])
 
-  if (!currentGame || currentGame.levelType === GameLevelType.tutorial) {
+  if (currentGame.levelType !== GameLevelType.regular) {
     return null
   }
 

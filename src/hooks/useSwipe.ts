@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 
-import { SwipeDirection, SwipePoint, UseSwipeProps } from './useSwipe.types'
+import { SWIPE_DIRECTION, SwipeDirection, SwipePoint, UseSwipeProps } from './useSwipe.types'
 import { SENSITIVITY_LEVEL } from './useSwipe.constants'
 
 export const useSwipe = ({ gestureZoneId, onSwipe }: UseSwipeProps) => {
@@ -23,14 +23,14 @@ export const useSwipe = ({ gestureZoneId, onSwipe }: UseSwipeProps) => {
         const isHorizontalSwipe = absDiffX > absDiffY && absDiffX > SENSITIVITY_LEVEL
         const isVerticalSwipe = absDiffX < absDiffY && absDiffY > SENSITIVITY_LEVEL
 
-        let swipeDirection = SwipeDirection.left
+        let swipeDirection: SwipeDirection = SWIPE_DIRECTION.left
 
         if (isHorizontalSwipe) {
-          swipeDirection = diffX > 0 ? SwipeDirection.left : SwipeDirection.right
+          swipeDirection = diffX > 0 ? SWIPE_DIRECTION.left : SWIPE_DIRECTION.right
         }
 
         if (isVerticalSwipe) {
-          swipeDirection = diffY > 0 ? SwipeDirection.up : SwipeDirection.down
+          swipeDirection = diffY > 0 ? SWIPE_DIRECTION.up : SWIPE_DIRECTION.down
         }
 
         onSwipe(swipeDirection)

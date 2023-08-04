@@ -1,11 +1,12 @@
 import React from 'react'
 
 import { StatusContainer, StatusInner, StatusText } from './GameStatusTitle.styles'
-import { getStatusText } from './GameStatusTitle.utils'
+import { getStatusText, getStatusTextVariant } from './GameStatusTitle.utils'
 import { GameStatusTitleProps } from './GameStatusTitle.types'
 
-export const GameStatusTitle: React.FC<GameStatusTitleProps> = ({ gameStatus, levelName }) => {
-  const gameStatusText = getStatusText(gameStatus, levelName)
+export const GameStatusTitle: React.FC<GameStatusTitleProps> = ({ levelId, activeAction }) => {
+  const gameStatusText = getStatusText(levelId, activeAction)
+  const statusTextVariant = getStatusTextVariant(levelId, activeAction)
 
   const isVisible = gameStatusText.length > 0
 
@@ -13,7 +14,7 @@ export const GameStatusTitle: React.FC<GameStatusTitleProps> = ({ gameStatus, le
     <StatusContainer isVisible={isVisible}>
       <StatusInner>
         {gameStatusText.map(text => (
-          <StatusText key={text} gameStatus={gameStatus}>
+          <StatusText key={text} variant={statusTextVariant}>
             {text}
           </StatusText>
         ))}

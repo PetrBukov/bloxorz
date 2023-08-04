@@ -1,6 +1,6 @@
-import { TutorialContainer } from './Tutorial1.styles'
+import { TutorialContainer } from './TutorialTips1.styles'
 
-export const Tutorial1: React.FC = () => {
+export const TutorialTips1: React.FC = () => {
   return (
     <TutorialContainer>
       <div>welcome to the ...</div>

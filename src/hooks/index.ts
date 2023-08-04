@@ -1,2 +1,2 @@
 export { useSwipe } from './useSwipe'
-export { SwipeDirection } from './useSwipe.types'
+export type { SwipeDirection } from './useSwipe.types'

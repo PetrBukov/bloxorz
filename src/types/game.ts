@@ -1,7 +1,7 @@
 import { Coordinates, Dimensions } from './common'
 import { Hero } from './hero'
 import { Surface } from './surface'
-import { Tile } from './tile'
+import { GameBoardAction, Tile } from './tile'
 
 export type LevelID = string
 
@@ -10,6 +10,7 @@ export type LevelName = string
 export enum GameLevelType {
   regular = 'regular',
   tutorial = 'tutorial',
+  stage = 'stage',
 }
 
 export type TileText = {
@@ -18,18 +19,33 @@ export type TileText = {
   size: Dimensions
 }
 
-export type GameLevel = {
+export type GameLevelCommon<T> = T & {
   id: LevelID
   name: LevelName
-  type: GameLevelType
   nextLevelId: LevelID | null
   previousLevelId: LevelID | null
+  stageId: LevelID | null
   size: Dimensions
   surfaces: Array<Surface>
   tileTexts?: Array<TileText>
   hero: Hero
   moves: number
 }
+
+export type GameLevelRegular = GameLevelCommon<{
+  type: GameLevelType.regular
+}>
+
+export type GameLevelTutorial = GameLevelCommon<{
+  type: GameLevelType.tutorial
+}>
+
+export type GameLevelStage = GameLevelCommon<{
+  type: GameLevelType.stage
+  stageLevels: Array<LevelID>
+}>
+
+export type GameLevel = GameLevelRegular | GameLevelTutorial | GameLevelStage
 
 export type GameBoard = {
   size: Dimensions
@@ -44,6 +60,7 @@ export enum GameStatus {
   failure = 'failure',
   victory = 'victory',
   paused = 'paused',
+  actionProcessing = 'actionProcessing',
 }
 
 export type Game = {
@@ -55,6 +72,7 @@ export type Game = {
   tileTexts?: Array<TileText>
   hero: Hero
   moves: number
+  activeAction: GameBoardAction | null
 }
 
 // We use GameScore instead of a number type because in the future we may want to change this

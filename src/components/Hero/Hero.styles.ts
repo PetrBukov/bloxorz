@@ -2,8 +2,8 @@ import styled from '@emotion/styled'
 import { css, keyframes } from '@emotion/react'
 
 import { HERO_WIDTH } from '../../constants/board'
-import { GameStatus } from '../../types/game'
 import { BlockPosition, BlockSizes } from '../../types/common'
+import { GameBoardActionType } from '../../types/tile'
 
 const failureStatus = keyframes`
     0% {
@@ -26,7 +26,9 @@ const victoryStatusStyles = css`
   opacity: 1;
 `
 
-export const HeroBlock = styled.div<BlockSizes & BlockPosition & { gameStatus: GameStatus }>`
+export const HeroBlock = styled.div<
+  BlockSizes & BlockPosition & { activeActionType?: GameBoardActionType }
+>`
   position: absolute;
   top: ${({ top }) => top};
   left: ${({ left }) => left};
@@ -41,6 +43,12 @@ export const HeroBlock = styled.div<BlockSizes & BlockPosition & { gameStatus: G
 
   transition-duration: 0.5s;
 
-  ${({ gameStatus }) => gameStatus === GameStatus.failure && failureStatusStyles}
-  ${({ gameStatus }) => gameStatus === GameStatus.victory && victoryStatusStyles};
+  ${({ activeActionType }) =>
+    (activeActionType === GameBoardActionType.heroBlockOutOfMap ||
+      activeActionType === GameBoardActionType.playerHasNoMoves) &&
+    failureStatusStyles}
+  ${({ activeActionType }) =>
+    (activeActionType === GameBoardActionType.levelCompleted ||
+      activeActionType === GameBoardActionType.moveToAnotherLevel) &&
+    victoryStatusStyles};
 `

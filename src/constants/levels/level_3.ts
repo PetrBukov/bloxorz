@@ -1,12 +1,13 @@
 import { GameLevel, GameLevelType } from '../../types/game'
-import { GameBoardActionType, TileType } from '../../types/tile'
+import { GameBoardActionType, TileStatus, TileType } from '../../types/tile'
 
 export const LEVEL_3: GameLevel = {
-  id: 'level-1-3',
+  id: 'level-3',
   name: '3',
   type: GameLevelType.regular,
-  previousLevelId: 'level-1-2',
-  nextLevelId: 'level-1-4',
+  previousLevelId: 'level-2',
+  nextLevelId: 'level-4',
+  stageId: 'stage-1',
   size: {
     width: 4,
     height: 4,
@@ -76,6 +77,7 @@ export const LEVEL_3: GameLevel = {
         action: {
           type: GameBoardActionType.levelCompleted,
         },
+        status: TileStatus.available,
       },
     },
   ],

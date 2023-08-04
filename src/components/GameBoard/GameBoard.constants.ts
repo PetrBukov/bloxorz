@@ -1,19 +1,11 @@
 import { KEYBOARD } from '../../constants/keyboard'
-import { SwipeDirection } from '../../hooks'
-import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
+import { DIRECTION } from '../../types/common'
 
 export const GESTURE_ZONE_ID = 'gesture-zone'
 
-export const DIRECTION_TO_ACTION_MAP = {
-  [SwipeDirection.up]: GameCenterActionType.moveUp,
-  [SwipeDirection.left]: GameCenterActionType.moveLeft,
-  [SwipeDirection.down]: GameCenterActionType.moveDown,
-  [SwipeDirection.right]: GameCenterActionType.moveRight,
-} as const
-
-export const KEY_PRESS_TO_ACTION_MAP = {
-  [KEYBOARD.ArrowUp]: GameCenterActionType.moveUp,
-  [KEYBOARD.ArrowLeft]: GameCenterActionType.moveLeft,
-  [KEYBOARD.ArrowDown]: GameCenterActionType.moveDown,
-  [KEYBOARD.ArrowRight]: GameCenterActionType.moveRight,
+export const KEY_PRESS_TO_DIRECTION_MAP = {
+  [KEYBOARD.ArrowUp]: DIRECTION.up,
+  [KEYBOARD.ArrowRight]: DIRECTION.right,
+  [KEYBOARD.ArrowDown]: DIRECTION.down,
+  [KEYBOARD.ArrowLeft]: DIRECTION.left,
 } as const
