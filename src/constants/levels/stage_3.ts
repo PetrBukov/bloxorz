@@ -29,7 +29,7 @@ export const STAGE_3: GameLevel = {
   moves: 10000,
   tileTexts: [
     {
-      text: 'Stage 2',
+      text: 'Stage 3',
       position: {
         x: 1,
         y: 0,
