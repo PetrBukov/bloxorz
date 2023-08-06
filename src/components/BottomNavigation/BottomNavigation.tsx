@@ -4,12 +4,14 @@ import { BottomNavigationContainer } from './BottomNavigation.styles'
 import { Button } from '../Button'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
 import { useGameCenter } from '../../providers/GameCenter'
-import { BottomNavigationProps } from './BottomNavigation.types'
 
-export const BottomNavigation: React.FC<BottomNavigationProps> = ({ currentGame }) => {
-  const { dispatch } = useGameCenter()
+export const BottomNavigation: React.FC = () => {
+  const {
+    state: { currentGame },
+    dispatch,
+  } = useGameCenter()
 
-  const onReplayGame = useCallback(() => {
+  const onRestartGame = useCallback(() => {
     dispatch({ type: GameCenterActionType.startNewGame, levelId: currentGame.levelId })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentGame])
@@ -17,18 +19,18 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({ currentGame 
   const onCancelGame = useCallback(() => {
     dispatch({ type: GameCenterActionType.cancelCurrentGame })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentGame])
+  }, [])
 
   const onContinueGame = useCallback(() => {
     dispatch({ type: GameCenterActionType.continueCurrentGame })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentGame])
+  }, [])
 
   return (
     <BottomNavigationContainer>
       <Button onClick={onContinueGame}>Resume</Button>
 
-      <Button variant="outlined" onClick={onReplayGame}>
+      <Button variant="outlined" onClick={onRestartGame}>
         Restart
       </Button>
 
