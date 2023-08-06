@@ -1,10 +1,8 @@
 import { Coordinates, DIRECTION, Direction } from '../../../types/common'
-import { checkForSquareBlock } from '../../../utils/checkForSquareBlock'
-import { checkForHorizontalBlock } from '../../../utils/checkForHorizontalBlock'
-import { checkForVerticalBlock } from '../../../utils/checkForVerticalBlock'
 import { Hero } from '../../../types/hero'
+import { checkForSquareBlock, checkForHorizontalBlock, checkForVerticalBlock } from '../../../utils'
 
-export const calculateHeroPositionAfterMoving = ({
+export const calcHeroPositionAfterMoving = ({
   hero: { size, position },
   movingDirection,
 }: {

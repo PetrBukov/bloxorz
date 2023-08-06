@@ -8,12 +8,12 @@ export type Coordinates = {
   y: number
 }
 
-export type BlockPosition = {
+export type ElementPosition = {
   top: string
   left: string
 }
 
-export type BlockSizes = {
+export type ElementSize = {
   width: string
   height: string
 }

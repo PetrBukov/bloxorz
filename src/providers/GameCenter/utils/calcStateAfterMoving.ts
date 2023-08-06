@@ -1,13 +1,13 @@
 import { Direction } from '../../../types/common'
 import { GameBoardAction, GameBoardActionType } from '../../../types/tile'
 import { checkForHeroBlockOutOfMap } from './checkForHeroBlockOutOfMap'
-import { getRectangleTileIndexes } from '../../../utils/getRectangleTileIndexes'
+import { getSurfaceTileIndexes } from '../../../utils'
 import { GameCenterState } from '../GameCenter.types'
-import { calculateHeroStateAfterMoving } from './calculateHeroStateAfterMoving'
+import { calcHeroStateAfterMoving } from './calcHeroStateAfterMoving'
 import { getGameBoardAction } from './getGameBoardAction'
 import { GameStatus } from '../../../types/game'
 
-export const calculateStateAfterMoving = (
+export const calcStateAfterMoving = (
   state: GameCenterState,
   movingDirection: Direction,
 ): GameCenterState => {
@@ -17,12 +17,12 @@ export const calculateStateAfterMoving = (
 
   let gameBoardAction: GameBoardAction | null = null
 
-  const updatedHero = calculateHeroStateAfterMoving({ hero, movingDirection })
+  const updatedHero = calcHeroStateAfterMoving({ hero, movingDirection })
   const updatedMoves = moves - 1
 
-  const heroBlockIndexes = getRectangleTileIndexes({
-    rectanglePosition: updatedHero.position,
-    rectangleSize: updatedHero.size,
+  const heroBlockIndexes = getSurfaceTileIndexes({
+    surfacePosition: updatedHero.position,
+    surfaceSize: updatedHero.size,
     gameLevelSize: board.size,
   })
 

@@ -1,7 +1,6 @@
 import { LevelID } from '../../types/gameLevel'
 import { GameBoardAction, GameBoardActionType } from '../../types/tile'
-import { getLevelById } from '../../utils/getLevelById'
-import { getFullLevelName } from '../../utils/getFullLevelName'
+import { getLevelById, getFullLevelName } from '../../utils'
 import { StatusTextVariant } from './GameStatusTitle.types'
 
 export const getStatusText = (levelId: LevelID, activeAction: GameBoardAction): Array<string> => {

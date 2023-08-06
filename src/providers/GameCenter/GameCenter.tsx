@@ -1,9 +1,9 @@
 import React, { PropsWithChildren } from 'react'
 import { GameCenterDispatch, GameCenterState } from './GameCenter.types'
 import { gameCenterReducer } from './gameCenterReducer'
-import { createGameForLevel } from '../../utils/createGameFromLevel'
+import { createGameForLevel } from '../../utils'
 import { TUTORIAL_1 } from '../../constants/levels/tutorial_1'
-import { getGameCenterDataFromLocalStorage } from './utils/getGameCenterDataFromLocalStorage'
+import { getGameCenterDataFromLocalStorage } from './utils'
 import { useApplyActiveAction } from './hooks/useApplyActiveAction'
 import { useSaveGameCenterDataToLocalStorage } from './hooks/useSaveGameCenterDataToLocalStorage'
 

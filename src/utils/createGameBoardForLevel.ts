@@ -3,13 +3,13 @@ import { Dimensions } from '../types/common'
 import { GameBoard } from '../types/gameBoard'
 import { GameLevel } from '../types/gameLevel'
 import { TileType } from '../types/tile'
-import { calculateTileStatus } from './calculateTileStatus'
-import { getRectangleTileIndexes } from './getRectangleTileIndexes'
+import { calcTileStatus } from './calcTileStatus'
+import { getSurfaceTileIndexes } from './getSurfaceTileIndexes'
 
 const getTotalTilesAmount = (gameLevelSize: Dimensions) =>
   gameLevelSize.height * gameLevelSize.width
 
-export const generateGameBoard = (
+export const createGameBoardForLevel = (
   gameLevel: GameLevel,
   completedLevels: CompletedLevels,
 ): GameBoard => {
@@ -31,16 +31,16 @@ export const generateGameBoard = (
 
   // 3 - Replace some empty tiles with surface tiles
   for (let surface of surfaces) {
-    const surfaceTileIndexes = getRectangleTileIndexes({
-      rectanglePosition: surface.position,
-      rectangleSize: surface.size,
+    const surfaceTileIndexes = getSurfaceTileIndexes({
+      surfacePosition: surface.position,
+      surfaceSize: surface.size,
       gameLevelSize,
     })
 
     surfaceTileIndexes.forEach(surfaceIndex => {
       const { tile } = surface
 
-      const status = calculateTileStatus(tile, completedLevels)
+      const status = calcTileStatus(tile, completedLevels)
 
       gameBoard.tiles[surfaceIndex] = { ...tile, status }
     })

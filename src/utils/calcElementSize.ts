@@ -1,7 +1,7 @@
 import { GAP_BETWEEN_TILES, TILE_WIDTH } from '../constants/board'
-import { BlockSizes, Dimensions } from '../types/common'
+import { ElementSize, Dimensions } from '../types/common'
 
-export const calculateBlockSizes = (dimensions: Dimensions): BlockSizes => {
+export const calcElementSize = (dimensions: Dimensions): ElementSize => {
   const { width, height } = dimensions
 
   return {

@@ -3,7 +3,7 @@ import { GameLevelType, LevelID } from '../types/gameLevel'
 import { checkIfLevelCompleted } from './checkIfLevelCompleted'
 import { getLevelById } from './getLevelById'
 
-export const checkIfStageAvailable = (stageId: LevelID, completedLevels: CompletedLevels) => {
+export const checkIfStageAvailable = (completedLevels: CompletedLevels, stageId: LevelID) => {
   const stage = getLevelById(stageId)
   if (!stage) {
     return false
@@ -16,7 +16,7 @@ export const checkIfStageAvailable = (stageId: LevelID, completedLevels: Complet
 
   if (previousStage.type === GameLevelType.stage) {
     const { stageLevels } = previousStage
-    return stageLevels.every(levelId => checkIfLevelCompleted(levelId, completedLevels))
+    return stageLevels.every(levelId => checkIfLevelCompleted(completedLevels, levelId))
   }
 
   return false

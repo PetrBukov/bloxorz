@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 import { BoardSizes } from './GameBoard.types'
 import { GameStatus } from '../../types/game'
-import { BlockPosition, BlockSizes } from '../../types/common'
+import { ElementPosition, ElementSize } from '../../types/common'
 
 const DO_NOT_FORWARD_PROPS: Record<string, string> = {
   width: 'width',
@@ -47,7 +47,7 @@ export const GameBoardGestureZone = styled.div`
 
 export const TileTextContainer = styled('div', {
   shouldForwardProp: prop => prop !== 'width' && prop !== 'height',
-})<BlockSizes & BlockPosition>`
+})<ElementSize & ElementPosition>`
   position: absolute;
   top: ${({ top }) => top};
   left: ${({ left }) => left};

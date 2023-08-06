@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { useGameCenter } from '..'
-import { GameCenterState_LocalStorage } from '../GameCenter.types'
-import { getGameCenterDataFromLocalStorage } from '../utils/getGameCenterDataFromLocalStorage'
-import { saveGameCenterDataToLocalStorage } from '../../../utils/saveGameCenterDataToLocalStorage'
+
 import { GAME_CENTER_LOCAL_STORAGE_VERSION } from '../GameCenter.constants'
+import { GameCenterState_LocalStorage } from '../GameCenter.types'
+import { getGameCenterDataFromLocalStorage, saveGameCenterDataToLocalStorage } from '../utils'
+import { useGameCenter } from '../GameCenter'
 
 export const useSaveGameCenterDataToLocalStorage = () => {
   const {

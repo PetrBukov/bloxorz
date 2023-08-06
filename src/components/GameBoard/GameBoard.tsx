@@ -8,8 +8,7 @@ import { useGameCenter } from '../../providers/GameCenter'
 import { GESTURE_ZONE_ID, KEY_PRESS_TO_DIRECTION_MAP } from './GameBoard.constants'
 import { useSwipe } from '../../hooks/useSwipe'
 import { SwipeDirection } from '../../hooks'
-import { calculateBlockPosition } from '../../utils/calculateBlockPosition'
-import { calculateBlockSizes } from '../../utils/calculateBlockSizes'
+import { calcElementPosition, calcElementSize } from '../../utils'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
 import { GameBoardTile } from '../GameBoardTile'
 import { TileText } from '../../types/tileText'
@@ -18,11 +17,11 @@ const renderTileTexts = (tileTexts?: Array<TileText>) => {
   return (
     tileTexts &&
     tileTexts.map(({ text, position, size }, index) => {
-      const blockPositions = calculateBlockPosition(position)
-      const blockSizes = calculateBlockSizes(size)
+      const elementPosition = calcElementPosition(position)
+      const elementSize = calcElementSize(size)
 
       return (
-        <TileTextContainer key={text} {...blockPositions} {...blockSizes}>
+        <TileTextContainer key={text} {...elementPosition} {...elementSize}>
           {text}
         </TileTextContainer>
       )

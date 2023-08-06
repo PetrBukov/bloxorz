@@ -3,31 +3,31 @@ import { Coordinates, Dimensions } from '../types/common'
 /**
  * If some part of rectangle is out of map it's index equals to -1
  */
-export const getRectangleTileIndexes = ({
-  rectangleSize,
-  rectanglePosition,
+export const getSurfaceTileIndexes = ({
+  surfaceSize,
+  surfacePosition,
   gameLevelSize,
 }: {
-  rectangleSize: Dimensions
-  rectanglePosition: Coordinates
+  surfaceSize: Dimensions
+  surfacePosition: Coordinates
   gameLevelSize: Dimensions
 }): Array<number> => {
   const rectangleTileIndexes: Array<number> = []
 
   const tilesPerRowAmount = gameLevelSize.width
 
-  const firstRowIndex = rectanglePosition.y
-  const lastRowIndex = rectanglePosition.y + rectangleSize.height - 1
+  const firstRowIndex = surfacePosition.y
+  const lastRowIndex = surfacePosition.y + surfaceSize.height - 1
 
   const maxGameLevelRowIndex = gameLevelSize.height - 1
 
   for (let currentRowIndex = firstRowIndex; currentRowIndex <= lastRowIndex; currentRowIndex++) {
     const prevRowTilesAmount = currentRowIndex * tilesPerRowAmount
 
-    const firstColumnIndex = rectanglePosition.x + prevRowTilesAmount
-    const lastColumnIndex = rectanglePosition.x + rectangleSize.width + prevRowTilesAmount - 1
+    const firstColumnIndex = surfacePosition.x + prevRowTilesAmount
+    const lastColumnIndex = surfacePosition.x + surfaceSize.width + prevRowTilesAmount - 1
 
-    let isIndexOutOfMap = rectanglePosition.x < 0
+    let isIndexOutOfMap = surfacePosition.x < 0
 
     for (
       let currentColumnIndex = firstColumnIndex;

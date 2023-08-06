@@ -1,11 +1,8 @@
 import { STAGE_1 } from '../../constants/levels/stage_1'
 import { GameStatus } from '../../types/game'
-import { createGameForLevel } from '../../utils/createGameFromLevel'
-import { getLevelById } from '../../utils/getLevelById'
-import { getLevelStageById } from '../../utils/getLevelStageById'
+import { createGameForLevel, getLevelById, getLevelStageByLevelId } from '../../utils'
 import { GameCenterAction, GameCenterActionType, GameCenterState } from './GameCenter.types'
-import { calculateStateAfterActionApplied } from './utils/calculateStateAfterActionApplied'
-import { calculateStateAfterMoving } from './utils/calculateStateAfterMoving'
+import { calcStateAfterActionApplied, calcStateAfterMoving } from './utils'
 
 export const gameCenterReducer = (
   state: GameCenterState,
@@ -27,7 +24,7 @@ export const gameCenterReducer = (
     }
 
     case GameCenterActionType.cancelCurrentGame: {
-      const stage = getLevelStageById(state.currentGame.levelId)
+      const stage = getLevelStageByLevelId(state.currentGame.levelId)
 
       return {
         ...state,
@@ -65,7 +62,7 @@ export const gameCenterReducer = (
 
     case GameCenterActionType.moveHeroBlock: {
       if (state.currentGame.status === GameStatus.active) {
-        return calculateStateAfterMoving(state, action.direction)
+        return calcStateAfterMoving(state, action.direction)
       }
 
       return state
@@ -73,7 +70,7 @@ export const gameCenterReducer = (
 
     case GameCenterActionType.applyActiveAction: {
       if (state.currentGame.status === GameStatus.actionProcessing) {
-        return calculateStateAfterActionApplied(state)
+        return calcStateAfterActionApplied(state)
       }
 
       return state

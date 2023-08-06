@@ -3,7 +3,7 @@ import { GameBoardActionType, Tile, TileStatus, TileType } from '../types/tile'
 import { checkIfStageAvailable } from './checkIfStageAvailable'
 import { getLevelById } from './getLevelById'
 
-export const calculateTileStatus = (tile: Tile, completedLevels: CompletedLevels): TileStatus => {
+export const calcTileStatus = (tile: Tile, completedLevels: CompletedLevels): TileStatus => {
   if (tile.type !== TileType.gameAction) {
     return TileStatus.available
   }
@@ -30,7 +30,7 @@ export const calculateTileStatus = (tile: Tile, completedLevels: CompletedLevels
       return TileStatus.blocked
     }
     case GameBoardActionType.moveToAnotherStage: {
-      const isStageAvailable = checkIfStageAvailable(action.stageId, completedLevels)
+      const isStageAvailable = checkIfStageAvailable(completedLevels, action.stageId)
       return isStageAvailable ? TileStatus.available : TileStatus.hidden
     }
     default: {

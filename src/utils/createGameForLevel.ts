@@ -1,13 +1,13 @@
 import { CompletedLevels } from '../providers/GameCenter/GameCenter.types'
 import { Game, GameStatus } from '../types/game'
 import { GameLevel } from '../types/gameLevel'
-import { generateGameBoard } from './generateGameBoard'
+import { createGameBoardForLevel } from './createGameBoardForLevel'
 
 export const createGameForLevel = (
   gameLevel: GameLevel,
   completedLevels: CompletedLevels,
 ): Game => {
-  const board = generateGameBoard(gameLevel, completedLevels)
+  const board = createGameBoardForLevel(gameLevel, completedLevels)
 
   return {
     levelId: gameLevel.id,

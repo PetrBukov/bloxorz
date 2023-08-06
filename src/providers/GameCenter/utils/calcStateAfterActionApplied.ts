@@ -1,12 +1,10 @@
 import { STAGE_1 } from '../../../constants/levels/stage_1'
 import { GameBoardActionType } from '../../../types/tile'
-import { createGameForLevel } from '../../../utils/createGameFromLevel'
-import { getLevelById } from '../../../utils/getLevelById'
-import { getLevelStageById } from '../../../utils/getLevelStageById'
-import { saveGameCenterDataToLocalStorage } from '../../../utils/saveGameCenterDataToLocalStorage'
+import { createGameForLevel, getLevelById, getLevelStageByLevelId } from '../../../utils'
 import { GameCenterState } from '../GameCenter.types'
+import { saveGameCenterDataToLocalStorage } from './saveGameCenterDataToLocalStorage'
 
-export const calculateStateAfterActionApplied = (state: GameCenterState): GameCenterState => {
+export const calcStateAfterActionApplied = (state: GameCenterState): GameCenterState => {
   const { currentGame, completedLevels } = state
 
   if (!currentGame.activeAction) {
@@ -15,7 +13,7 @@ export const calculateStateAfterActionApplied = (state: GameCenterState): GameCe
 
   switch (currentGame.activeAction.type) {
     case GameBoardActionType.levelCompleted: {
-      const levelStage = getLevelStageById(currentGame.levelId)
+      const levelStage = getLevelStageByLevelId(currentGame.levelId)
       const newCompletedLevels = {
         ...completedLevels,
         [currentGame.levelId]: true,
