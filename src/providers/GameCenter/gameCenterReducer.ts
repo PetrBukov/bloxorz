@@ -2,6 +2,7 @@ import { STAGE_1 } from '../../constants/levels/stage_1'
 import { GameStatus } from '../../types/game'
 import { createGameForLevel } from '../../utils/createGameFromLevel'
 import { getLevelById } from '../../utils/getLevelById'
+import { getLevelStageById } from '../../utils/getLevelStageById'
 import { GameCenterAction, GameCenterActionType, GameCenterState } from './GameCenter.types'
 import { calculateStateAfterActionApplied } from './utils/calculateStateAfterActionApplied'
 import { calculateStateAfterMoving } from './utils/calculateStateAfterMoving'
@@ -26,9 +27,11 @@ export const gameCenterReducer = (
     }
 
     case GameCenterActionType.cancelCurrentGame: {
+      const stage = getLevelStageById(state.currentGame.levelId)
+
       return {
         ...state,
-        currentGame: createGameForLevel(STAGE_1, state.completedLevels),
+        currentGame: createGameForLevel(stage || STAGE_1, state.completedLevels),
       }
     }
 
