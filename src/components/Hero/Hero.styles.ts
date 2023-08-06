@@ -5,24 +5,23 @@ import { HERO_WIDTH } from '../../constants/board'
 import { BlockPosition, BlockSizes } from '../../types/common'
 import { GameBoardActionType } from '../../types/tile'
 
-const failureStatus = keyframes`
-    0% {
-        filter: grayscale(0);
-    }
-    100% {
-        filter: grayscale(1);
-    }
+const levelFailureAnimation = keyframes`
+  0% {
+      filter: grayscale(0);
+  }
+  100% {
+      filter: grayscale(1);
+  }
 `
 
-const failureStatusStyles = css`
+const levelFailureStyles = css`
   background-color: var(--red);
   filter: grayscale(0);
 
-  animation: ${failureStatus} 0.5s steps(2) infinite;
+  animation: ${levelFailureAnimation} 0.5s steps(2) infinite;
 `
 
-const victoryStatusStyles = css`
-  background-color: var(--acidGreen);
+const levelCompletedStyles = css`
   opacity: 1;
 `
 
@@ -46,9 +45,9 @@ export const HeroBlock = styled.div<
   ${({ activeActionType }) =>
     (activeActionType === GameBoardActionType.heroBlockOutOfMap ||
       activeActionType === GameBoardActionType.playerHasNoMoves) &&
-    failureStatusStyles}
+    levelFailureStyles}
   ${({ activeActionType }) =>
     (activeActionType === GameBoardActionType.levelCompleted ||
       activeActionType === GameBoardActionType.moveToAnotherLevel) &&
-    victoryStatusStyles};
+    levelCompletedStyles};
 `
