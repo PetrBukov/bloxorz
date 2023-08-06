@@ -38,8 +38,8 @@ const activatedStatusStyles = css`
   }
 
   &::before {
-    background: var(--black);
-    opacity: 9%;
+    background: var(--violet);
+    opacity: 13%;
     width: ${TILE_WIDTH}px;
     height: ${TILE_WIDTH}px;
     border-radius: 0px;
