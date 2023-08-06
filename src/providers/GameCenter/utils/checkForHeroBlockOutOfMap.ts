@@ -1,4 +1,4 @@
-import { Tile, TileStatus, TileType } from '../../../types/tile'
+import { Tile, TileStatus, TileType } from '../../../types'
 
 export const checkForHeroBlockOutOfMap = ({
   heroBlockIndexes,

@@ -1,17 +1,18 @@
 import React, { useCallback, useEffect } from 'react'
 
+import { useGameCenter } from '../../providers/GameCenter'
+import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
+import { useSwipe, SwipeDirection } from '../../hooks'
+import { calcElementPosition, calcElementSize } from '../../utils'
+import { TileText } from '../../types'
+
+import { Hero } from '../Hero'
+import { GameBoardTile } from '../GameBoardTile'
+
 import { GameBoardContainer, GameBoardGestureZone, TileTextContainer } from './GameBoard.styles'
 import { GameBoardProps } from './GameBoard.types'
 import { calculateBoardSizesPx } from './GameBoard.utils'
-import { Hero } from '../Hero'
-import { useGameCenter } from '../../providers/GameCenter'
 import { GESTURE_ZONE_ID, KEY_PRESS_TO_DIRECTION_MAP } from './GameBoard.constants'
-import { useSwipe } from '../../hooks/useSwipe'
-import { SwipeDirection } from '../../hooks'
-import { calcElementPosition, calcElementSize } from '../../utils'
-import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
-import { GameBoardTile } from '../GameBoardTile'
-import { TileText } from '../../types/tileText'
 
 const renderTileTexts = (tileTexts?: Array<TileText>) => {
   return (

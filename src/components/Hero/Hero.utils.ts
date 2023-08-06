@@ -1,5 +1,5 @@
-import { GAP_BETWEEN_TILES, HERO_WIDTH, TILE_WIDTH } from '../../constants/board'
-import { ElementPosition, ElementSize, Coordinates, Dimensions } from '../../types/common'
+import { GAP_BETWEEN_TILES, HERO_WIDTH, TILE_WIDTH } from '../../constants'
+import { ElementPosition, ElementSize, Coordinates, Dimensions } from '../../types'
 
 export const calculateHeroBlockSizes = (dimensions: Dimensions): ElementSize => {
   const { width, height } = dimensions

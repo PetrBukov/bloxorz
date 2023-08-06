@@ -1,4 +1,4 @@
-import { Coordinates, Dimensions } from '../types/common'
+import { Coordinates, Dimensions } from '../types'
 
 /**
  * If some part of rectangle is out of map it's index equals to -1

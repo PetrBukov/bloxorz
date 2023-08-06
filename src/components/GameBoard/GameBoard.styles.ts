@@ -1,8 +1,7 @@
 import styled from '@emotion/styled'
 
+import { GameStatus, ElementPosition, ElementSize } from '../../types'
 import { BoardSizes } from './GameBoard.types'
-import { GameStatus } from '../../types/game'
-import { ElementPosition, ElementSize } from '../../types/common'
 
 const DO_NOT_FORWARD_PROPS: Record<string, string> = {
   width: 'width',

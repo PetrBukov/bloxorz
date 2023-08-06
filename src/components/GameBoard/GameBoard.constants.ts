@@ -1,5 +1,4 @@
-import { KEYBOARD } from '../../constants/keyboard'
-import { DIRECTION } from '../../types/common'
+import { KEYBOARD, DIRECTION } from '../../constants'
 
 export const GESTURE_ZONE_ID = 'gesture-zone'
 

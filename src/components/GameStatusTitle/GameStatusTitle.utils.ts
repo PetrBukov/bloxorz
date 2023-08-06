@@ -1,5 +1,4 @@
-import { LevelID } from '../../types/gameLevel'
-import { GameBoardAction, GameBoardActionType } from '../../types/tile'
+import { LevelID, GameBoardAction, GameBoardActionType } from '../../types'
 import { getLevelById, getFullLevelName } from '../../utils'
 import { StatusTextVariant } from './GameStatusTitle.types'
 

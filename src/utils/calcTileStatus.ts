@@ -1,5 +1,5 @@
 import { CompletedLevels } from '../providers/GameCenter/GameCenter.types'
-import { GameBoardActionType, Tile, TileStatus, TileType } from '../types/tile'
+import { GameBoardActionType, Tile, TileStatus, TileType } from '../types'
 import { checkIfStageAvailable } from './checkIfStageAvailable'
 import { getLevelById } from './getLevelById'
 

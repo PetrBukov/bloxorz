@@ -1,13 +1,12 @@
 import React from 'react'
 
 import { GameBoardTileProps } from './GameBoardTile.types'
-import { GameBoardActionType, TileGameAction, TileType } from '../../types/tile'
+import { GameBoardActionType, TileGameAction, TileType, LevelID } from '../../types'
 import { LevelTile, SurfaceTile, TargetTile } from './views'
 import { EmptyTile } from './views/EmptyTile'
 import { getLevelById } from '../../utils'
 import { StageTile } from './views/StageTile'
-import { DIRECTION } from '../../types/common'
-import { LevelID } from '../../types/gameLevel'
+import { DIRECTION } from '../../constants'
 
 const renderTileGameAction = (tile: TileGameAction, moves: number, levelId: LevelID) => {
   const { action } = tile

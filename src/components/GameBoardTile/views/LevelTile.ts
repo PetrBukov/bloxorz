@@ -1,7 +1,8 @@
 import { css } from '@emotion/react'
-import { HERO_WIDTH, TILE_WIDTH } from '../../../constants/board'
 import styled from '@emotion/styled'
-import { TileStatus } from '../../../types/tile'
+
+import { HERO_WIDTH, TILE_WIDTH } from '../../../constants'
+import { TileStatus } from '../../../types'
 
 const availableStatusStyles = css`
   background-color: var(--gray200);

@@ -1,5 +1,4 @@
-import { GameLevel, GameLevelType } from '../../types/gameLevel'
-import { GameBoardActionType, TileStatus, TileType } from '../../types/tile'
+import { GameLevel, GameLevelType, GameBoardActionType, TileStatus, TileType } from '../../types'
 
 import { LEVEL_1 } from './level_1'
 import { LEVEL_2 } from './level_2'

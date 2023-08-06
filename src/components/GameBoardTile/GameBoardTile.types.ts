@@ -1,5 +1,4 @@
-import { LevelID } from '../../types/gameLevel'
-import { Tile } from '../../types/tile'
+import { LevelID, Tile } from '../../types'
 
 export type GameBoardTileProps = {
   tile: Tile

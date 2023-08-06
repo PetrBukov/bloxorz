@@ -1,5 +1,4 @@
-import { Direction } from '../../../types/common'
-import { Hero } from '../../../types/hero'
+import { Direction, Hero } from '../../../types'
 import { calcHeroPositionAfterMoving } from './calcHeroPositionAfterMoving'
 import { calcHeroSizeAfterMoving } from './calcHeroSizeAfterMoving'
 

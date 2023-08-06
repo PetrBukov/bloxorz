@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
-import { GAP_BETWEEN_TILES, TILE_WIDTH } from '../../../../constants/board'
 import { keyframes } from '@emotion/react'
+
+import { GAP_BETWEEN_TILES, TILE_WIDTH } from '../../../../constants'
 
 const noticeAnimation = keyframes`
     0% {

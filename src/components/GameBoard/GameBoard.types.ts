@@ -1,4 +1,4 @@
-import { Game } from '../../types/game'
+import { Game } from '../../types'
 
 export type GameBoardProps = {
   currentGame: Game

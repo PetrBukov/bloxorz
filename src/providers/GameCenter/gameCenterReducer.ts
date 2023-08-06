@@ -1,5 +1,5 @@
 import { STAGE_1 } from '../../constants/levels/stage_1'
-import { GameStatus } from '../../types/game'
+import { GameStatus } from '../../types'
 import { createGameForLevel, getLevelById, getLevelStageByLevelId } from '../../utils'
 import { GameCenterAction, GameCenterActionType, GameCenterState } from './GameCenter.types'
 import { calcStateAfterActionApplied, calcStateAfterMoving } from './utils'

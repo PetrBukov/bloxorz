@@ -1,4 +1,5 @@
-import { DIRECTION, Dimensions, Direction } from '../../../types/common'
+import { DIRECTION } from '../../../constants'
+import { Dimensions, Direction } from '../../../types'
 import { checkForHorizontalBlock, checkForSquareBlock, checkForVerticalBlock } from '../../../utils'
 
 export const calcHeroSizeAfterMoving = ({

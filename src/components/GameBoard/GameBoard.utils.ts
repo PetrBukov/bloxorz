@@ -1,5 +1,5 @@
-import { GAP_BETWEEN_TILES, TILE_WIDTH } from '../../constants/board'
-import { Dimensions } from '../../types/common'
+import { GAP_BETWEEN_TILES, TILE_WIDTH } from '../../constants'
+import { Dimensions } from '../../types'
 import { BoardSizes } from './GameBoard.types'
 
 export const calculateBoardSizesPx = (dimensions: Dimensions): BoardSizes => {

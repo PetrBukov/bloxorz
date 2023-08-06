@@ -1,12 +1,14 @@
 import React from 'react'
 
-import { useGameCenter } from '../../providers/GameCenter'
+import { useGameCenter } from '../../providers'
+import { GameStatus } from '../../types'
+
 import { GameBoard } from '../GameBoard'
-import { ContentContainer } from './Content.styles'
 import { BottomNavigation } from '../BottomNavigation'
-import { GameStatus } from '../../types/game'
 import { GameStatusTitle } from '../GameStatusTitle'
 import { TutorialTips } from '../TutorialTips'
+
+import { ContentContainer } from './Content.styles'
 
 export const Content: React.FC = () => {
   const {

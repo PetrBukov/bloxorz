@@ -1,10 +1,4 @@
-import {
-  GameBoardAction,
-  GameBoardActionType,
-  Tile,
-  TileStatus,
-  TileType,
-} from '../../../types/tile'
+import { GameBoardAction, GameBoardActionType, Tile, TileStatus, TileType } from '../../../types'
 
 export const getGameBoardAction = ({
   heroBlockIndexes,

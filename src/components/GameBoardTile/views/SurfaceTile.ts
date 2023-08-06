@@ -1,7 +1,8 @@
 import { css } from '@emotion/react'
-import { GAP_BETWEEN_TILES } from '../../../constants/board'
-import { TileSurfaceOptions } from '../../../types/tile'
 import styled from '@emotion/styled'
+
+import { GAP_BETWEEN_TILES } from '../../../constants'
+import { TileSurfaceOptions } from '../../../types'
 
 export const surfaceWideRightStyles = css`
   &::after {

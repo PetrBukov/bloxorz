@@ -13,7 +13,7 @@ export enum GameLevelType {
   stage = 'stage',
 }
 
-export type GameLevelCommon<T> = T & {
+type GameLevelCommon<T> = T & {
   id: LevelID
   name: LevelName
   nextLevelId: LevelID | null

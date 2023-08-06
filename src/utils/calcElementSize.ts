@@ -1,5 +1,5 @@
-import { GAP_BETWEEN_TILES, TILE_WIDTH } from '../constants/board'
-import { ElementSize, Dimensions } from '../types/common'
+import { GAP_BETWEEN_TILES, TILE_WIDTH } from '../constants'
+import { ElementSize, Dimensions } from '../types'
 
 export const calcElementSize = (dimensions: Dimensions): ElementSize => {
   const { width, height } = dimensions

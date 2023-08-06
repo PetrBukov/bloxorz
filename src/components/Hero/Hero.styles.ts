@@ -1,9 +1,8 @@
 import styled from '@emotion/styled'
 import { css, keyframes } from '@emotion/react'
 
-import { HERO_WIDTH } from '../../constants/board'
-import { ElementPosition, ElementSize } from '../../types/common'
-import { GameBoardActionType } from '../../types/tile'
+import { HERO_WIDTH } from '../../constants'
+import { ElementPosition, ElementSize, GameBoardActionType } from '../../types'
 
 const levelFailureAnimation = keyframes`
   0% {

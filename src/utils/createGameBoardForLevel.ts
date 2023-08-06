@@ -1,8 +1,5 @@
 import { CompletedLevels } from '../providers/GameCenter/GameCenter.types'
-import { Dimensions } from '../types/common'
-import { GameBoard } from '../types/gameBoard'
-import { GameLevel } from '../types/gameLevel'
-import { TileType } from '../types/tile'
+import { Dimensions, GameBoard, GameLevel, TileType } from '../types'
 import { calcTileStatus } from './calcTileStatus'
 import { getSurfaceTileIndexes } from './getSurfaceTileIndexes'
 

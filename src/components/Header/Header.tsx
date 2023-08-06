@@ -1,10 +1,11 @@
 import React, { useCallback } from 'react'
-import { HeaderContainer, LevelNameText, MenuButtonContainer } from './Header.styles'
+
 import { useGameCenter } from '../../providers/GameCenter'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
-import { GameStatus } from '../../types/game'
+import { GameStatus, GameLevelType } from '../../types'
 import { IconButton } from '../IconButton'
-import { GameLevelType } from '../../types/gameLevel'
+
+import { HeaderContainer, LevelNameText, MenuButtonContainer } from './Header.styles'
 
 export const Header: React.FC = () => {
   const {

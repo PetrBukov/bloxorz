@@ -1,3 +1,3 @@
-import { Dimensions } from '../types/common'
+import { Dimensions } from '../types'
 
 export const checkForVerticalBlock = (size: Dimensions) => size.height > size.width

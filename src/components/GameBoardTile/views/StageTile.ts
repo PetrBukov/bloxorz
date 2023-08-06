@@ -1,8 +1,8 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { TileStatus } from '../../../types/tile'
-import { HERO_WIDTH } from '../../../constants/board'
-import { DIRECTION, Direction } from '../../../types/common'
+
+import { TileStatus, Direction } from '../../../types'
+import { HERO_WIDTH, DIRECTION } from '../../../constants'
 
 const hiddenStatusStyles = css`
   visibility: hidden;

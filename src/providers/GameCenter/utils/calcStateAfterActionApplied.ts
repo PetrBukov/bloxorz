@@ -1,5 +1,5 @@
 import { STAGE_1 } from '../../../constants/levels/stage_1'
-import { GameBoardActionType } from '../../../types/tile'
+import { GameBoardActionType } from '../../../types'
 import { createGameForLevel, getLevelById, getLevelStageByLevelId } from '../../../utils'
 import { GameCenterState } from '../GameCenter.types'
 import { saveGameCenterDataToLocalStorage } from './saveGameCenterDataToLocalStorage'

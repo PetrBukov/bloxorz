@@ -1,5 +1,5 @@
-import { Coordinates, DIRECTION, Direction } from '../../../types/common'
-import { Hero } from '../../../types/hero'
+import { DIRECTION } from '../../../constants'
+import { Coordinates, Direction, Hero } from '../../../types'
 import { checkForSquareBlock, checkForHorizontalBlock, checkForVerticalBlock } from '../../../utils'
 
 export const calcHeroPositionAfterMoving = ({

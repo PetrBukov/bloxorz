@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
-import { GAP_BETWEEN_TILES, TILE_WIDTH } from '../../../../constants/board'
+
+import { GAP_BETWEEN_TILES, TILE_WIDTH } from '../../../../constants'
 
 export const TutorialContainer = styled.div`
   position: relative;

@@ -1,1 +1,1 @@
-export { GameCenter } from './GameCenter'
+export { GameCenter, useGameCenter } from './GameCenter'

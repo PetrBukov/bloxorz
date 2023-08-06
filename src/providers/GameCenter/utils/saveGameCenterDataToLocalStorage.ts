@@ -2,7 +2,7 @@ import {
   GAME_CENTER_LOCAL_STORAGE_ITEM_NAME,
   GAME_CENTER_LOCAL_STORAGE_VERSION,
 } from '../GameCenter.constants'
-import { LevelID } from '../../../types/gameLevel'
+import { LevelID } from '../../../types'
 
 export const saveGameCenterDataToLocalStorage = (completedLevels: Record<LevelID, boolean>) => {
   localStorage.setItem(

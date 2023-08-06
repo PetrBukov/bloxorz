@@ -1,4 +1,4 @@
-import { GameLevel, LevelID } from '../types/gameLevel'
+import { GameLevel, LevelID } from '../types'
 import { getLevelById } from './getLevelById'
 
 export const getLevelStageByLevelId = (stageId: LevelID | null): GameLevel | null => {

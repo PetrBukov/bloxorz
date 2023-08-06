@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 
 import whitegrit from '../../../assets/images/whitegrit.png'
-import { HERO_WIDTH } from '../../../constants/board'
+import { HERO_WIDTH } from '../../../constants'
 
 export const TargetTile = styled.div`
   position: relative;

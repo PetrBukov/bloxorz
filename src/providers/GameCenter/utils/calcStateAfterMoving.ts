@@ -1,11 +1,9 @@
-import { Direction } from '../../../types/common'
-import { GameBoardAction, GameBoardActionType } from '../../../types/tile'
+import { Direction, GameStatus, GameBoardAction, GameBoardActionType } from '../../../types'
 import { checkForHeroBlockOutOfMap } from './checkForHeroBlockOutOfMap'
 import { getSurfaceTileIndexes } from '../../../utils'
 import { GameCenterState } from '../GameCenter.types'
 import { calcHeroStateAfterMoving } from './calcHeroStateAfterMoving'
 import { getGameBoardAction } from './getGameBoardAction'
-import { GameStatus } from '../../../types/game'
 
 export const calcStateAfterMoving = (
   state: GameCenterState,
