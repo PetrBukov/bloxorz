@@ -26,11 +26,3 @@ export const DIRECTION = {
 } as const
 
 export type Direction = keyof typeof DIRECTION
-
-export const BLOCK_ASPECT_RATIO = {
-  squareBlock: 'squareBlock',
-  verticalBlock: 'verticalBlock',
-  horizontalBlock: 'horizontalBlock',
-} as const
-
-export type BlockAspectRatio = keyof typeof BLOCK_ASPECT_RATIO
