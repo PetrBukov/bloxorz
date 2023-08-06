@@ -30,7 +30,7 @@ export const calculateStateAfterMoving = (
     heroBlockIndexes,
     gameBoardTiles: board.tiles,
   })
-  console.log({ heroBlockIndexes, isHeroBlockOutOfMap })
+
   if (isHeroBlockOutOfMap) {
     gameBoardAction = {
       type: GameBoardActionType.heroBlockOutOfMap,

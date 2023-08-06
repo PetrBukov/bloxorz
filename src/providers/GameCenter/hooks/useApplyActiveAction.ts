@@ -12,8 +12,6 @@ export const useApplyActiveAction = () => {
     dispatch,
   } = useGameCenter()
 
-  console.log({ status })
-
   useEffect(() => {
     let timerId: NodeJS.Timeout | null = null
 
