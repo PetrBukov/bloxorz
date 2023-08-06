@@ -2,7 +2,6 @@ import { STAGE_1 } from '../../../constants/levels/stage_1'
 import { GameBoardActionType } from '../../../types'
 import { createGameForLevel, getLevelById, getLevelStageByLevelId } from '../../../utils'
 import { GameCenterState } from '../GameCenter.types'
-import { saveGameCenterDataToLocalStorage } from './saveGameCenterDataToLocalStorage'
 
 export const calcStateAfterActionApplied = (state: GameCenterState): GameCenterState => {
   const { currentGame, completedLevels } = state
@@ -18,9 +17,6 @@ export const calcStateAfterActionApplied = (state: GameCenterState): GameCenterS
         ...completedLevels,
         [currentGame.levelId]: true,
       }
-
-      // TODO: move it out from reducer because side effect should not be here
-      saveGameCenterDataToLocalStorage(newCompletedLevels)
 
       return {
         ...state,
