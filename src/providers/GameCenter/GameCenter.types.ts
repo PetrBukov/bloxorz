@@ -27,3 +27,7 @@ export type GameCenterState = {
   nextGame: Game | null
   completedLevels: CompletedLevels
 }
+
+export type GameCenterState_LocalStorage = Pick<GameCenterState, 'completedLevels'> & {
+  version: string
+}

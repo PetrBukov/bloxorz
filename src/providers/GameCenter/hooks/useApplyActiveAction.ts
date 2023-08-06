@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 
-import { GameStatus } from '../../types/game'
-import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
-import { useGameCenter } from '../../providers/GameCenter'
+import { GameStatus } from '../../../types/game'
+import { GameCenterActionType } from '../GameCenter.types'
+import { useGameCenter } from '..'
 
 export const useApplyActiveAction = () => {
   const {
