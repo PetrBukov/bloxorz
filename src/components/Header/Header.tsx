@@ -1,8 +1,9 @@
 import React, { useCallback } from 'react'
-import { HeaderContainer, MenuButton, LevelName, MenuButtonContainer } from './Header.styles'
+import { HeaderContainer, LevelNameText, MenuButtonContainer } from './Header.styles'
 import { useGameCenter } from '../../providers/GameCenter'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
 import { GameLevelType, GameStatus } from '../../types/game'
+import { IconButton } from '../IconButton'
 
 export const Header: React.FC = () => {
   const {
@@ -25,18 +26,20 @@ export const Header: React.FC = () => {
     return null
   }
 
-  const pauseButtonDisabled =
+  const isIconButtonDisabled =
     currentGame.status === GameStatus.victory || currentGame.status === GameStatus.failure
-  const buttonIcon = currentGame.status === GameStatus.paused ? 'close' : 'pause'
+  const iconButtonType = currentGame.status === GameStatus.paused ? 'close' : 'pause'
 
   return (
     <HeaderContainer>
       <MenuButtonContainer>
-        <MenuButton icon={buttonIcon} disabled={pauseButtonDisabled} onClick={onMenuClick}>
-          Pause
-        </MenuButton>
+        <IconButton
+          iconType={iconButtonType}
+          disabled={isIconButtonDisabled}
+          onClick={onMenuClick}
+        />
       </MenuButtonContainer>
-      <LevelName>Level {currentGame.levelName}</LevelName>
+      <LevelNameText>Level {currentGame.levelName}</LevelNameText>
     </HeaderContainer>
   )
 }
