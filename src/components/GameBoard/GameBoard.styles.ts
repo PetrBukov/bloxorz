@@ -4,8 +4,16 @@ import { BoardSizes } from './GameBoard.types'
 import { GameStatus } from '../../types/game'
 import { BlockPosition, BlockSizes } from '../../types/common'
 
+const DO_NOT_FORWARD_PROPS: Record<string, string> = {
+  width: 'width',
+  height: 'height',
+  totalColumns: 'totalColumns',
+  totalRows: 'totalRows',
+  gameStatus: 'gameStatus',
+}
+
 export const GameBoardContainer = styled('div', {
-  shouldForwardProp: prop => prop !== 'width' && prop !== 'height',
+  shouldForwardProp: prop => !DO_NOT_FORWARD_PROPS[prop],
 })<
   BoardSizes & {
     totalColumns: number
