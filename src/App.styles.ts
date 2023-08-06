@@ -1,5 +1,7 @@
 import { css } from '@emotion/react'
 
+import whitegrit from './assets/images/whitegrit.png'
+
 export const COLORS = {
   white: '#ffffff',
   gray: {
@@ -70,6 +72,11 @@ export const globalStyles = css`
 
   #root {
     display: grid;
+  }
+
+  main {
+    background: var(--spaceViolet) url(${whitegrit});
+    background-size: 500px;
   }
 
   /* Scrollbar Styles */
