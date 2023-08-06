@@ -1,5 +1,6 @@
 import { Direction } from '../../types/common'
-import { Game, LevelID } from '../../types/game'
+import { Game } from '../../types/game'
+import { LevelID } from '../../types/gameLevel'
 
 export enum GameCenterActionType {
   startNewGame = 'startNewGame',

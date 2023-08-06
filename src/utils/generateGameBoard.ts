@@ -1,6 +1,7 @@
 import { CompletedLevels } from '../providers/GameCenter/GameCenter.types'
 import { Dimensions } from '../types/common'
-import { GameBoard, GameLevel } from '../types/game'
+import { GameBoard } from '../types/gameBoard'
+import { GameLevel } from '../types/gameLevel'
 import { TileType } from '../types/tile'
 import { calculateTileStatus } from './calculateTileStatus'
 import { getRectangleTileIndexes } from './getRectangleTileIndexes'

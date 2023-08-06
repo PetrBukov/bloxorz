@@ -1,4 +1,4 @@
-import { GameLevelType } from '../types/game'
+import { GameLevelType } from '../types/gameLevel'
 
 export const getFullLevelName = (levelName: string = '', levelType?: GameLevelType) => {
   switch (levelType) {

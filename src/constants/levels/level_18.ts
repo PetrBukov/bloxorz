@@ -1,4 +1,4 @@
-import { GameLevel, GameLevelType } from '../../types/game'
+import { GameLevel, GameLevelType } from '../../types/gameLevel'
 import { GameBoardActionType, TileStatus, TileType } from '../../types/tile'
 
 export const LEVEL_18: GameLevel = {

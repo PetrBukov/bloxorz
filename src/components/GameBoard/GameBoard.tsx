@@ -10,9 +10,9 @@ import { useSwipe } from '../../hooks/useSwipe'
 import { SwipeDirection } from '../../hooks'
 import { calculateBlockPosition } from '../../utils/calculateBlockPosition'
 import { calculateBlockSizes } from '../../utils/calculateBlockSizes'
-import { TileText } from '../../types/game'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
 import { GameBoardTile } from '../GameBoardTile'
+import { TileText } from '../../types/tileText'
 
 const renderTileTexts = (tileTexts?: Array<TileText>) => {
   return (

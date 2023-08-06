@@ -1,4 +1,4 @@
-import { LevelID } from '../../types/game'
+import { LevelID } from '../../types/gameLevel'
 import { GameBoardAction } from '../../types/tile'
 
 export type GameStatusTitleProps = {

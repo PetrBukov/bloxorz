@@ -1,4 +1,4 @@
-import { GameBoard } from '../../../types/game'
+import { GameBoard } from '../../../types/gameBoard'
 import { Hero } from '../../../types/hero'
 import { checkForSquareBlock } from '../../../utils/checkForSquareBlock'
 import { getRectangleTileIndexes } from '../../../utils/getRectangleTileIndexes'

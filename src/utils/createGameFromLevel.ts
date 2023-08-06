@@ -1,5 +1,6 @@
 import { CompletedLevels } from '../providers/GameCenter/GameCenter.types'
-import { Game, GameLevel, GameStatus } from '../types/game'
+import { Game, GameStatus } from '../types/game'
+import { GameLevel } from '../types/gameLevel'
 import { generateGameBoard } from './generateGameBoard'
 
 export const createGameForLevel = (

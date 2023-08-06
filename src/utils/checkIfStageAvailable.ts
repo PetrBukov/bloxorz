@@ -1,5 +1,5 @@
 import { CompletedLevels } from '../providers/GameCenter/GameCenter.types'
-import { GameLevelType, LevelID } from '../types/game'
+import { GameLevelType, LevelID } from '../types/gameLevel'
 import { checkIfLevelCompleted } from './checkIfLevelCompleted'
 import { getLevelById } from './getLevelById'
 

@@ -4,10 +4,10 @@ import { GameBoardTileProps } from './GameBoardTile.types'
 import { GameBoardActionType, TileGameAction, TileType } from '../../types/tile'
 import { LevelTile, SurfaceTile, TargetTile } from './views'
 import { EmptyTile } from './views/EmptyTile'
-import { LevelID } from '../../types/game'
 import { getLevelById } from '../../utils/getLevelById'
 import { StageTile } from './views/StageTile'
 import { DIRECTION } from '../../types/common'
+import { LevelID } from '../../types/gameLevel'
 
 const renderTileGameAction = (tile: TileGameAction, moves: number, levelId: LevelID) => {
   const { action } = tile
