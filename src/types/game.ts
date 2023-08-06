@@ -74,8 +74,3 @@ export type Game = {
   moves: number
   activeAction: GameBoardAction | null
 }
-
-// We use GameScore instead of a number type because in the future we may want to change this
-// type from number to some object with several props and it would be easier to refactor code
-// if we mark every place where we work with GameScore in advance
-export type GameScore = number
