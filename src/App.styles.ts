@@ -56,6 +56,7 @@ export const globalStyles = css`
   *:before,
   *:after {
     box-sizing: inherit;
+    user-select: none;
   }
 
   body {
