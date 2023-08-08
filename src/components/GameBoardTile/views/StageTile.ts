@@ -4,8 +4,15 @@ import styled from '@emotion/styled'
 import { TileStatus, Direction } from '../../../types'
 import { HERO_WIDTH, DIRECTION } from '../../../constants'
 
-const hiddenStatusStyles = css`
-  visibility: hidden;
+const blockedStatusStyles = css`
+  &::before {
+    border-top: ${HERO_WIDTH / 2}px solid var(--gray300);
+    border-right: ${HERO_WIDTH / 2}px solid var(--gray300);
+  }
+
+  &::after {
+    border: 2px solid var(--gray300);
+  }
 `
 
 const previousStageStyles = css`
@@ -64,5 +71,5 @@ export const StageTile = styled.div<{ tileStatus?: TileStatus; direction: Direct
     border: 2px solid var(--violet);
   }
 
-  ${({ tileStatus }) => tileStatus === TileStatus.hidden && hiddenStatusStyles}
+  ${({ tileStatus }) => tileStatus === TileStatus.blocked && blockedStatusStyles}
 `

@@ -31,7 +31,7 @@ export const calcTileStatus = (tile: Tile, completedLevels: CompletedLevels): Ti
     }
     case GameBoardActionType.moveToAnotherStage: {
       const isStageAvailable = checkIfStageAvailable(completedLevels, action.stageId)
-      return isStageAvailable ? TileStatus.available : TileStatus.hidden
+      return isStageAvailable ? TileStatus.available : TileStatus.blocked
     }
     default: {
       return TileStatus.available

@@ -29,6 +29,15 @@ export const getGameBoardAction = ({
           gameBoardAction = shouldActionApplied ? tile.action : null
           break
         }
+
+        case GameBoardActionType.moveToAnotherStage: {
+          const shouldActionApplied =
+            tile.status === TileStatus.activated || tile.status === TileStatus.available
+
+          gameBoardAction = shouldActionApplied ? tile.action : null
+          break
+        }
+
         default: {
           gameBoardAction = tile.action
           break
