@@ -6,11 +6,11 @@ import { GAP_BETWEEN_TILES, TILE_WIDTH } from '../../../../constants'
 const swipeAnimation = keyframes`
   0% {
     opacity: 10%;
-    left: -40px;
+    left: -30px;
   }
   100% {
     opacity: 90%;
-    left: 40px;
+    left: 30px;
   }
 `
 
@@ -52,7 +52,7 @@ export const TutorialContainer = styled.div`
   }
 
   > div:first-of-type {
-    top: 80px;
+    top: 70px;
   }
 
   > div:nth-of-type(2) {
@@ -80,13 +80,17 @@ export const ControllersTipsContainer = styled.div`
 
 export const SwipeIconContainer = styled.div`
   position: relative;
+
+  display: grid;
+  align-items: center;
+
   animation: ${swipeAnimation} 3.5s Ease-out infinite;
 `
 
 export const KeyboardArrowsContainer = styled.div`
   display: grid;
-  width: ${(TILE_WIDTH / 2) * 3 + 8}px;
-  height: ${(TILE_WIDTH / 2) * 2 + 4}px;
+  width: ${(TILE_WIDTH / 3) * 3 + 8}px;
+  height: ${(TILE_WIDTH / 3) * 2 + 4}px;
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(3, 1fr);
   gap: 4px;
