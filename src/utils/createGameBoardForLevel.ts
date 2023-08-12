@@ -1,4 +1,3 @@
-import { CompletedLevels } from '../providers/GameCenter/GameCenter.types'
 import { Dimensions, GameBoard, GameLevel, TileType, Coordinates } from '../types'
 import { calcTileStatus } from './calcTileStatus'
 import { getSurfaceTileIndexes } from './getSurfaceTileIndexes'
