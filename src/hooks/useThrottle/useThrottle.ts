@@ -14,6 +14,7 @@ export const useThrottle = (action: Function, ms: number) => {
         if (savedArgs) {
           action(...savedArgs)
           setSavedArgs(null)
+          setIsThrottled(true)
         }
       }, ms)
     }
