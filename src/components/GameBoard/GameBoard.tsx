@@ -48,7 +48,7 @@ export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
       dispatch({ type: GameCenterActionType.moveHeroBlock, direction }),
     [dispatch],
   )
-  const throttledSwipeHandler = useThrottle(swipeHandler, 400)
+  const throttledSwipeHandler = useThrottle(swipeHandler, 500)
 
   useSwipe({ gestureZoneId: GESTURE_ZONE_ID, onSwipe: throttledSwipeHandler })
 
@@ -64,7 +64,7 @@ export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  const throttledHandleUserKeyPress = useThrottle(handleUserKeyPress, 400)
+  const throttledHandleUserKeyPress = useThrottle(handleUserKeyPress, 500)
 
   useEffect(() => {
     window.addEventListener('keydown', throttledHandleUserKeyPress)
