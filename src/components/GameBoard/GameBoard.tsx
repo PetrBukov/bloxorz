@@ -13,6 +13,7 @@ import { GameBoardContainer, GameBoardGestureZone, TileTextContainer } from './G
 import { GameBoardProps } from './GameBoard.types'
 import { calculateBoardPosition, calculateBoardSizesPx } from './GameBoard.utils'
 import { GESTURE_ZONE_ID, KEY_PRESS_TO_DIRECTION_MAP } from './GameBoard.constants'
+import { useThrottle } from '../../hooks/useThrottle'
 
 const renderTileTexts = (tileTexts?: Array<TileText>) => {
   return (
@@ -47,8 +48,9 @@ export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
       dispatch({ type: GameCenterActionType.moveHeroBlock, direction }),
     [dispatch],
   )
+  const throttledSwipeHandler = useThrottle(swipeHandler, 400)
 
-  useSwipe({ gestureZoneId: GESTURE_ZONE_ID, onSwipe: swipeHandler })
+  useSwipe({ gestureZoneId: GESTURE_ZONE_ID, onSwipe: throttledSwipeHandler })
 
   const boardSizesPx = calculateBoardSizesPx(size)
 
@@ -62,13 +64,14 @@ export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+  const throttledHandleUserKeyPress = useThrottle(handleUserKeyPress, 400)
 
   useEffect(() => {
-    window.addEventListener('keydown', handleUserKeyPress)
+    window.addEventListener('keydown', throttledHandleUserKeyPress)
     return () => {
-      window.removeEventListener('keydown', handleUserKeyPress)
+      window.removeEventListener('keydown', throttledHandleUserKeyPress)
     }
-  }, [handleUserKeyPress])
+  }, [throttledHandleUserKeyPress])
 
   const boardPositions = calculateBoardPosition(hero)
 
