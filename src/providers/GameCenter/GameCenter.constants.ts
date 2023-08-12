@@ -1,2 +1,2 @@
-export const GAME_CENTER_LOCAL_STORAGE_VERSION = 'v1'
+export const GAME_CENTER_LOCAL_STORAGE_VERSION = 'v2'
 export const GAME_CENTER_LOCAL_STORAGE_ITEM_NAME = 'gameCenterData'

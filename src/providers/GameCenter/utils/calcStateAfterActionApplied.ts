@@ -1,10 +1,11 @@
 import { STAGE_1 } from '../../../constants/levels/stage_1'
+import { STAGE_3 } from '../../../constants/levels/stage_3'
 import { GameBoardActionType } from '../../../types'
-import { createGameForLevel, getLevelById, getLevelStageByLevelId } from '../../../utils'
+import { createGameForLevel, getLevelById, getLevelBySequenceNumber } from '../../../utils'
 import { GameCenterState } from '../GameCenter.types'
 
 export const calcStateAfterActionApplied = (state: GameCenterState): GameCenterState => {
-  const { currentGame, completedLevels } = state
+  const { currentGame, lastCompletedLevel } = state
 
   if (!currentGame.activeAction) {
     return state
@@ -12,27 +13,26 @@ export const calcStateAfterActionApplied = (state: GameCenterState): GameCenterS
 
   switch (currentGame.activeAction.type) {
     case GameBoardActionType.levelCompleted: {
-      const levelStage = getLevelStageByLevelId(currentGame.levelId)
-      const newCompletedLevels = {
-        ...completedLevels,
-        [currentGame.levelId]: true,
-      }
+      const nextLevel = getLevelBySequenceNumber(currentGame.levelSequenceNumber + 1)
+      const newLastCompletedLevel =
+        lastCompletedLevel < currentGame.levelSequenceNumber
+          ? currentGame.levelSequenceNumber
+          : lastCompletedLevel
 
       return {
         ...state,
-        currentGame: createGameForLevel(levelStage || STAGE_1, newCompletedLevels),
-        completedLevels: newCompletedLevels,
+        currentGame: createGameForLevel(nextLevel || STAGE_3, newLastCompletedLevel),
+        lastCompletedLevel: newLastCompletedLevel,
       }
     }
 
     case GameBoardActionType.heroBlockOutOfMap:
     case GameBoardActionType.playerHasNoMoves: {
-      const level = getLevelById(currentGame.levelId)
+      const level = getLevelBySequenceNumber(currentGame.levelSequenceNumber)
 
       return {
         ...state,
-        currentGame: createGameForLevel(level || STAGE_1, completedLevels),
-        completedLevels,
+        currentGame: createGameForLevel(level || STAGE_1, lastCompletedLevel),
       }
     }
 
@@ -42,7 +42,7 @@ export const calcStateAfterActionApplied = (state: GameCenterState): GameCenterS
 
       return {
         ...state,
-        currentGame: createGameForLevel(level || STAGE_1, completedLevels),
+        currentGame: createGameForLevel(level || STAGE_1, lastCompletedLevel),
       }
     }
 
@@ -52,7 +52,7 @@ export const calcStateAfterActionApplied = (state: GameCenterState): GameCenterS
 
       return {
         ...state,
-        currentGame: createGameForLevel(stage || STAGE_1, completedLevels),
+        currentGame: createGameForLevel(stage || STAGE_1, lastCompletedLevel),
       }
     }
 

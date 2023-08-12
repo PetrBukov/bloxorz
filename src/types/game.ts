@@ -14,6 +14,7 @@ export type Game = {
   levelId: LevelID
   levelName: LevelName
   levelType: GameLevelType
+  levelSequenceNumber: number
   status: GameStatus
   board: GameBoard
   tileTexts?: Array<TileText>

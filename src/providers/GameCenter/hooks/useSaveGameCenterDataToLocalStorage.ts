@@ -7,7 +7,7 @@ import { useGameCenter } from '../GameCenter'
 
 export const useSaveGameCenterDataToLocalStorage = () => {
   const {
-    state: { completedLevels },
+    state: { lastCompletedLevel },
   } = useGameCenter()
 
   const [savedGameCenterData, setSavedGameCenterData] = useState<GameCenterState_LocalStorage>(
@@ -17,14 +17,14 @@ export const useSaveGameCenterDataToLocalStorage = () => {
   )
 
   useEffect(() => {
-    const { completedLevels: savedCompletedLevels } = savedGameCenterData
+    const { lastCompletedLevel: savedLastCompletedLevel } = savedGameCenterData
 
-    if (Object.keys(savedCompletedLevels).length !== Object.keys(completedLevels).length) {
-      saveGameCenterDataToLocalStorage(completedLevels)
+    if (lastCompletedLevel !== savedLastCompletedLevel) {
+      saveGameCenterDataToLocalStorage(lastCompletedLevel)
       setSavedGameCenterData({
-        completedLevels,
+        lastCompletedLevel,
         version: GAME_CENTER_LOCAL_STORAGE_VERSION,
       })
     }
-  }, [completedLevels, savedGameCenterData])
+  }, [lastCompletedLevel, savedGameCenterData])
 }

@@ -16,8 +16,6 @@ import {
 export const TutorialTips1: React.FC = () => {
   return (
     <TutorialContainer>
-      <div>welcome to the ...</div>
-      <div>Puzzle Slime</div>
       <ControllersTipsContainer>
         <KeyboardArrowsContainer>
           <div>

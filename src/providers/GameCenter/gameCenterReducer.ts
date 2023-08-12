@@ -1,4 +1,4 @@
-import { STAGE_1 } from '../../constants/levels/stage_1'
+import { STAGE_3 } from '../../constants/levels/stage_3'
 import { GameStatus } from '../../types'
 import { createGameForLevel, getLevelById, getLevelStageByLevelId } from '../../utils'
 import { GameCenterAction, GameCenterActionType, GameCenterState } from './GameCenter.types'
@@ -19,7 +19,7 @@ export const gameCenterReducer = (
 
       return {
         ...state,
-        currentGame: createGameForLevel(gameLevel, state.completedLevels),
+        currentGame: createGameForLevel(gameLevel, state.lastCompletedLevel),
       }
     }
 
@@ -28,7 +28,7 @@ export const gameCenterReducer = (
 
       return {
         ...state,
-        currentGame: createGameForLevel(stage || STAGE_1, state.completedLevels),
+        currentGame: createGameForLevel(stage || STAGE_3, state.lastCompletedLevel),
       }
     }
 

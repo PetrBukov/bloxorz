@@ -2,10 +2,12 @@ import React, { PropsWithChildren } from 'react'
 import { GameCenterDispatch, GameCenterState } from './GameCenter.types'
 import { gameCenterReducer } from './gameCenterReducer'
 import { createGameForLevel } from '../../utils'
-import { TUTORIAL_1 } from '../../constants/levels/tutorial_1'
 import { getGameCenterDataFromLocalStorage } from './utils'
 import { useApplyActiveAction } from './hooks/useApplyActiveAction'
 import { useSaveGameCenterDataToLocalStorage } from './hooks/useSaveGameCenterDataToLocalStorage'
+import { LEVEL_1 } from '../../constants/levels/level_1'
+import { getLevelBySequenceNumber } from '../../utils/getLevelBySequenceNumber'
+import { STAGE_3 } from '../../constants/levels/stage_3'
 
 // Why don't I have an initial value for this context?
 // read this: https://kentcdodds.com/blog/how-to-use-react-context-effectively
@@ -28,13 +30,19 @@ export const GameCenter: React.FC<PropsWithChildren> = ({ children }) => {
   const [state, dispatch] = React.useReducer(
     gameCenterReducer,
     {
-      currentGame: createGameForLevel(TUTORIAL_1, {}),
-      completedLevels: {},
+      currentGame: createGameForLevel(LEVEL_1, 0),
+      lastCompletedLevel: 0,
       nextGame: null,
     },
     defaultState => {
-      const { completedLevels } = getGameCenterDataFromLocalStorage()
-      return { ...defaultState, completedLevels }
+      const { lastCompletedLevel } = getGameCenterDataFromLocalStorage()
+      const nextLevel = getLevelBySequenceNumber(lastCompletedLevel + 1) || STAGE_3
+
+      return {
+        ...defaultState,
+        lastCompletedLevel,
+        currentGame: createGameForLevel(nextLevel, lastCompletedLevel),
+      }
     },
   )
 

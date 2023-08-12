@@ -3,13 +3,14 @@ import { GameLevel, GameLevelType, GameBoardActionType, TileStatus, TileType } f
 export const LEVEL_1: GameLevel = {
   id: 'level-1',
   name: '1',
+  sequenceNumber: 1,
   type: GameLevelType.regular,
   previousLevelId: null,
   nextLevelId: 'level-2',
   stageId: 'stage-1',
   size: {
-    width: 1,
-    height: 4,
+    width: 4,
+    height: 1,
   },
   hero: {
     position: {
@@ -29,8 +30,8 @@ export const LEVEL_1: GameLevel = {
         y: 0,
       },
       size: {
-        width: 1,
-        height: 4,
+        width: 4,
+        height: 1,
       },
       tile: {
         type: TileType.surface,
@@ -38,8 +39,8 @@ export const LEVEL_1: GameLevel = {
     },
     {
       position: {
-        x: 0,
-        y: 3,
+        x: 3,
+        y: 0,
       },
       size: {
         width: 1,

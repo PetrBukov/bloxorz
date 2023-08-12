@@ -1,5 +1,5 @@
 import { GAP_BETWEEN_TILES, HERO_WIDTH, TILE_WIDTH } from '../../constants'
-import { ElementPosition, ElementSize, Coordinates, Dimensions } from '../../types'
+import { ElementSize, Dimensions } from '../../types'
 
 export const calculateHeroBlockSizes = (dimensions: Dimensions): ElementSize => {
   const { width, height } = dimensions
@@ -16,18 +16,5 @@ export const calculateHeroBlockSizes = (dimensions: Dimensions): ElementSize => 
       (height - 1) * GAP_BETWEEN_TILES +
       (height - 1) * diffBetweenHeroBlockAndGap
     }px`,
-  }
-}
-
-export const calculateHeroBlockPosition = (position: Coordinates): ElementPosition => {
-  const diffBetweenHeroBlockAndGap = (TILE_WIDTH - HERO_WIDTH) / 2
-  const topPoint =
-    position.y * TILE_WIDTH + position.y * GAP_BETWEEN_TILES + diffBetweenHeroBlockAndGap
-  const leftPoint =
-    position.x * TILE_WIDTH + position.x * GAP_BETWEEN_TILES + diffBetweenHeroBlockAndGap
-
-  return {
-    top: `${topPoint}px`,
-    left: `${leftPoint}px`,
   }
 }

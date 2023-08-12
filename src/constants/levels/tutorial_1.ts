@@ -3,6 +3,7 @@ import { GameLevel, GameLevelType, GameBoardActionType, TileStatus, TileType } f
 export const TUTORIAL_1: GameLevel = {
   id: 'tutorial-1',
   name: '1',
+  sequenceNumber: 1,
   type: GameLevelType.tutorial,
   previousLevelId: null,
   nextLevelId: null,
@@ -61,7 +62,8 @@ export const TUTORIAL_1: GameLevel = {
       tile: {
         type: TileType.surface,
         options: {
-          wideRight: true,
+          wideRight: 2,
+          alwaysVisible: true,
         },
       },
     },

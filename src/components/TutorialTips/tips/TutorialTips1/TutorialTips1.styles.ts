@@ -30,10 +30,13 @@ const keyPressAnimation = keyframes`
 export const TutorialContainer = styled.div`
   position: relative;
   width: ${TILE_WIDTH * 5 + GAP_BETWEEN_TILES * 4}px;
-  height: 500px;
+  height: ${TILE_WIDTH * 4 + GAP_BETWEEN_TILES * 2}px;
+
+  display: grid;
+  gap: ${GAP_BETWEEN_TILES}px;
+  grid-template-rows: repeat(4, ${TILE_WIDTH}px);
 
   > div {
-    position: absolute;
     color: var(--white);
     font-size: 16px;
     line-height: 24px;
@@ -46,33 +49,14 @@ export const TutorialContainer = styled.div`
   }
 
   > div:nth-of-type(2) {
-    font-family: simpleStamp, sans-serif;
-    font-size: 56px;
-    color: var(--acidGreen);
-  }
-
-  > div:first-of-type {
-    top: 70px;
-  }
-
-  > div:nth-of-type(2) {
-    top: 130px;
-  }
-
-  > div:nth-of-type(3) {
-    top: 330px;
-  }
-
-  > div:nth-of-type(4) {
-    top: 430px;
-  }
+    grid-row: 4;
 `
 
 export const ControllersTipsContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 20px 1fr;
 
-  grid-row: 5;
+  grid-row: 1;
 
   justify-items: center;
   align-items: center;
@@ -84,7 +68,7 @@ export const SwipeIconContainer = styled.div`
   display: grid;
   align-items: center;
 
-  animation: ${swipeAnimation} 3.5s Ease-out infinite;
+  animation: ${swipeAnimation} 3.5s ease-out infinite;
 `
 
 export const KeyboardArrowsContainer = styled.div`

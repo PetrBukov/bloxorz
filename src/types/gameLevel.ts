@@ -16,6 +16,7 @@ export enum GameLevelType {
 type GameLevelCommon<T> = T & {
   id: LevelID
   name: LevelName
+  sequenceNumber: number
   nextLevelId: LevelID | null
   previousLevelId: LevelID | null
   stageId: LevelID | null

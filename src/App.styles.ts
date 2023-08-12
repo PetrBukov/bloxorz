@@ -1,4 +1,4 @@
-import { css } from '@emotion/react'
+import { css, keyframes } from '@emotion/react'
 
 import whitegrit from './assets/images/whitegrit.png'
 
@@ -59,23 +59,18 @@ export const globalStyles = css`
     user-select: none;
   }
 
-  body {
-    overscroll-behavior: none;
-  }
-
   html,
   body,
   #root {
     height: 100%;
     max-height: 100vh;
     overflow: hidden;
+    overscroll-behavior: none;
   }
 
   #root {
     display: grid;
-  }
 
-  main {
     background: var(--spaceViolet) url(${whitegrit});
     background-size: 500px;
   }
@@ -96,4 +91,16 @@ export const globalStyles = css`
     border-radius: 6px;
     border: 3px solid var(--trueBlack);
   }
+`
+
+export const appearanceAnimation = keyframes`
+    0% {
+        opacity: 0%;
+    }
+    10% {
+      opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
 `

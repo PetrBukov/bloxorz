@@ -1,9 +1,7 @@
-import { CompletedLevels } from '../providers/GameCenter/GameCenter.types'
 import { GameBoardActionType, Tile, TileStatus, TileType } from '../types'
-import { checkIfStageAvailable } from './checkIfStageAvailable'
 import { getLevelById } from './getLevelById'
 
-export const calcTileStatus = (tile: Tile, completedLevels: CompletedLevels): TileStatus => {
+export const calcTileStatus = (tile: Tile, lastCompletedLevel: number): TileStatus => {
   if (tile.type !== TileType.gameAction) {
     return TileStatus.available
   }
@@ -19,20 +17,18 @@ export const calcTileStatus = (tile: Tile, completedLevels: CompletedLevels): Ti
         return TileStatus.blocked
       }
 
-      if (completedLevels[level.id]) {
+      if (level.sequenceNumber <= lastCompletedLevel) {
         return TileStatus.activated
       }
 
-      if (!level.previousLevelId || completedLevels[level.previousLevelId]) {
+      if (level.sequenceNumber === lastCompletedLevel + 1) {
         return TileStatus.available
       }
 
       return TileStatus.blocked
     }
-    case GameBoardActionType.moveToAnotherStage: {
-      const isStageAvailable = checkIfStageAvailable(completedLevels, action.stageId)
-      return isStageAvailable ? TileStatus.available : TileStatus.blocked
-    }
+
+    case GameBoardActionType.moveToAnotherStage:
     default: {
       return TileStatus.available
     }

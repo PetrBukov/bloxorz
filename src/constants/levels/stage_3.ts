@@ -6,6 +6,7 @@ import { LEVEL_18 } from './level_18'
 export const STAGE_3: GameLevel = {
   id: 'stage-3',
   name: '3',
+  sequenceNumber: 3,
   type: GameLevelType.stage,
   previousLevelId: 'stage-2',
   nextLevelId: null,
@@ -62,6 +63,9 @@ export const STAGE_3: GameLevel = {
       },
       tile: {
         type: TileType.surface,
+        options: {
+          alwaysVisible: true,
+        },
       },
     },
     {
@@ -102,7 +106,8 @@ export const STAGE_3: GameLevel = {
       tile: {
         type: TileType.surface,
         options: {
-          wideRight: true,
+          wideRight: 2,
+          alwaysVisible: true,
         },
       },
     },
@@ -118,7 +123,8 @@ export const STAGE_3: GameLevel = {
       tile: {
         type: TileType.surface,
         options: {
-          wideRight: true,
+          wideRight: 4,
+          alwaysVisible: true,
         },
       },
     },

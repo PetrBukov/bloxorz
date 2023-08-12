@@ -1,11 +1,12 @@
 import styled from '@emotion/styled'
 
 import { GameStatus, ElementPosition, ElementSize } from '../../types'
-import { BoardSizes } from './GameBoard.types'
 
 const DO_NOT_FORWARD_PROPS: Record<string, string> = {
   width: 'width',
   height: 'height',
+  top: 'top',
+  left: 'left',
   totalColumns: 'totalColumns',
   totalRows: 'totalRows',
   gameStatus: 'gameStatus',
@@ -14,13 +15,17 @@ const DO_NOT_FORWARD_PROPS: Record<string, string> = {
 export const GameBoardContainer = styled('div', {
   shouldForwardProp: prop => !DO_NOT_FORWARD_PROPS[prop],
 })<
-  BoardSizes & {
-    totalColumns: number
-    totalRows: number
-    gameStatus: GameStatus
-  }
+  ElementSize &
+    ElementPosition & {
+      totalColumns: number
+      totalRows: number
+      gameStatus: GameStatus
+    }
 >`
-  position: relative;
+  position: absolute;
+
+  top: ${({ top }) => top};
+  left: ${({ left }) => left};
 
   width: ${({ width }) => width};
   height: ${({ height }) => height};
@@ -31,10 +36,15 @@ export const GameBoardContainer = styled('div', {
   grid-gap: 2px;
 
   opacity: ${({ gameStatus }) => (gameStatus === GameStatus.paused ? '50%' : '100%')};
+  transition:
+    top 0.5s,
+    left 0.5s;
 `
 
 export const GameBoardGestureZone = styled.div`
   z-index: 5;
+
+  position: relative;
 
   width: 100%;
   height: 100%;
@@ -45,7 +55,7 @@ export const GameBoardGestureZone = styled.div`
 `
 
 export const TileTextContainer = styled('div', {
-  shouldForwardProp: prop => prop !== 'width' && prop !== 'height',
+  shouldForwardProp: prop => !DO_NOT_FORWARD_PROPS[prop],
 })<ElementSize & ElementPosition>`
   position: absolute;
   top: ${({ top }) => top};
@@ -53,11 +63,11 @@ export const TileTextContainer = styled('div', {
 
   width: ${({ width }) => width};
   height: ${({ height }) => height};
+  padding-top: 4px;
 
   display: grid;
   align-items: center;
   justify-content: center;
-  padding-top: 4px;
 
   font-family: simpleStamp, sans-serif;
   font-size: 24px;

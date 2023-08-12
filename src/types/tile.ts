@@ -1,3 +1,5 @@
+import { Coordinates } from './common'
+
 export enum TileType {
   surface = 'surface',
   empty = 'empty',
@@ -12,7 +14,8 @@ export enum TileStatus {
 }
 
 export type TileSurfaceOptions = {
-  wideRight?: boolean
+  wideRight?: number
+  alwaysVisible?: boolean
 }
 
 export type TileSurface = {
@@ -60,3 +63,7 @@ export type TileGameAction = {
 }
 
 export type Tile = TileSurface | TileEmpty | TileGameAction
+
+export type TileWIthPosition = Tile & {
+  position: Coordinates
+}

@@ -17,7 +17,7 @@ export const getGameCenterDataFromLocalStorage = (): GameCenterState_LocalStorag
   }
 
   return {
-    completedLevels: {},
+    lastCompletedLevel: 0,
     version: GAME_CENTER_LOCAL_STORAGE_VERSION,
   }
 }

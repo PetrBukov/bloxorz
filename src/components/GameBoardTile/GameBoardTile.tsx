@@ -50,10 +50,16 @@ const renderTileGameAction = (tile: TileGameAction, moves: number, levelId: Leve
   }
 }
 
-export const GameBoardTile: React.FC<GameBoardTileProps> = ({ tile, moves, levelId }) => {
+export const GameBoardTile: React.FC<GameBoardTileProps> = ({ tile, moves, levelId, hero }) => {
   switch (tile.type) {
     case TileType.surface: {
-      return <SurfaceTile {...tile.options} />
+      return (
+        <SurfaceTile
+          tileOptions={tile.options}
+          heroPosition={hero.position}
+          tilePosition={tile.position}
+        />
+      )
     }
     case TileType.gameAction: {
       return renderTileGameAction(tile, moves, levelId)

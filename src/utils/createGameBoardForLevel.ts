@@ -1,14 +1,29 @@
 import { CompletedLevels } from '../providers/GameCenter/GameCenter.types'
-import { Dimensions, GameBoard, GameLevel, TileType } from '../types'
+import { Dimensions, GameBoard, GameLevel, TileType, Coordinates } from '../types'
 import { calcTileStatus } from './calcTileStatus'
 import { getSurfaceTileIndexes } from './getSurfaceTileIndexes'
+
+const calcTilePosition = (tileIndex: number, gameLevelSize: Dimensions): Coordinates => {
+  let y = 0
+  let x = tileIndex
+
+  while (x > gameLevelSize.width - 1) {
+    y += 1
+    x -= gameLevelSize.width
+  }
+
+  return {
+    x,
+    y,
+  }
+}
 
 const getTotalTilesAmount = (gameLevelSize: Dimensions) =>
   gameLevelSize.height * gameLevelSize.width
 
 export const createGameBoardForLevel = (
   gameLevel: GameLevel,
-  completedLevels: CompletedLevels,
+  lastCompletedLevel: number,
 ): GameBoard => {
   const { size: gameLevelSize, surfaces } = gameLevel
 
@@ -23,6 +38,7 @@ export const createGameBoardForLevel = (
   for (let i = 0; i < totalTilesAmount; i++) {
     gameBoard.tiles.push({
       type: TileType.empty,
+      position: calcTilePosition(i, gameLevelSize),
     })
   }
 
@@ -35,11 +51,12 @@ export const createGameBoardForLevel = (
     })
 
     surfaceTileIndexes.forEach(surfaceIndex => {
+      const tileWIthPosition = gameBoard.tiles[surfaceIndex]
       const { tile } = surface
 
-      const status = calcTileStatus(tile, completedLevels)
+      const status = calcTileStatus(tile, lastCompletedLevel)
 
-      gameBoard.tiles[surfaceIndex] = { ...tile, status }
+      gameBoard.tiles[surfaceIndex] = { ...tileWIthPosition, ...tile, status }
     })
   }
 

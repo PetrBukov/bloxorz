@@ -24,9 +24,9 @@ export type CompletedLevels = Record<LevelID, boolean>
 export type GameCenterState = {
   currentGame: Game
   nextGame: Game | null
-  completedLevels: CompletedLevels
+  lastCompletedLevel: number
 }
 
-export type GameCenterState_LocalStorage = Pick<GameCenterState, 'completedLevels'> & {
+export type GameCenterState_LocalStorage = Pick<GameCenterState, 'lastCompletedLevel'> & {
   version: string
 }

@@ -1,7 +1,4 @@
-export { Button } from './Button'
 export { Content } from './Content'
 export { Footer } from './Footer'
-export { GameBoard } from './GameBoard'
-export { Hero } from './Hero'
 export { Header } from './Header'
-export { GameStatusTitle } from './GameStatusTitle'
+export { Navigation } from './Navigation'

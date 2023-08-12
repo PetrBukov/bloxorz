@@ -11,7 +11,7 @@ import { GameBoardTile } from '../GameBoardTile'
 
 import { GameBoardContainer, GameBoardGestureZone, TileTextContainer } from './GameBoard.styles'
 import { GameBoardProps } from './GameBoard.types'
-import { calculateBoardSizesPx } from './GameBoard.utils'
+import { calculateBoardPosition, calculateBoardSizesPx } from './GameBoard.utils'
 import { GESTURE_ZONE_ID, KEY_PRESS_TO_DIRECTION_MAP } from './GameBoard.constants'
 
 const renderTileTexts = (tileTexts?: Array<TileText>) => {
@@ -70,23 +70,27 @@ export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
     }
   }, [handleUserKeyPress])
 
+  const boardPositions = calculateBoardPosition(hero)
+
   return (
     <GameBoardGestureZone id={GESTURE_ZONE_ID}>
       <GameBoardContainer
         {...boardSizesPx}
+        {...boardPositions}
         totalColumns={size.width}
         totalRows={size.height}
         gameStatus={status}
       >
         {tiles.map((tile, index) => {
           // Tiles can not be moved from one position to another so it is safe to use index as a key here
-          return <GameBoardTile key={index} tile={tile} moves={moves} levelId={levelId} />
+          return (
+            <GameBoardTile key={index} tile={tile} moves={moves} levelId={levelId} hero={hero} />
+          )
         })}
-
-        <Hero {...hero} activeActionType={activeAction?.type} />
 
         {renderTileTexts(tileTexts)}
       </GameBoardContainer>
+      <Hero {...hero} activeActionType={activeAction?.type} />
     </GameBoardGestureZone>
   )
 }

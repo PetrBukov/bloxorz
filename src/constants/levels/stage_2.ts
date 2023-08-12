@@ -12,6 +12,7 @@ import { LEVEL_9 } from './level_9'
 export const STAGE_2: GameLevel = {
   id: 'stage-2',
   name: '2',
+  sequenceNumber: 2,
   type: GameLevelType.stage,
   previousLevelId: 'stage-1',
   nextLevelId: 'stage-3',
@@ -66,6 +67,9 @@ export const STAGE_2: GameLevel = {
       },
       tile: {
         type: TileType.surface,
+        options: {
+          alwaysVisible: true,
+        },
       },
     },
     {
@@ -106,7 +110,8 @@ export const STAGE_2: GameLevel = {
       tile: {
         type: TileType.surface,
         options: {
-          wideRight: true,
+          wideRight: 2,
+          alwaysVisible: true,
         },
       },
     },
