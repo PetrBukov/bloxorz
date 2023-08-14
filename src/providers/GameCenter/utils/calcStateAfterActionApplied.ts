@@ -1,7 +1,12 @@
 import { STAGE_1 } from '../../../constants/levels/stage_1'
 import { STAGE_3 } from '../../../constants/levels/stage_3'
-import { GameBoardActionType } from '../../../types'
-import { createGameForLevel, getLevelById, getLevelBySequenceNumber } from '../../../utils'
+import { GameBoardActionType, GameLevelType } from '../../../types'
+import {
+  createGameForLevel,
+  getLevelById,
+  getLevelBySequenceNumber,
+  getStageBySequenceNumber,
+} from '../../../utils'
 import { GameCenterState } from '../GameCenter.types'
 
 export const calcStateAfterActionApplied = (state: GameCenterState): GameCenterState => {
@@ -28,7 +33,12 @@ export const calcStateAfterActionApplied = (state: GameCenterState): GameCenterS
 
     case GameBoardActionType.heroBlockOutOfMap:
     case GameBoardActionType.playerHasNoMoves: {
-      const level = getLevelBySequenceNumber(currentGame.levelSequenceNumber)
+      const { levelType, levelSequenceNumber } = currentGame
+
+      const level =
+        levelType === GameLevelType.regular
+          ? getLevelBySequenceNumber(levelSequenceNumber)
+          : getStageBySequenceNumber(levelSequenceNumber)
 
       return {
         ...state,
