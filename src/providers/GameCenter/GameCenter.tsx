@@ -6,8 +6,8 @@ import { getGameCenterDataFromLocalStorage } from './utils'
 import { useApplyActiveAction } from './hooks/useApplyActiveAction'
 import { useSaveGameCenterDataToLocalStorage } from './hooks/useSaveGameCenterDataToLocalStorage'
 import { LEVEL_1 } from '../../constants/levels/level_1'
-import { getLevelBySequenceNumber } from '../../utils/getLevelBySequenceNumber'
 import { STAGE_3 } from '../../constants/levels/stage_3'
+import { getLevelBySequenceNumber } from '../../utils/getLevelBySequenceNumber'
 
 // Why don't I have an initial value for this context?
 // read this: https://kentcdodds.com/blog/how-to-use-react-context-effectively

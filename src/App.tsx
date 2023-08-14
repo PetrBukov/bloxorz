@@ -8,7 +8,7 @@ import { Content, Footer, Header, Navigation } from './components'
 import { WelcomeScreen } from './components/WelcomeScreen/WelcomeScreen'
 
 const App: React.FC = () => {
-  const [loadingGameData, setLoadingGameData] = useState<boolean>(true)
+  const [loadingGameData, setLoadingGameData] = useState<boolean>(false)
 
   useEffect(() => {
     const timerId = setTimeout(() => {

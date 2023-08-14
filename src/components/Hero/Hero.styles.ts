@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { css, keyframes } from '@emotion/react'
 
 import { HERO_WIDTH } from '../../constants'
-import { ElementSize, GameBoardActionType } from '../../types'
+import { ElementPosition, ElementSize, GameBoardActionType } from '../../types'
 
 const levelFailureAnimation = keyframes`
   0% {
@@ -24,11 +24,12 @@ const levelCompletedStyles = css`
   opacity: 1;
 `
 
-export const HeroBlock = styled.div<ElementSize & { activeActionType?: GameBoardActionType }>`
+export const HeroBlock = styled.div<
+  ElementSize & ElementPosition & { activeActionType?: GameBoardActionType }
+>`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: ${({ top }) => top};
+  left: ${({ left }) => left};
 
   width: ${({ width }) => width};
   height: ${({ height }) => height};
