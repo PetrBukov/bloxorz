@@ -1,11 +1,9 @@
 import styled from '@emotion/styled'
 
-import whitegrit from '../../../assets/images/whitegrit.png'
-import { HERO_WIDTH } from '../../../constants'
+import circleWIthHole from '../../../assets/images/circleWIthHole.svg'
 
 export const TargetTile = styled.div`
   position: relative;
-  background-color: var(--acidGreen);
   display: grid;
   align-items: center;
   align-items: center;
@@ -20,19 +18,18 @@ export const TargetTile = styled.div`
   }
 
   &::before {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-
     content: '';
-    display: block;
-    width: ${HERO_WIDTH}px;
-    height: ${HERO_WIDTH}px;
+    display: box;
+    background-color: var(--acidGreen);
+    position: absolute;
 
-    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
 
-    background: var(--spaceViolet) url(${whitegrit});
-    background-size: 500px;
+    mask: url(${circleWIthHole});
+    mask-size: 230%;
+    mask-position: center;
   }
 `
