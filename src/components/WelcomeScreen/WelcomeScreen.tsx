@@ -12,11 +12,7 @@ export const WelcomeScreen: React.FC = () => {
   return (
     <WelcomeScreenContainer>
       <WelcomeScreenSubtitle>welcome to the ...</WelcomeScreenSubtitle>
-      <WelcomeScreenLogo>
-        <div>
-          Puzzle <span>Sli</span>me
-        </div>
-      </WelcomeScreenLogo>
+      <WelcomeScreenLogo>Puzzle Slime</WelcomeScreenLogo>
       <GameLoadingContainer>
         <AiOutlineLoading3Quarters size={16} />
         loading game data

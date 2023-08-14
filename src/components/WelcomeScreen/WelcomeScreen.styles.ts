@@ -12,39 +12,6 @@ const spinAnimation = keyframes`
     }
 `
 
-const blinkAnimation = keyframes`
-    78% {
-      color: inherit;
-      text-shadow: inherit;
-    }
-    79%{
-       color: #333;
-    }
-    80% {
-      text-shadow: none;
-    }
-    81% {
-      color: inherit;
-      text-shadow: inherit;
-    }
-    82% {
-      color: #333;
-      text-shadow: none;
-    }
-    83% {
-      color: inherit;
-      text-shadow: inherit;
-    }
-    92% {
-      color: #333;
-      text-shadow: none;
-    }
-    92.5% {
-      color: inherit;
-      text-shadow: inherit;
-    }
-`
-
 export const WelcomeScreenContainer = styled.div`
   display: grid;
   align-content: center;
@@ -61,20 +28,9 @@ export const WelcomeScreenLogo = styled.h1`
   color: var(--acidGreen);
   letter-spacing: 3.5px;
 
-  --neon-shadow-color: #8ca400;
-  text-shadow:
-    0 -40px 100px,
-    0 0 2px,
-    0 0 1em var(--neon-shadow-color),
-    0 0 0.5em var(--neon-shadow-color),
-    0 0 0.1em var(--neon-shadow-color),
-    0 10px 3px #000;
+  text-shadow: 0 0 56px #8ca400;
 
   animation: ${appearanceAnimation} linear 2s;
-
-  > div span {
-    animation: ${blinkAnimation} linear infinite 4s;
-  }
 `
 
 export const WelcomeScreenSubtitle = styled.div`
@@ -99,7 +55,7 @@ export const GameLoadingContainer = styled.div`
   line-height: 24px;
   text-align: center;
 
-  animation: ${appearanceAnimation} linear 2s;
+  animation: ${appearanceAnimation} linear 1.5s;
 
   svg {
     position: absolute;
