@@ -1,5 +1,5 @@
 import { GameBoardActionType, Tile, TileStatus, TileType } from '../types'
-import { getLevelById } from './getLevelById'
+import { getLevelBySequenceNumber } from './getLevelBySequenceNumber'
 
 export const calcTileStatus = (tile: Tile, lastCompletedLevel: number): TileStatus => {
   if (tile.type !== TileType.gameAction) {
@@ -10,8 +10,8 @@ export const calcTileStatus = (tile: Tile, lastCompletedLevel: number): TileStat
 
   switch (action.type) {
     case GameBoardActionType.moveToAnotherLevel: {
-      const { levelId } = action
-      const level = getLevelById(levelId)
+      const { levelSequenceNumber } = action
+      const level = getLevelBySequenceNumber(levelSequenceNumber)
 
       if (!level) {
         return TileStatus.blocked

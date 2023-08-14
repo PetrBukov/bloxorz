@@ -4,3 +4,5 @@ export const DIRECTION = {
   down: 'down',
   left: 'left',
 } as const
+
+export const LEVELS_PER_STAGE = 8

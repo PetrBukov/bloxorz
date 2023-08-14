@@ -5,14 +5,7 @@ export { GameStatus } from './game'
 
 export type { GameBoard } from './gameBoard'
 
-export type {
-  LevelID,
-  LevelName,
-  GameLevelRegular,
-  GameLevelTutorial,
-  GameLevelStage,
-  GameLevel,
-} from './gameLevel'
+export type { GameLevelRegular, GameLevelTutorial, GameLevelStage, GameLevel } from './gameLevel'
 export { GameLevelType } from './gameLevel'
 
 export type { Hero } from './hero'

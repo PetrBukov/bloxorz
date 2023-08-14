@@ -43,7 +43,7 @@ export type GameBoardAction =
     }
   | {
       type: GameBoardActionType.moveToAnotherLevel
-      levelId: string
+      levelSequenceNumber: number
     }
   | {
       type: GameBoardActionType.heroBlockOutOfMap
@@ -53,7 +53,7 @@ export type GameBoardAction =
     }
   | {
       type: GameBoardActionType.moveToAnotherStage
-      stageId: string
+      stageSequenceNumber: number
     }
 
 export type TileGameAction = {

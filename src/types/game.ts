@@ -1,5 +1,5 @@
 import { GameBoard } from './gameBoard'
-import { GameLevelType, LevelID, LevelName } from './gameLevel'
+import { GameLevelType } from './gameLevel'
 import { Hero } from './hero'
 import { GameBoardAction } from './tile'
 import { TileText } from './tileText'
@@ -11,8 +11,6 @@ export enum GameStatus {
 }
 
 export type Game = {
-  levelId: LevelID
-  levelName: LevelName
   levelType: GameLevelType
   levelSequenceNumber: number
   status: GameStatus

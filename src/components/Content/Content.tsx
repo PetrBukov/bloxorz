@@ -12,7 +12,7 @@ export const Content: React.FC = () => {
   const {
     state: { currentGame },
   } = useGameCenter()
-  const { activeAction } = currentGame
+  const { activeAction, levelSequenceNumber, levelType } = currentGame
 
   // I would prefer to use Boolean(activeAction) here but TypeScript works not very well with this construction
   // so I have to use double NOT operator in that piece of code
@@ -20,12 +20,12 @@ export const Content: React.FC = () => {
 
   return (
     <ContentContainer>
-      <TutorialTips levelId={currentGame.levelId} />
+      <TutorialTips levelSequenceNumber={levelSequenceNumber} levelType={levelType} />
 
       <GameBoard currentGame={currentGame} />
 
       {showGameStatusTitle && (
-        <GameStatusTitle levelId={currentGame.levelId} activeAction={activeAction} />
+        <GameStatusTitle levelSequenceNumber={levelSequenceNumber} activeAction={activeAction} />
       )}
     </ContentContainer>
   )

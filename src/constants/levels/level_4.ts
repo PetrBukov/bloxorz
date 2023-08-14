@@ -1,13 +1,8 @@
 import { GameLevel, GameLevelType, GameBoardActionType, TileStatus, TileType } from '../../types'
 
 export const LEVEL_4: GameLevel = {
-  id: 'level-4',
-  name: '4',
   sequenceNumber: 4,
   type: GameLevelType.regular,
-  previousLevelId: 'level-3',
-  nextLevelId: 'level-5',
-  stageId: 'stage-1',
   size: {
     width: 3,
     height: 7,

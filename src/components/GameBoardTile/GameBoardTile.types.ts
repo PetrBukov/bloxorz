@@ -1,9 +1,9 @@
-import { Hero, LevelID } from '../../types'
+import { Hero } from '../../types'
 import { TileWIthPosition } from '../../types/tile'
 
 export type GameBoardTileProps = {
   tile: TileWIthPosition
   moves: number
-  levelId: LevelID
+  levelSequenceNumber: number
   hero: Hero
 }

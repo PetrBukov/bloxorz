@@ -1,16 +1,18 @@
 import { GameLevelType } from '../types'
 
-export const getFullLevelName = (levelName: string = '', levelType?: GameLevelType) => {
+export const getFullLevelName = (levelSequenceNumber?: number, levelType?: GameLevelType) => {
+  const levelShortName = levelSequenceNumber || ''
+
   switch (levelType) {
     case GameLevelType.stage: {
-      return `Stage ${levelName}`
+      return `Stage ${levelShortName}`
     }
     case GameLevelType.tutorial: {
-      return `Tutorial ${levelName}`
+      return `Tutorial ${levelShortName}`
     }
     case GameLevelType.regular:
     default: {
-      return `Level ${levelName}`
+      return `Level ${levelShortName}`
     }
   }
 }

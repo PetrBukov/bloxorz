@@ -1,6 +1,11 @@
-import { STAGE_3 } from '../../constants/levels/stage_3'
+import { STAGE_1 } from '../../constants/levels/stage_1'
 import { GameStatus } from '../../types'
-import { createGameForLevel, getLevelById, getLevelStageByLevelId } from '../../utils'
+import {
+  calcStageSequenceNumber,
+  createGameForLevel,
+  getLevelBySequenceNumber,
+  getStageBySequenceNumber,
+} from '../../utils'
 import { GameCenterAction, GameCenterActionType, GameCenterState } from './GameCenter.types'
 import { calcStateAfterActionApplied, calcStateAfterMoving } from './utils'
 
@@ -10,9 +15,9 @@ export const gameCenterReducer = (
 ): GameCenterState => {
   switch (action.type) {
     case GameCenterActionType.startNewGame: {
-      const { levelId } = action
+      const { levelSequenceNumber } = action
 
-      const gameLevel = getLevelById(levelId)
+      const gameLevel = getLevelBySequenceNumber(levelSequenceNumber)
       if (!gameLevel) {
         return state
       }
@@ -24,11 +29,12 @@ export const gameCenterReducer = (
     }
 
     case GameCenterActionType.cancelCurrentGame: {
-      const stage = getLevelStageByLevelId(state.currentGame.levelId)
+      const stageSequenceNumber = calcStageSequenceNumber(state.currentGame.levelSequenceNumber)
+      const gameStage = getStageBySequenceNumber(stageSequenceNumber)
 
       return {
         ...state,
-        currentGame: createGameForLevel(stage || STAGE_3, state.lastCompletedLevel),
+        currentGame: createGameForLevel(gameStage || STAGE_1, state.lastCompletedLevel),
       }
     }
 

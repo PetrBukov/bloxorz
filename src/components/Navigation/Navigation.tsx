@@ -19,7 +19,10 @@ export const Navigation: React.FC = () => {
   } = useGameCenter()
 
   const onRestartGame = useCallback(() => {
-    dispatch({ type: GameCenterActionType.startNewGame, levelId: currentGame.levelId })
+    dispatch({
+      type: GameCenterActionType.startNewGame,
+      levelSequenceNumber: currentGame.levelSequenceNumber,
+    })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentGame])
 

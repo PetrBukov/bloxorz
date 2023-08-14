@@ -1,4 +1,4 @@
-import { Direction, LevelID, Game } from '../../types'
+import { Direction, Game } from '../../types'
 
 export enum GameCenterActionType {
   startNewGame = 'startNewGame',
@@ -10,7 +10,7 @@ export enum GameCenterActionType {
 }
 
 export type GameCenterAction =
-  | { type: GameCenterActionType.startNewGame; levelId: LevelID }
+  | { type: GameCenterActionType.startNewGame; levelSequenceNumber: number }
   | { type: GameCenterActionType.cancelCurrentGame }
   | { type: GameCenterActionType.pauseCurrentGame }
   | { type: GameCenterActionType.continueCurrentGame }
@@ -18,8 +18,6 @@ export type GameCenterAction =
   | { type: GameCenterActionType.applyActiveAction }
 
 export type GameCenterDispatch = (action: GameCenterAction) => void
-
-export type CompletedLevels = Record<LevelID, boolean>
 
 export type GameCenterState = {
   currentGame: Game

@@ -4,9 +4,12 @@ import { StatusContainer, StatusInner, StatusText } from './GameStatusTitle.styl
 import { getStatusText, getStatusTextVariant } from './GameStatusTitle.utils'
 import { GameStatusTitleProps } from './GameStatusTitle.types'
 
-export const GameStatusTitle: React.FC<GameStatusTitleProps> = ({ levelId, activeAction }) => {
-  const gameStatusText = getStatusText(levelId, activeAction)
-  const statusTextVariant = getStatusTextVariant(levelId, activeAction)
+export const GameStatusTitle: React.FC<GameStatusTitleProps> = ({
+  levelSequenceNumber,
+  activeAction,
+}) => {
+  const gameStatusText = getStatusText(levelSequenceNumber, activeAction)
+  const statusTextVariant = getStatusTextVariant(levelSequenceNumber, activeAction)
 
   const isVisible = gameStatusText.length > 0
 

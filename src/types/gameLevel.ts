@@ -3,10 +3,6 @@ import { Hero } from './hero'
 import { Surface } from './surface'
 import { TileText } from './tileText'
 
-export type LevelID = string
-
-export type LevelName = string
-
 export enum GameLevelType {
   regular = 'regular',
   tutorial = 'tutorial',
@@ -14,12 +10,7 @@ export enum GameLevelType {
 }
 
 type GameLevelCommon<T> = T & {
-  id: LevelID
-  name: LevelName
   sequenceNumber: number
-  nextLevelId: LevelID | null
-  previousLevelId: LevelID | null
-  stageId: LevelID | null
   size: Dimensions
   surfaces: Array<Surface>
   tileTexts?: Array<TileText>
@@ -37,7 +28,6 @@ export type GameLevelTutorial = GameLevelCommon<{
 
 export type GameLevelStage = GameLevelCommon<{
   type: GameLevelType.stage
-  stageLevels: Array<LevelID>
 }>
 
-export type GameLevel = GameLevelRegular | GameLevelTutorial | GameLevelStage
+export type GameLevel = GameLevelRegular | GameLevelStage

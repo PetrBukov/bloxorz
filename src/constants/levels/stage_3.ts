@@ -1,17 +1,8 @@
 import { GameLevel, GameLevelType, GameBoardActionType, TileStatus, TileType } from '../../types'
 
-import { LEVEL_17 } from './level_17'
-import { LEVEL_18 } from './level_18'
-
 export const STAGE_3: GameLevel = {
-  id: 'stage-3',
-  name: '3',
   sequenceNumber: 3,
   type: GameLevelType.stage,
-  previousLevelId: 'stage-2',
-  nextLevelId: null,
-  stageId: null,
-  stageLevels: [LEVEL_17.id, LEVEL_18.id],
   size: {
     width: 4,
     height: 5,
@@ -141,7 +132,7 @@ export const STAGE_3: GameLevel = {
         type: TileType.gameAction,
         action: {
           type: GameBoardActionType.moveToAnotherLevel,
-          levelId: LEVEL_17.id,
+          levelSequenceNumber: 17,
         },
         status: TileStatus.blocked,
       },
@@ -159,7 +150,7 @@ export const STAGE_3: GameLevel = {
         type: TileType.gameAction,
         action: {
           type: GameBoardActionType.moveToAnotherLevel,
-          levelId: LEVEL_18.id,
+          levelSequenceNumber: 18,
         },
         status: TileStatus.blocked,
       },
@@ -177,7 +168,7 @@ export const STAGE_3: GameLevel = {
         type: TileType.gameAction,
         action: {
           type: GameBoardActionType.moveToAnotherStage,
-          stageId: 'stage-2',
+          stageSequenceNumber: 2,
         },
         status: TileStatus.blocked,
       },

@@ -1,14 +1,14 @@
 import React from 'react'
 
 import { GameBoardTileProps } from './GameBoardTile.types'
-import { GameBoardActionType, TileGameAction, TileType, LevelID } from '../../types'
+import { GameBoardActionType, TileGameAction, TileType } from '../../types'
 import { LevelTile, SurfaceTile, TargetTile } from './views'
 import { EmptyTile } from './views/EmptyTile'
-import { getLevelById } from '../../utils'
 import { StageTile } from './views/StageTile'
 import { DIRECTION } from '../../constants'
+import { getLevelBySequenceNumber } from '../../utils'
 
-const renderTileGameAction = (tile: TileGameAction, moves: number, levelId: LevelID) => {
+const renderTileGameAction = (tile: TileGameAction, moves: number, levelSequenceNumber: number) => {
   const { action } = tile
 
   switch (action.type) {
@@ -22,8 +22,8 @@ const renderTileGameAction = (tile: TileGameAction, moves: number, levelId: Leve
     }
 
     case GameBoardActionType.moveToAnotherLevel: {
-      const level = getLevelById(action.levelId)
-      const levelName = level?.name || '?'
+      const level = getLevelBySequenceNumber(action.levelSequenceNumber)
+      const levelName = level?.sequenceNumber || '?'
 
       return (
         <LevelTile tileStatus={tile.status}>
@@ -33,8 +33,8 @@ const renderTileGameAction = (tile: TileGameAction, moves: number, levelId: Leve
     }
 
     case GameBoardActionType.moveToAnotherStage: {
-      const currentStage = getLevelById(levelId)
-      const isNextStage = currentStage?.nextLevelId === action.stageId
+      const { stageSequenceNumber } = action
+      const isNextStage = stageSequenceNumber > levelSequenceNumber
 
       return (
         <StageTile
@@ -50,7 +50,12 @@ const renderTileGameAction = (tile: TileGameAction, moves: number, levelId: Leve
   }
 }
 
-export const GameBoardTile: React.FC<GameBoardTileProps> = ({ tile, moves, levelId, hero }) => {
+export const GameBoardTile: React.FC<GameBoardTileProps> = ({
+  tile,
+  moves,
+  levelSequenceNumber,
+  hero,
+}) => {
   switch (tile.type) {
     case TileType.surface: {
       return (
@@ -62,7 +67,7 @@ export const GameBoardTile: React.FC<GameBoardTileProps> = ({ tile, moves, level
       )
     }
     case TileType.gameAction: {
-      return renderTileGameAction(tile, moves, levelId)
+      return renderTileGameAction(tile, moves, levelSequenceNumber)
     }
     default: {
       return <EmptyTile />

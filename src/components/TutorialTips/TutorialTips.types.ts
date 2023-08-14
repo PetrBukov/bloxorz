@@ -1,5 +1,6 @@
-import { LevelID } from '../../types'
+import { GameLevelType } from '../../types'
 
 export type TutorialTipsProps = {
-  levelId: LevelID
+  levelSequenceNumber: number
+  levelType: GameLevelType
 }

@@ -10,7 +10,6 @@ import { LEVEL_9 } from './level_9'
 import { LEVEL_10 } from './level_10'
 import { LEVEL_11 } from './level_11'
 import { LEVEL_12 } from './level_12'
-import { TUTORIAL_1 } from './tutorial_1'
 import { STAGE_1 } from './stage_1'
 import { STAGE_2 } from './stage_2'
 import { LEVEL_13 } from './level_13'
@@ -22,7 +21,6 @@ import { LEVEL_17 } from './level_17'
 import { LEVEL_18 } from './level_18'
 
 export const LEVEL_LIST = [
-  TUTORIAL_1,
   STAGE_1,
   STAGE_2,
   STAGE_3,

@@ -3,7 +3,6 @@ import { STAGE_3 } from '../../../constants/levels/stage_3'
 import { GameBoardActionType, GameLevelType } from '../../../types'
 import {
   createGameForLevel,
-  getLevelById,
   getLevelBySequenceNumber,
   getStageBySequenceNumber,
 } from '../../../utils'
@@ -47,8 +46,8 @@ export const calcStateAfterActionApplied = (state: GameCenterState): GameCenterS
     }
 
     case GameBoardActionType.moveToAnotherLevel: {
-      const { levelId } = currentGame.activeAction
-      const level = getLevelById(levelId)
+      const { levelSequenceNumber } = currentGame.activeAction
+      const level = getLevelBySequenceNumber(levelSequenceNumber)
 
       return {
         ...state,
@@ -57,8 +56,8 @@ export const calcStateAfterActionApplied = (state: GameCenterState): GameCenterS
     }
 
     case GameBoardActionType.moveToAnotherStage: {
-      const { stageId } = currentGame.activeAction
-      const stage = getLevelById(stageId)
+      const { stageSequenceNumber } = currentGame.activeAction
+      const stage = getStageBySequenceNumber(stageSequenceNumber)
 
       return {
         ...state,

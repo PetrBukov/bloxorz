@@ -34,7 +34,9 @@ export const Header: React.FC = () => {
       <MovesCounter visible={currentGame.levelType === GameLevelType.regular}>
         <div>{currentGame.moves < 99 && currentGame.moves}</div>
       </MovesCounter>
-      <HeaderTitle>{getFullLevelName(currentGame.levelName, currentGame.levelType)}</HeaderTitle>
+      <HeaderTitle>
+        {getFullLevelName(currentGame.levelSequenceNumber, currentGame.levelType)}
+      </HeaderTitle>
       <MenuButton disabled={isIconButtonDisabled} onClick={onMenuClick}>
         <GiPauseButton size="30" />
       </MenuButton>

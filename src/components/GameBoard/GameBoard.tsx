@@ -44,7 +44,7 @@ export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
     moves,
     tileTexts,
     activeAction,
-    levelId,
+    levelSequenceNumber,
   } = currentGame
 
   const swipeHandler = useCallback(
@@ -89,7 +89,13 @@ export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
           {tiles.map((tile, index) => {
             // Tiles can not be moved from one position to another so it is safe to use index as a key here
             return (
-              <GameBoardTile key={index} tile={tile} moves={moves} levelId={levelId} hero={hero} />
+              <GameBoardTile
+                key={index}
+                tile={tile}
+                moves={moves}
+                levelSequenceNumber={levelSequenceNumber}
+                hero={hero}
+              />
             )
           })}
 

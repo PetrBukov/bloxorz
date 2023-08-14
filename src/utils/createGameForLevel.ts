@@ -4,16 +4,16 @@ import { createGameBoardForLevel } from './createGameBoardForLevel'
 export const createGameForLevel = (gameLevel: GameLevel, lastCompletedLevel: number): Game => {
   const board = createGameBoardForLevel(gameLevel, lastCompletedLevel)
 
+  const { sequenceNumber, type, hero, tileTexts, moves } = gameLevel
+
   return {
-    levelId: gameLevel.id,
-    levelSequenceNumber: gameLevel.sequenceNumber,
-    levelName: gameLevel.name,
-    levelType: gameLevel.type,
+    levelSequenceNumber: sequenceNumber,
+    levelType: type,
     status: GameStatus.active,
-    hero: gameLevel.hero,
-    tileTexts: gameLevel.tileTexts,
+    hero,
+    tileTexts,
     board,
-    moves: gameLevel.moves,
+    moves,
     activeAction: null,
   }
 }

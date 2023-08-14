@@ -1,32 +1,8 @@
 import { GameLevel, GameLevelType, GameBoardActionType, TileStatus, TileType } from '../../types'
 
-import { LEVEL_10 } from './level_10'
-import { LEVEL_11 } from './level_11'
-import { LEVEL_12 } from './level_12'
-import { LEVEL_13 } from './level_13'
-import { LEVEL_14 } from './level_14'
-import { LEVEL_15 } from './level_15'
-import { LEVEL_16 } from './level_16'
-import { LEVEL_9 } from './level_9'
-
 export const STAGE_2: GameLevel = {
-  id: 'stage-2',
-  name: '2',
   sequenceNumber: 2,
   type: GameLevelType.stage,
-  previousLevelId: 'stage-1',
-  nextLevelId: 'stage-3',
-  stageId: null,
-  stageLevels: [
-    LEVEL_9.id,
-    LEVEL_10.id,
-    LEVEL_11.id,
-    LEVEL_12.id,
-    LEVEL_13.id,
-    LEVEL_14.id,
-    LEVEL_15.id,
-    LEVEL_16.id,
-  ],
   size: {
     width: 4,
     height: 5,
@@ -128,7 +104,7 @@ export const STAGE_2: GameLevel = {
         type: TileType.gameAction,
         action: {
           type: GameBoardActionType.moveToAnotherLevel,
-          levelId: LEVEL_9.id,
+          levelSequenceNumber: 9,
         },
         status: TileStatus.blocked,
       },
@@ -146,7 +122,7 @@ export const STAGE_2: GameLevel = {
         type: TileType.gameAction,
         action: {
           type: GameBoardActionType.moveToAnotherLevel,
-          levelId: LEVEL_10.id,
+          levelSequenceNumber: 10,
         },
         status: TileStatus.blocked,
       },
@@ -164,7 +140,7 @@ export const STAGE_2: GameLevel = {
         type: TileType.gameAction,
         action: {
           type: GameBoardActionType.moveToAnotherLevel,
-          levelId: LEVEL_11.id,
+          levelSequenceNumber: 11,
         },
         status: TileStatus.blocked,
       },
@@ -182,7 +158,7 @@ export const STAGE_2: GameLevel = {
         type: TileType.gameAction,
         action: {
           type: GameBoardActionType.moveToAnotherLevel,
-          levelId: LEVEL_12.id,
+          levelSequenceNumber: 12,
         },
         status: TileStatus.blocked,
       },
@@ -200,7 +176,7 @@ export const STAGE_2: GameLevel = {
         type: TileType.gameAction,
         action: {
           type: GameBoardActionType.moveToAnotherLevel,
-          levelId: LEVEL_13.id,
+          levelSequenceNumber: 13,
         },
         status: TileStatus.blocked,
       },
@@ -218,7 +194,7 @@ export const STAGE_2: GameLevel = {
         type: TileType.gameAction,
         action: {
           type: GameBoardActionType.moveToAnotherLevel,
-          levelId: LEVEL_14.id,
+          levelSequenceNumber: 14,
         },
         status: TileStatus.blocked,
       },
@@ -236,7 +212,7 @@ export const STAGE_2: GameLevel = {
         type: TileType.gameAction,
         action: {
           type: GameBoardActionType.moveToAnotherLevel,
-          levelId: LEVEL_15.id,
+          levelSequenceNumber: 15,
         },
         status: TileStatus.blocked,
       },
@@ -254,7 +230,7 @@ export const STAGE_2: GameLevel = {
         type: TileType.gameAction,
         action: {
           type: GameBoardActionType.moveToAnotherLevel,
-          levelId: LEVEL_16.id,
+          levelSequenceNumber: 16,
         },
         status: TileStatus.blocked,
       },
@@ -272,7 +248,7 @@ export const STAGE_2: GameLevel = {
         type: TileType.gameAction,
         action: {
           type: GameBoardActionType.moveToAnotherStage,
-          stageId: 'stage-1',
+          stageSequenceNumber: 1,
         },
         status: TileStatus.blocked,
       },
@@ -290,7 +266,7 @@ export const STAGE_2: GameLevel = {
         type: TileType.gameAction,
         action: {
           type: GameBoardActionType.moveToAnotherStage,
-          stageId: 'stage-3',
+          stageSequenceNumber: 3,
         },
         status: TileStatus.blocked,
       },
