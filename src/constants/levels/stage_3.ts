@@ -158,6 +158,42 @@ export const STAGE_3: GameLevel = {
     {
       position: {
         x: 0,
+        y: 3,
+      },
+      size: {
+        width: 1,
+        height: 1,
+      },
+      tile: {
+        type: TileType.gameAction,
+        action: {
+          type: GameBoardActionType.moveToAnotherLevel,
+          levelSequenceNumber: 19,
+        },
+        status: TileStatus.blocked,
+      },
+    },
+    {
+      position: {
+        x: 3,
+        y: 1,
+      },
+      size: {
+        width: 1,
+        height: 1,
+      },
+      tile: {
+        type: TileType.gameAction,
+        action: {
+          type: GameBoardActionType.moveToAnotherLevel,
+          levelSequenceNumber: 20,
+        },
+        status: TileStatus.blocked,
+      },
+    },
+    {
+      position: {
+        x: 0,
         y: 0,
       },
       size: {
