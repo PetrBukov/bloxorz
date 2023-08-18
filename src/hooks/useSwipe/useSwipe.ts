@@ -70,6 +70,4 @@ export const useSwipe = ({ gestureZoneId, onSwipe }: UseSwipeProps) => {
       }
     }
   }, [gestureZoneId, touchStartHandler, touchEndHandler])
-
-  return ''
 }

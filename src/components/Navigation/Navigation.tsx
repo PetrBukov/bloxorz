@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 
 import {
   NavigationButton,
@@ -18,23 +18,15 @@ export const Navigation: React.FC = () => {
     dispatch,
   } = useGameCenter()
 
-  const onRestartGame = useCallback(() => {
+  const onRestartGame = () =>
     dispatch({
       type: GameCenterActionType.startNewGame,
       levelSequenceNumber: currentGame.levelSequenceNumber,
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentGame])
 
-  const onCancelGame = useCallback(() => {
-    dispatch({ type: GameCenterActionType.cancelCurrentGame })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const onCancelGame = () => dispatch({ type: GameCenterActionType.cancelCurrentGame })
 
-  const onContinueGame = useCallback(() => {
-    dispatch({ type: GameCenterActionType.continueCurrentGame })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const onContinueGame = () => dispatch({ type: GameCenterActionType.continueCurrentGame })
 
   if (currentGame.status !== GameStatus.paused) {
     return null
