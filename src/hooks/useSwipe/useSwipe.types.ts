@@ -1,6 +1,6 @@
 export type SwipePoint = {
-  x: number
-  y: number
+  screenX: number
+  screenY: number
 }
 
 export const SWIPE_DIRECTION = {

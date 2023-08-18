@@ -1,18 +1,13 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 
 import { SWIPE_DIRECTION, SwipeDirection, SwipePoint, UseSwipeProps } from './useSwipe.types'
-import { SENSITIVITY_LEVEL } from './useSwipe.constants'
+import { SENSITIVITY_LEVEL, DEFAULT_START_SWIPE_POINT } from './useSwipe.constants'
 
 export const useSwipe = ({ gestureZoneId, onSwipe }: UseSwipeProps) => {
-  const [startPoint, setStartPoint] = useState<SwipePoint>(() => ({
-    x: 0,
-    y: 0,
-  }))
-
   const swipeAction = useCallback(
     (startPoint: SwipePoint, endPoint: SwipePoint) => {
-      const diffX = startPoint.x - endPoint.x
-      const diffY = startPoint.y - endPoint.y
+      const diffX = startPoint.screenX - endPoint.screenX
+      const diffY = startPoint.screenY - endPoint.screenY
 
       const absDiffX = Math.abs(diffX)
       const absDiffY = Math.abs(diffY)
@@ -35,28 +30,27 @@ export const useSwipe = ({ gestureZoneId, onSwipe }: UseSwipeProps) => {
 
         onSwipe(swipeDirection)
       }
-
-      setStartPoint({ x: 0, y: 0 })
     },
     [onSwipe],
   )
 
-  const touchStartHandler = useCallback((event: TouchEvent) => {
-    setStartPoint({ x: event.changedTouches[0].screenX, y: event.changedTouches[0].screenY })
-  }, [])
-
-  const touchEndHandler = useCallback(
-    (event: TouchEvent) => {
-      swipeAction(startPoint, {
-        x: event.changedTouches[0].screenX,
-        y: event.changedTouches[0].screenY,
-      })
-    },
-    [startPoint, swipeAction],
-  )
-
   useEffect(() => {
+    let startPoint: SwipePoint = DEFAULT_START_SWIPE_POINT
     const gestureZone = document.getElementById(gestureZoneId)
+
+    const touchStartHandler = ({ changedTouches }: TouchEvent) => {
+      const { screenX, screenY } = changedTouches[0]
+      startPoint = { screenX, screenY }
+    }
+
+    const touchEndHandler = ({ changedTouches }: TouchEvent) => {
+      const { screenX, screenY } = changedTouches[0]
+      const endPoint = { screenX, screenY }
+
+      swipeAction(startPoint, endPoint)
+
+      startPoint = DEFAULT_START_SWIPE_POINT
+    }
 
     if (gestureZone) {
       gestureZone.addEventListener('touchstart', touchStartHandler, false)
@@ -69,5 +63,5 @@ export const useSwipe = ({ gestureZoneId, onSwipe }: UseSwipeProps) => {
         gestureZone.removeEventListener('touchend', touchEndHandler)
       }
     }
-  }, [gestureZoneId, touchStartHandler, touchEndHandler])
+  }, [gestureZoneId, swipeAction])
 }

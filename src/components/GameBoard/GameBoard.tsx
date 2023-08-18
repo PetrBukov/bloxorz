@@ -50,30 +50,30 @@ export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
   const swipeHandler = useCallback(
     (direction: SwipeDirection) =>
       dispatch({ type: GameCenterActionType.moveHeroBlock, direction }),
-    [dispatch],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
   )
 
   useSwipe({ gestureZoneId: GESTURE_ZONE_ID, onSwipe: swipeHandler })
 
   const boardSizesPx = calculateBoardSizesPx(size)
 
-  const handleUserKeyPress = useCallback((event: globalThis.KeyboardEvent) => {
-    const { key } = event
+  useEffect(() => {
+    const handleUserKeyPress = ({ key }: globalThis.KeyboardEvent) => {
+      const direction = KEY_PRESS_TO_DIRECTION_MAP[key]
 
-    const direction = KEY_PRESS_TO_DIRECTION_MAP[key]
-    if (direction) {
-      dispatch({ type: GameCenterActionType.moveHeroBlock, direction })
+      if (direction) {
+        dispatch({ type: GameCenterActionType.moveHeroBlock, direction })
+      }
     }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  useEffect(() => {
     window.addEventListener('keydown', handleUserKeyPress)
+
     return () => {
       window.removeEventListener('keydown', handleUserKeyPress)
     }
-  }, [handleUserKeyPress])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const boardPositions = calculateBoardPosition(hero)
 
