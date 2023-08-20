@@ -15,19 +15,19 @@ export const useApplyActiveAction = () => {
   // This piece of code is mostly needed to change status from GameStatus.actionProcessing to another status
   // as soon as all the animations, transitions and other side effects finished
   useEffect(() => {
-    let timerId: NodeJS.Timeout | null = null
+    let timeout: NodeJS.Timeout | null = null
 
     if (status === GameStatus.actionProcessing && activeAction) {
       // TODO: Think about using animationend and transitionend events instead of setTimeout
-      timerId = setTimeout(() => {
+      timeout = setTimeout(() => {
         dispatch({
           type: GameCenterActionType.applyActiveAction,
         })
       }, 2500)
 
       return () => {
-        if (timerId) {
-          clearTimeout(timerId)
+        if (timeout) {
+          clearTimeout(timeout)
         }
       }
     }

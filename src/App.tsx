@@ -11,13 +11,13 @@ const App: React.FC = () => {
   const [loadingGameData, setLoadingGameData] = useState<boolean>(true)
 
   useEffect(() => {
-    const timerId = setTimeout(() => {
+    const timeout = setTimeout(() => {
       // Let's just imagine that someday we will load game data from server
       // before User can start a game
       setLoadingGameData(false)
     }, 3000)
 
-    return () => clearTimeout(timerId)
+    return () => clearTimeout(timeout)
   }, [])
 
   return (
