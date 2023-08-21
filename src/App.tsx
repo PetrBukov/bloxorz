@@ -6,14 +6,19 @@ import { globalStyles } from './App.styles'
 import { GameCenter } from './providers'
 import { Content, Footer, Header, Navigation } from './components'
 import { WelcomeScreen } from './components/WelcomeScreen/WelcomeScreen'
+import { getLocalStorageData } from './utils/getLocalStorageData'
 
 const AppContent: React.FC = () => {
   const [loadingGameData, setLoadingGameData] = useState<boolean>(true)
+  const [lastCompletedLevel, setLastCompletedLevel] = useState<number>(0)
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       // Let's just imagine that someday we will load game data from server
       // before User can start a game
+      const { lastCompletedLevel } = getLocalStorageData()
+
+      setLastCompletedLevel(lastCompletedLevel)
       setLoadingGameData(false)
     }, 3000)
 
@@ -25,7 +30,7 @@ const AppContent: React.FC = () => {
   }
 
   return (
-    <GameCenter>
+    <GameCenter lastCompletedLevel={lastCompletedLevel}>
       <Header />
       <Content />
       <Footer />

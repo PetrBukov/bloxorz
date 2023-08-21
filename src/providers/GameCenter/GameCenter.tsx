@@ -1,8 +1,7 @@
 import React, { PropsWithChildren } from 'react'
-import { GameCenterDispatch, GameCenterState } from './GameCenter.types'
+import { GameCenterDispatch, GameCenterProps, GameCenterState } from './GameCenter.types'
 import { gameCenterReducer } from './gameCenterReducer'
 import { createGameForLevel } from '../../utils'
-import { getGameCenterDataFromLocalStorage } from './utils'
 import { useApplyActiveAction } from './hooks/useApplyActiveAction'
 import { useSaveGameCenterDataToLocalStorage } from './hooks/useSaveGameCenterDataToLocalStorage'
 import { LEVEL_1 } from '../../constants/levels/level_1'
@@ -26,21 +25,21 @@ const GameCenterObserver: React.FC<PropsWithChildren> = ({ children }) => {
   return <React.Fragment>{children}</React.Fragment>
 }
 
-export const GameCenter: React.FC<PropsWithChildren> = ({ children }) => {
+export const GameCenter: React.FC<PropsWithChildren<GameCenterProps>> = ({
+  lastCompletedLevel,
+  children,
+}) => {
   const [state, dispatch] = React.useReducer(
     gameCenterReducer,
     {
       currentGame: createGameForLevel(LEVEL_1, 0),
-      lastCompletedLevel: 0,
-      nextGame: null,
+      lastCompletedLevel,
     },
     defaultState => {
-      const { lastCompletedLevel } = getGameCenterDataFromLocalStorage()
       const nextLevel = getLevelBySequenceNumber(lastCompletedLevel + 1) || STAGE_3
 
       return {
         ...defaultState,
-        lastCompletedLevel,
         currentGame: createGameForLevel(nextLevel, lastCompletedLevel),
       }
     },

@@ -1,7 +1,6 @@
 import { GameLevelType } from '../types'
 
 export const getFullLevelName = (levelSequenceNumber?: number, levelType?: GameLevelType) => {
-  console.log('getFullLevelName')
   const levelShortName = levelSequenceNumber || ''
 
   switch (levelType) {

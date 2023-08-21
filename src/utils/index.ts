@@ -14,3 +14,6 @@ export { getSurfaceTileIndexes } from './getSurfaceTileIndexes'
 export { getLevelBySequenceNumber } from './getLevelBySequenceNumber'
 export { getStageBySequenceNumber } from './getStageBySequenceNumber'
 export { calcStageSequenceNumber } from './calcStageSequenceNumber'
+
+export { saveLocalStorageData } from './saveLocalStorageData'
+export { getLocalStorageData } from './getLocalStorageData'

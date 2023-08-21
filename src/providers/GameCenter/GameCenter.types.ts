@@ -1,5 +1,9 @@
 import { Direction, Game } from '../../types'
 
+export type GameCenterProps = {
+  lastCompletedLevel: number
+}
+
 export enum GameCenterActionType {
   startNewGame = 'startNewGame',
   cancelCurrentGame = 'cancelCurrentGame',
@@ -21,10 +25,5 @@ export type GameCenterDispatch = (action: GameCenterAction) => void
 
 export type GameCenterState = {
   currentGame: Game
-  nextGame: Game | null
   lastCompletedLevel: number
-}
-
-export type GameCenterState_LocalStorage = Pick<GameCenterState, 'lastCompletedLevel'> & {
-  version: string
 }

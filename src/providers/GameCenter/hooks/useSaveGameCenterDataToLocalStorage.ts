@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
-import { getGameCenterDataFromLocalStorage, saveGameCenterDataToLocalStorage } from '../utils'
 import { useGameCenter } from '../GameCenter'
+import { getLocalStorageData, saveLocalStorageData } from '../../../utils'
 
 export const useSaveGameCenterDataToLocalStorage = () => {
   const {
@@ -9,10 +9,10 @@ export const useSaveGameCenterDataToLocalStorage = () => {
   } = useGameCenter()
 
   useEffect(() => {
-    const { lastCompletedLevel: savedLastCompletedLevel } = getGameCenterDataFromLocalStorage()
+    const { lastCompletedLevel: savedLastCompletedLevel } = getLocalStorageData()
 
     if (lastCompletedLevel !== savedLastCompletedLevel) {
-      saveGameCenterDataToLocalStorage(lastCompletedLevel)
+      saveLocalStorageData({ lastCompletedLevel })
     }
   }, [lastCompletedLevel])
 }
