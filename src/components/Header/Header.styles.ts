@@ -1,7 +1,5 @@
 import styled from '@emotion/styled'
 
-import whitegrit from '../../assets/images/whitegrit.png'
-
 export const HeaderContainer = styled.header`
   z-index: 20;
 
@@ -22,51 +20,6 @@ export const HeaderContainer = styled.header`
 
   font-family: 'Exo 2', Arial, sans-serif;
   color: var(--white);
-`
-
-export const MovesCounter = styled.div<{ visible: boolean }>`
-  position: relative;
-  z-index: 20;
-
-  width: 30px;
-  height: 30px;
-
-  border-radius: 2px;
-  background-color: var(--white);
-  opacity: ${({ visible }) => (visible ? '0.6' : '0')};
-
-  div {
-    position: relative;
-    z-index: 21;
-
-    width: 100%;
-    height: 100%;
-    padding-bottom: 1px;
-
-    display: grid;
-    align-items: center;
-    justify-items: center;
-
-    font-size: 16px;
-    font-weight: 600;
-  }
-
-  &::before {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-
-    content: '';
-    display: block;
-    width: 26px;
-    height: 26px;
-
-    border-radius: 50%;
-
-    background: var(--spaceViolet) url(${whitegrit});
-    background-size: 500px;
-  }
 `
 
 export const MenuButton = styled.button`

@@ -5,8 +5,9 @@ import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.type
 import { GameLevelType, GameStatus } from '../../types'
 import { GiPauseButton } from 'react-icons/gi'
 
-import { HeaderContainer, MenuButton, MovesCounter } from './Header.styles'
+import { HeaderContainer, MenuButton } from './Header.styles'
 import { HeaderTitle } from '../HeaderTitle'
+import { MovesCounter } from '../MovesCounter'
 
 export const Header: React.FC = () => {
   const {
@@ -22,9 +23,10 @@ export const Header: React.FC = () => {
 
   return (
     <HeaderContainer>
-      <MovesCounter visible={currentGame.levelType === GameLevelType.regular}>
-        <div>{currentGame.moves < 99 && currentGame.moves}</div>
-      </MovesCounter>
+      <MovesCounter
+        visible={currentGame.levelType === GameLevelType.regular}
+        moves={currentGame.moves}
+      />
       <HeaderTitle
         levelSequenceNumber={currentGame.levelSequenceNumber}
         levelType={currentGame.levelType}
