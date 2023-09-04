@@ -1,8 +1,9 @@
 import React from 'react'
 
 import { SurfaceTileProps } from './SurfaceTile.types'
-import { LightSpot, SurfaceTileContainer } from './SurfaceTile.styles'
-import { calcLightSpotPosition } from './SurfaceTile.utils'
+import { SurfaceTileContainer } from './SurfaceTile.styles'
+import { calcLightSpotPosition } from '../../GameBoardTile.utils'
+import { LightSpot } from '../LightSpot'
 
 export const SurfaceTile: React.FC<SurfaceTileProps> = ({
   tileOptions,

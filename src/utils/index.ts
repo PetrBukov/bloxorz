@@ -5,6 +5,7 @@ export { calcTileStatus } from './calcTileStatus'
 export { checkForHorizontalBlock } from './checkForHorizontalBlock'
 export { checkForSquareBlock } from './checkForSquareBlock'
 export { checkForVerticalBlock } from './checkForVerticalBlock'
+export { checkIfCoordinatesEqual } from './checkIfCoordinatesEqual'
 
 export { createGameForLevel } from './createGameForLevel'
 export { createGameBoardForLevel } from './createGameBoardForLevel'

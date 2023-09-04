@@ -30,6 +30,7 @@ export const calcStateAfterActionApplied = (state: GameCenterState): GameCenterS
       }
     }
 
+    case GameBoardActionType.heroBlockOnFragileSurface:
     case GameBoardActionType.heroBlockOutOfMap:
     case GameBoardActionType.playerHasNoMoves: {
       const { levelType, levelSequenceNumber } = currentGame

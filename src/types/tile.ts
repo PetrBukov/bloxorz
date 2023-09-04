@@ -2,6 +2,7 @@ import { Coordinates } from './common'
 
 export enum TileType {
   surface = 'surface',
+  fragileSurface = 'fragileSurface',
   empty = 'empty',
   gameAction = 'gameAction',
 }
@@ -29,12 +30,18 @@ export type TileEmpty = {
   status?: TileStatus
 }
 
+export type TileFragileSurface = {
+  type: TileType.fragileSurface
+  status?: TileStatus
+}
+
 export enum GameBoardActionType {
   levelCompleted = 'levelCompleted',
   moveToAnotherLevel = 'moveToAnotherLevel',
   moveToAnotherStage = 'moveToAnotherStage',
   heroBlockOutOfMap = 'heroBlockOutOfMap',
   playerHasNoMoves = 'playerHasNoMoves',
+  heroBlockOnFragileSurface = 'heroBlockOnFragileSurface',
 }
 
 export type GameBoardAction =
@@ -55,6 +62,9 @@ export type GameBoardAction =
       type: GameBoardActionType.moveToAnotherStage
       stageSequenceNumber: number
     }
+  | {
+      type: GameBoardActionType.heroBlockOnFragileSurface
+    }
 
 export type TileGameAction = {
   type: TileType.gameAction
@@ -62,7 +72,7 @@ export type TileGameAction = {
   status: TileStatus
 }
 
-export type Tile = TileSurface | TileEmpty | TileGameAction
+export type Tile = TileSurface | TileFragileSurface | TileEmpty | TileGameAction
 
 export type TileWIthPosition = Tile & {
   position: Coordinates

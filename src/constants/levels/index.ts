@@ -21,6 +21,7 @@ import { LEVEL_17 } from './level_17'
 import { LEVEL_18 } from './level_18'
 import { LEVEL_19 } from './level_19'
 import { LEVEL_20 } from './level_20'
+import { LEVEL_21 } from './level_21'
 
 export const LEVEL_LIST = [
   STAGE_1,
@@ -46,4 +47,5 @@ export const LEVEL_LIST = [
   LEVEL_18,
   LEVEL_19,
   LEVEL_20,
+  LEVEL_21,
 ]

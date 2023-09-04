@@ -4,6 +4,7 @@ import { getSurfaceTileIndexes } from '../../../utils'
 import { GameCenterState } from '../GameCenter.types'
 import { calcHeroStateAfterMoving } from './calcHeroStateAfterMoving'
 import { getGameBoardAction } from './getGameBoardAction'
+import { checkForHeroBlockOnFragileSurface } from './checkForHeroBlockOnFragileSurface'
 
 export const calcStateAfterMoving = (
   state: GameCenterState,
@@ -28,10 +29,19 @@ export const calcStateAfterMoving = (
     heroBlockIndexes,
     gameBoardTiles: board.tiles,
   })
-
   if (isHeroBlockOutOfMap) {
     gameBoardAction = {
       type: GameBoardActionType.heroBlockOutOfMap,
+    }
+  }
+
+  const isHeroBlockOnFragileSurface = checkForHeroBlockOnFragileSurface({
+    heroBlockIndexes,
+    gameBoardTiles: board.tiles,
+  })
+  if (isHeroBlockOnFragileSurface) {
+    gameBoardAction = {
+      type: GameBoardActionType.heroBlockOnFragileSurface,
     }
   }
 

@@ -7,6 +7,7 @@ import { EmptyTile } from './views/EmptyTile'
 import { StageTile } from './views/StageTile'
 import { DIRECTION } from '../../constants'
 import { getLevelBySequenceNumber } from '../../utils'
+import { FragileSurfaceTile } from './views/FragileSurfaceTile'
 
 const renderTileGameAction = (tile: TileGameAction, moves: number, levelSequenceNumber: number) => {
   const { action } = tile
@@ -55,6 +56,7 @@ export const GameBoardTile: React.FC<GameBoardTileProps> = ({
   moves,
   levelSequenceNumber,
   hero,
+  activeActionType,
 }) => {
   switch (tile.type) {
     case TileType.surface: {
@@ -63,6 +65,15 @@ export const GameBoardTile: React.FC<GameBoardTileProps> = ({
           tileOptions={tile.options}
           heroPosition={hero.position}
           tilePosition={tile.position}
+        />
+      )
+    }
+    case TileType.fragileSurface: {
+      return (
+        <FragileSurfaceTile
+          heroPosition={hero.position}
+          tilePosition={tile.position}
+          activeActionType={activeActionType}
         />
       )
     }

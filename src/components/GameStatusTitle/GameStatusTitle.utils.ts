@@ -7,6 +7,8 @@ export const getStatusText = (
   activeAction: GameBoardAction,
 ): Array<string> => {
   switch (activeAction.type) {
+    case GameBoardActionType.heroBlockOnFragileSurface:
+      return ['Ohh nooo ...', 'A fragile tile 😱']
     case GameBoardActionType.heroBlockOutOfMap:
     case GameBoardActionType.playerHasNoMoves: {
       return ['Oooops ...', 'Try again!']

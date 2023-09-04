@@ -95,6 +95,7 @@ export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
                 moves={moves}
                 levelSequenceNumber={levelSequenceNumber}
                 hero={hero}
+                activeActionType={activeAction?.type}
               />
             )
           })}
