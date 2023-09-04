@@ -17,7 +17,7 @@ export const LEVEL_21: GameLevel = {
       height: 1,
     },
   },
-  moves: 99,
+  moves: 8,
   surfaces: [
     {
       position: {
