@@ -8,39 +8,45 @@ export const LEVEL_17: GameLevel = {
     height: 4,
   },
   hero: {
-    position: {
-      x: 2,
-      y: 1,
-    },
-    size: {
-      width: 1,
-      height: 1,
-    },
+    placement: [
+      {
+        x: 2,
+        y: 1,
+      },
+      {
+        x: 2,
+        y: 1,
+      },
+    ],
   },
   moves: 6,
   surfaces: [
     {
-      position: {
-        x: 0,
-        y: 0,
-      },
-      size: {
-        width: 3,
-        height: 4,
-      },
+      placement: [
+        {
+          x: 0,
+          y: 0,
+        },
+        {
+          x: 2,
+          y: 3,
+        },
+      ],
       tile: {
         type: TileType.surface,
       },
     },
     {
-      position: {
-        x: 1,
-        y: 3,
-      },
-      size: {
-        width: 1,
-        height: 1,
-      },
+      placement: [
+        {
+          x: 1,
+          y: 3,
+        },
+        {
+          x: 1,
+          y: 3,
+        },
+      ],
       tile: {
         type: TileType.gameAction,
         action: {

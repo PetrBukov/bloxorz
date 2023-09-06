@@ -11,9 +11,11 @@ export { createGameForLevel } from './createGameForLevel'
 export { createGameBoardForLevel } from './createGameBoardForLevel'
 
 export { getFullLevelName } from './getFullLevelName'
-export { getSurfaceTileIndexes } from './getSurfaceTileIndexes'
+export { getTileCoordinates } from './getTileCoordinates'
 export { getLevelBySequenceNumber } from './getLevelBySequenceNumber'
 export { getStageBySequenceNumber } from './getStageBySequenceNumber'
+export { getAngles } from './getAngles'
+export { getSize } from './getSize'
 export { calcStageSequenceNumber } from './calcStageSequenceNumber'
 
 export { saveLocalStorageData } from './saveLocalStorageData'

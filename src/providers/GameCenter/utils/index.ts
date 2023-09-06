@@ -1,5 +1,3 @@
-export { calcHeroPositionAfterMoving } from './calcHeroPositionAfterMoving'
-export { calcHeroSizeAfterMoving } from './calcHeroSizeAfterMoving'
 export { calcHeroStateAfterMoving } from './calcHeroStateAfterMoving'
 export { calcStateAfterActionApplied } from './calcStateAfterActionApplied'
 export { calcStateAfterMoving } from './calcStateAfterMoving'

@@ -8,50 +8,58 @@ export const STAGE_3: GameLevel = {
     height: 5,
   },
   hero: {
-    position: {
-      x: 1,
-      y: 0,
-    },
-    size: {
-      width: 2,
-      height: 1,
-    },
+    placement: [
+      {
+        x: 1,
+        y: 0,
+      },
+      {
+        x: 2,
+        y: 0,
+      },
+    ],
   },
   moves: 10000,
   tileTexts: [
     {
       text: 'Stage 3',
-      position: {
-        x: 1,
-        y: 0,
-      },
-      size: {
-        width: 2,
-        height: 1,
-      },
+      placement: [
+        {
+          x: 1,
+          y: 0,
+        },
+        {
+          x: 2,
+          y: 0,
+        },
+      ],
     },
     {
       text: 'New levels upcoming...',
-      position: {
-        x: 0,
-        y: 4,
-      },
-      size: {
-        width: 4,
-        height: 1,
-      },
+      placement: [
+        {
+          x: 0,
+          y: 4,
+        },
+        {
+          x: 3,
+          y: 4,
+        },
+      ],
     },
   ],
   surfaces: [
     {
-      position: {
-        x: 0,
-        y: 0,
-      },
-      size: {
-        width: 4,
-        height: 5,
-      },
+      placement: [
+        {
+          x: 0,
+          y: 0,
+        },
+        {
+          x: 3,
+          y: 4,
+        },
+      ],
       tile: {
         type: TileType.surface,
         options: {
@@ -60,40 +68,46 @@ export const STAGE_3: GameLevel = {
       },
     },
     {
-      position: {
-        x: 0,
-        y: 0,
-      },
-      size: {
-        width: 1,
-        height: 1,
-      },
+      placement: [
+        {
+          x: 0,
+          y: 0,
+        },
+        {
+          x: 0,
+          y: 0,
+        },
+      ],
       tile: {
         type: TileType.empty,
       },
     },
     {
-      position: {
-        x: 3,
-        y: 0,
-      },
-      size: {
-        width: 1,
-        height: 1,
-      },
+      placement: [
+        {
+          x: 3,
+          y: 0,
+        },
+        {
+          x: 3,
+          y: 0,
+        },
+      ],
       tile: {
         type: TileType.empty,
       },
     },
     {
-      position: {
-        x: 1,
-        y: 0,
-      },
-      size: {
-        width: 1,
-        height: 1,
-      },
+      placement: [
+        {
+          x: 1,
+          y: 0,
+        },
+        {
+          x: 1,
+          y: 0,
+        },
+      ],
       tile: {
         type: TileType.surface,
         options: {
@@ -103,14 +117,16 @@ export const STAGE_3: GameLevel = {
       },
     },
     {
-      position: {
-        x: 0,
-        y: 4,
-      },
-      size: {
-        width: 3,
-        height: 1,
-      },
+      placement: [
+        {
+          x: 0,
+          y: 4,
+        },
+        {
+          x: 2,
+          y: 4,
+        },
+      ],
       tile: {
         type: TileType.surface,
         options: {
@@ -120,14 +136,16 @@ export const STAGE_3: GameLevel = {
       },
     },
     {
-      position: {
-        x: 0,
-        y: 1,
-      },
-      size: {
-        width: 1,
-        height: 1,
-      },
+      placement: [
+        {
+          x: 0,
+          y: 1,
+        },
+        {
+          x: 0,
+          y: 1,
+        },
+      ],
       tile: {
         type: TileType.gameAction,
         action: {
@@ -138,14 +156,16 @@ export const STAGE_3: GameLevel = {
       },
     },
     {
-      position: {
-        x: 0,
-        y: 2,
-      },
-      size: {
-        width: 1,
-        height: 1,
-      },
+      placement: [
+        {
+          x: 0,
+          y: 2,
+        },
+        {
+          x: 0,
+          y: 2,
+        },
+      ],
       tile: {
         type: TileType.gameAction,
         action: {
@@ -156,14 +176,16 @@ export const STAGE_3: GameLevel = {
       },
     },
     {
-      position: {
-        x: 0,
-        y: 3,
-      },
-      size: {
-        width: 1,
-        height: 1,
-      },
+      placement: [
+        {
+          x: 0,
+          y: 3,
+        },
+        {
+          x: 0,
+          y: 3,
+        },
+      ],
       tile: {
         type: TileType.gameAction,
         action: {
@@ -174,14 +196,16 @@ export const STAGE_3: GameLevel = {
       },
     },
     {
-      position: {
-        x: 3,
-        y: 1,
-      },
-      size: {
-        width: 1,
-        height: 1,
-      },
+      placement: [
+        {
+          x: 3,
+          y: 1,
+        },
+        {
+          x: 3,
+          y: 1,
+        },
+      ],
       tile: {
         type: TileType.gameAction,
         action: {
@@ -192,14 +216,16 @@ export const STAGE_3: GameLevel = {
       },
     },
     {
-      position: {
-        x: 0,
-        y: 0,
-      },
-      size: {
-        width: 1,
-        height: 1,
-      },
+      placement: [
+        {
+          x: 0,
+          y: 0,
+        },
+        {
+          x: 0,
+          y: 0,
+        },
+      ],
       tile: {
         type: TileType.gameAction,
         action: {
@@ -210,14 +236,16 @@ export const STAGE_3: GameLevel = {
       },
     },
     {
-      position: {
-        x: 3,
-        y: 2,
-      },
-      size: {
-        width: 1,
-        height: 1,
-      },
+      placement: [
+        {
+          x: 3,
+          y: 2,
+        },
+        {
+          x: 3,
+          y: 2,
+        },
+      ],
       tile: {
         type: TileType.gameAction,
         action: {

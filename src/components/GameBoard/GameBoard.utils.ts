@@ -1,5 +1,6 @@
 import { GAP_BETWEEN_TILES, HERO_WIDTH, TILE_WIDTH } from '../../constants'
 import { Dimensions, ElementPosition, ElementSize, Hero } from '../../types'
+import { getAngles, getSize } from '../../utils'
 
 export const calculateBoardSizesPx = (dimensions: Dimensions): ElementSize => {
   const { width, height } = dimensions
@@ -10,18 +11,21 @@ export const calculateBoardSizesPx = (dimensions: Dimensions): ElementSize => {
   }
 }
 
-export const calculateBoardPosition = ({ position, size }: Hero): ElementPosition => {
+export const calculateBoardPosition = ({ placement }: Hero): ElementPosition => {
+  const [angleA] = getAngles(placement)
+  const { height, width } = getSize(placement)
+
   const top =
-    position.y * TILE_WIDTH +
-    position.y * GAP_BETWEEN_TILES +
+    angleA.y * TILE_WIDTH +
+    angleA.y * GAP_BETWEEN_TILES +
     TILE_WIDTH / 2 +
-    ((size.height - 1) * (HERO_WIDTH + GAP_BETWEEN_TILES + TILE_WIDTH - HERO_WIDTH)) / 2
+    ((height - 1) * (HERO_WIDTH + GAP_BETWEEN_TILES + TILE_WIDTH - HERO_WIDTH)) / 2
 
   const left =
-    position.x * TILE_WIDTH +
-    position.x * GAP_BETWEEN_TILES +
+    angleA.x * TILE_WIDTH +
+    angleA.x * GAP_BETWEEN_TILES +
     TILE_WIDTH / 2 +
-    ((size.width - 1) * (HERO_WIDTH + GAP_BETWEEN_TILES + TILE_WIDTH - HERO_WIDTH)) / 2
+    ((width - 1) * (HERO_WIDTH + GAP_BETWEEN_TILES + TILE_WIDTH - HERO_WIDTH)) / 2
 
   return {
     top: `${-top}px`,

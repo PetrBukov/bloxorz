@@ -22,10 +22,6 @@ export type GameLevelRegular = GameLevelCommon<{
   type: GameLevelType.regular
 }>
 
-export type GameLevelTutorial = GameLevelCommon<{
-  type: GameLevelType.tutorial
-}>
-
 export type GameLevelStage = GameLevelCommon<{
   type: GameLevelType.stage
 }>

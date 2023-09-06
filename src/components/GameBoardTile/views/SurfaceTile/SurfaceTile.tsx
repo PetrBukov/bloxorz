@@ -7,10 +7,10 @@ import { LightSpot } from '../LightSpot'
 
 export const SurfaceTile: React.FC<SurfaceTileProps> = ({
   tileOptions,
-  heroPosition,
+  heroPlacement,
   tilePosition,
 }) => {
-  const lightSpotPosition = calcLightSpotPosition(heroPosition, tilePosition)
+  const lightSpotPosition = calcLightSpotPosition(heroPlacement, tilePosition)
 
   return (
     <SurfaceTileContainer {...tileOptions}>

@@ -1,7 +1,6 @@
-import { Coordinates, Dimensions } from './common'
+import { Placement } from './common'
 
 export type TileText = {
   text: string
-  position: Coordinates
-  size: Dimensions
+  placement: Placement
 }

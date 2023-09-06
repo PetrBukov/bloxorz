@@ -1,6 +1,5 @@
-import { Coordinates, Dimensions } from './common'
+import { Placement } from './common'
 
 export type Hero = {
-  position: Coordinates
-  size: Dimensions
+  placement: Placement
 }

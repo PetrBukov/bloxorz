@@ -1,26 +1,33 @@
-import { Tile, TileType } from '../../../types'
+import { TileType } from '../../../types'
+import { Placement } from '../../../types/common'
+import { GameBoardRow } from '../../../types/gameBoard'
+import { checkForSquareBlock, getSize } from '../../../utils'
 
 export const checkForHeroBlockOnFragileSurface = ({
-  heroBlockIndexes,
+  heroPlacement,
   gameBoardTiles,
 }: {
-  heroBlockIndexes: Array<number>
-  gameBoardTiles: Array<Tile>
+  heroPlacement: Placement
+  gameBoardTiles: Array<GameBoardRow>
 }): boolean => {
   let isHeroBlockOnFragileSurface = false
 
+  let size = getSize(heroPlacement)
+  let isSquareBlock = checkForSquareBlock(size)
+
   // if Hero block is not a square it can't activate fragile surface
-  if (heroBlockIndexes.length > 1) {
+  if (!isSquareBlock) {
     return isHeroBlockOnFragileSurface
   }
 
-  heroBlockIndexes.forEach(tileIndex => {
-    const tile = gameBoardTiles[tileIndex]
+  for (let { x: columnIndex, y: rowIndex } of heroPlacement) {
+    const tile = gameBoardTiles[rowIndex]?.[columnIndex]
 
-    if (tile.type === TileType.fragileSurface) {
+    if (tile && tile.type === TileType.fragileSurface) {
       isHeroBlockOnFragileSurface = true
+      break
     }
-  })
+  }
 
   return isHeroBlockOnFragileSurface
 }

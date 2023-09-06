@@ -63,7 +63,7 @@ export const GameBoardTile: React.FC<GameBoardTileProps> = ({
       return (
         <SurfaceTile
           tileOptions={tile.options}
-          heroPosition={hero.position}
+          heroPlacement={hero.placement}
           tilePosition={tile.position}
         />
       )
@@ -71,7 +71,7 @@ export const GameBoardTile: React.FC<GameBoardTileProps> = ({
     case TileType.fragileSurface: {
       return (
         <FragileSurfaceTile
-          heroPosition={hero.position}
+          heroPlacement={hero.placement}
           tilePosition={tile.position}
           activeActionType={activeActionType}
         />

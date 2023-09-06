@@ -1,6 +1,5 @@
 import { Direction, GameStatus, GameBoardAction, GameBoardActionType } from '../../../types'
 import { checkForHeroBlockOutOfMap } from './checkForHeroBlockOutOfMap'
-import { getSurfaceTileIndexes } from '../../../utils'
 import { GameCenterState } from '../GameCenter.types'
 import { calcHeroStateAfterMoving } from './calcHeroStateAfterMoving'
 import { getGameBoardAction } from './getGameBoardAction'
@@ -19,14 +18,8 @@ export const calcStateAfterMoving = (
   const updatedHero = calcHeroStateAfterMoving({ hero, movingDirection })
   const updatedMoves = moves - 1
 
-  const heroBlockIndexes = getSurfaceTileIndexes({
-    surfacePosition: updatedHero.position,
-    surfaceSize: updatedHero.size,
-    gameLevelSize: board.size,
-  })
-
   const isHeroBlockOutOfMap = checkForHeroBlockOutOfMap({
-    heroBlockIndexes,
+    heroPlacement: updatedHero.placement,
     gameBoardTiles: board.tiles,
   })
   if (isHeroBlockOutOfMap) {
@@ -36,7 +29,7 @@ export const calcStateAfterMoving = (
   }
 
   const isHeroBlockOnFragileSurface = checkForHeroBlockOnFragileSurface({
-    heroBlockIndexes,
+    heroPlacement: updatedHero.placement,
     gameBoardTiles: board.tiles,
   })
   if (isHeroBlockOnFragileSurface) {
@@ -46,12 +39,13 @@ export const calcStateAfterMoving = (
   }
 
   gameBoardAction =
-    gameBoardAction ?? getGameBoardAction({ heroBlockIndexes, gameBoardTiles: board.tiles })
+    gameBoardAction ??
+    getGameBoardAction({ heroPlacement: updatedHero.placement, gameBoardTiles: board.tiles })
 
   const isPlayerHasNoMoves = updatedMoves <= 0
   if (!gameBoardAction && isPlayerHasNoMoves) {
     gameBoardAction = {
-      type: GameBoardActionType.heroBlockOutOfMap,
+      type: GameBoardActionType.playerHasNoMoves,
     }
   }
 

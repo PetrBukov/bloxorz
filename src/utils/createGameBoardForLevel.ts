@@ -1,24 +1,7 @@
-import { Dimensions, GameBoard, GameLevel, TileType, Coordinates } from '../types'
+import { GameBoard, GameLevel, TileType } from '../types'
+import { GameBoardRow } from '../types/gameBoard'
 import { calcTileStatus } from './calcTileStatus'
-import { getSurfaceTileIndexes } from './getSurfaceTileIndexes'
-
-const calcTilePosition = (tileIndex: number, gameLevelSize: Dimensions): Coordinates => {
-  let y = 0
-  let x = tileIndex
-
-  while (x > gameLevelSize.width - 1) {
-    y += 1
-    x -= gameLevelSize.width
-  }
-
-  return {
-    x,
-    y,
-  }
-}
-
-const getTotalTilesAmount = (gameLevelSize: Dimensions) =>
-  gameLevelSize.height * gameLevelSize.width
+import { getTileCoordinates } from './getTileCoordinates'
 
 export const createGameBoardForLevel = (
   gameLevel: GameLevel,
@@ -33,29 +16,34 @@ export const createGameBoardForLevel = (
   }
 
   // 2 - Fill game board with empty tiles
-  const totalTilesAmount = getTotalTilesAmount(gameLevelSize)
-  for (let i = 0; i < totalTilesAmount; i++) {
-    gameBoard.tiles.push({
-      type: TileType.empty,
-      position: calcTilePosition(i, gameLevelSize),
-    })
+  for (let rowIndex = 0; rowIndex < gameLevelSize.height; rowIndex++) {
+    let row: GameBoardRow = []
+
+    for (let columnIndex = 0; columnIndex < gameLevelSize.width; columnIndex++) {
+      row.push({
+        type: TileType.empty,
+        position: {
+          x: columnIndex,
+          y: rowIndex,
+        },
+      })
+    }
+
+    gameBoard.tiles.push(row)
   }
 
   // 3 - Replace some empty tiles with surface tiles
   for (let surface of surfaces) {
-    const surfaceTileIndexes = getSurfaceTileIndexes({
-      surfacePosition: surface.position,
-      surfaceSize: surface.size,
-      gameLevelSize,
-    })
+    const { placement: surfacePlacement, tile } = surface
 
-    surfaceTileIndexes.forEach(surfaceIndex => {
-      const tileWIthPosition = gameBoard.tiles[surfaceIndex]
-      const { tile } = surface
+    const tileCoordinates = getTileCoordinates(surfacePlacement)
+
+    tileCoordinates.forEach(({ x: columnIndex, y: rowIndex }) => {
+      const tileWIthPosition = gameBoard.tiles[rowIndex][columnIndex]
 
       const status = calcTileStatus(tile, lastCompletedLevel)
 
-      gameBoard.tiles[surfaceIndex] = { ...tileWIthPosition, ...tile, status }
+      gameBoard.tiles[rowIndex][columnIndex] = { ...tileWIthPosition, ...tile, status }
     })
   }
 

@@ -35,14 +35,14 @@ export const GameCenter: React.FC<PropsWithChildren<GameCenterProps>> = ({
       currentGame: createGameForLevel(LEVEL_1, 0),
       lastCompletedLevel,
     },
-    defaultState => {
-      const nextLevel = getLevelBySequenceNumber(lastCompletedLevel + 1) || STAGE_3
+    // defaultState => {
+    //   const nextLevel = getLevelBySequenceNumber(lastCompletedLevel + 1) || STAGE_3
 
-      return {
-        ...defaultState,
-        currentGame: createGameForLevel(nextLevel, lastCompletedLevel),
-      }
-    },
+    //   return {
+    //     ...defaultState,
+    //     currentGame: createGameForLevel(nextLevel, lastCompletedLevel),
+    //   }
+    // },
   )
 
   // TODO: memoize this value

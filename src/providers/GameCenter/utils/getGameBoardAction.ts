@@ -1,23 +1,28 @@
-import { GameBoardAction, GameBoardActionType, Tile, TileStatus, TileType } from '../../../types'
+import { GameBoardAction, GameBoardActionType, TileStatus, TileType } from '../../../types'
+import { Placement } from '../../../types/common'
+import { GameBoardRow } from '../../../types/gameBoard'
+import { checkForSquareBlock, getSize } from '../../../utils'
 
 export const getGameBoardAction = ({
-  heroBlockIndexes,
+  heroPlacement,
   gameBoardTiles,
 }: {
-  heroBlockIndexes: Array<number>
-  gameBoardTiles: Array<Tile>
+  heroPlacement: Placement
+  gameBoardTiles: Array<GameBoardRow>
 }): GameBoardAction | null => {
   let gameBoardAction = null
 
+  const size = getSize(heroPlacement)
+  const isSquareBlock = checkForSquareBlock(size)
   // An action is considered selected only if the Hero is square,
   // in other words it has only one index so if Hero Block has more than one index
   // we always return null
-  if (heroBlockIndexes.length > 1) {
+  if (!isSquareBlock) {
     return gameBoardAction
   }
 
-  heroBlockIndexes.forEach(tileIndex => {
-    const tile = gameBoardTiles.at(tileIndex)
+  outerForLoop: for (let { x: columnIndex, y: rowIndex } of heroPlacement) {
+    const tile = gameBoardTiles[rowIndex][columnIndex]
 
     if (tile && tile.type === TileType.gameAction) {
       const { action } = tile
@@ -27,7 +32,7 @@ export const getGameBoardAction = ({
             tile.status === TileStatus.activated || tile.status === TileStatus.available
 
           gameBoardAction = shouldActionApplied ? tile.action : null
-          break
+          break outerForLoop
         }
 
         case GameBoardActionType.moveToAnotherStage: {
@@ -35,16 +40,16 @@ export const getGameBoardAction = ({
             tile.status === TileStatus.activated || tile.status === TileStatus.available
 
           gameBoardAction = shouldActionApplied ? tile.action : null
-          break
+          break outerForLoop
         }
 
         default: {
           gameBoardAction = tile.action
-          break
+          break outerForLoop
         }
       }
     }
-  })
+  }
 
   return gameBoardAction
 }

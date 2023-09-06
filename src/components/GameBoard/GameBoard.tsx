@@ -3,7 +3,7 @@ import React, { useCallback, useEffect } from 'react'
 import { useGameCenter } from '../../providers/GameCenter'
 import { GameCenterActionType } from '../../providers/GameCenter/GameCenter.types'
 import { useSwipe, SwipeDirection } from '../../hooks'
-import { calcElementPosition, calcElementSize } from '../../utils'
+import { calcElementPosition, calcElementSize, getSize } from '../../utils'
 import { TileText } from '../../types'
 
 import { Hero } from '../Hero'
@@ -22,8 +22,9 @@ import { GESTURE_ZONE_ID, KEY_PRESS_TO_DIRECTION_MAP } from './GameBoard.constan
 const renderTileTexts = (tileTexts?: Array<TileText>) => {
   return (
     tileTexts &&
-    tileTexts.map(({ text, position, size }, index) => {
-      const elementPosition = calcElementPosition(position)
+    tileTexts.map(({ text, placement }) => {
+      const elementPosition = calcElementPosition(placement)
+      const size = getSize(placement)
       const elementSize = calcElementSize(size)
 
       return (
@@ -86,17 +87,21 @@ export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
           totalRows={size.height}
           gameStatus={status}
         >
-          {tiles.map((tile, index) => {
+          {tiles.map((row, rowIndex) => {
             // Tiles can not be moved from one position to another so it is safe to use index as a key here
             return (
-              <GameBoardTile
-                key={index}
-                tile={tile}
-                moves={moves}
-                levelSequenceNumber={levelSequenceNumber}
-                hero={hero}
-                activeActionType={activeAction?.type}
-              />
+              <React.Fragment key={rowIndex}>
+                {row.map((tile, columnsIndex) => (
+                  <GameBoardTile
+                    key={columnsIndex}
+                    tile={tile}
+                    moves={moves}
+                    levelSequenceNumber={levelSequenceNumber}
+                    hero={hero}
+                    activeActionType={activeAction?.type}
+                  />
+                ))}
+              </React.Fragment>
             )
           })}
 

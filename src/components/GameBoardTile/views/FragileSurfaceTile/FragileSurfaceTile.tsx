@@ -8,14 +8,14 @@ import { GameBoardActionType } from '../../../../types'
 import { checkIfCoordinatesEqual } from '../../../../utils'
 
 export const FragileSurfaceTile: React.FC<FragileSurfaceTileProps> = ({
-  heroPosition,
+  heroPlacement,
   tilePosition,
   activeActionType,
 }) => {
-  const lightSpotPosition = calcLightSpotPosition(heroPosition, tilePosition)
+  const lightSpotPosition = calcLightSpotPosition(heroPlacement, tilePosition)
   const showSplitAnimation =
     activeActionType === GameBoardActionType.heroBlockOnFragileSurface &&
-    checkIfCoordinatesEqual(heroPosition, tilePosition)
+    checkIfCoordinatesEqual(heroPlacement[0], tilePosition)
 
   return (
     <FragileSurfaceTileContainer showSplitAnimation={showSplitAnimation}>
