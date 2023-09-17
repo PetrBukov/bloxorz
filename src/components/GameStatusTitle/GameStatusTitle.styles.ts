@@ -56,6 +56,7 @@ export const StatusText = styled.div<{ variant: StatusTextVariant }>`
   font-size: 32px;
   padding: 5px;
   opacity: 100%;
+  white-space: nowrap;
 
   ${({ variant }) => variant === StatusTextVariant.failure && failureStatusTextStyles}
   ${({ variant }) => variant === StatusTextVariant.info && infoStatusTextStyles}
