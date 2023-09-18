@@ -1,14 +1,21 @@
-import { GameBoardAction, GameBoardActionType, TileStatus, TileType } from '../../../types'
-import { Placement } from '../../../types/common'
-import { GameBoardRow } from '../../../types/gameBoard'
-import { checkForSquareBlock, getSize } from '../../../utils'
+import {
+  GameBoardAction,
+  GameBoardActionType,
+  TileStatus,
+  TileType,
+  TileWIthPosition,
+} from '../../../types'
+import { Dimensions, Placement } from '../../../types/common'
+import { calcTileIndex, checkForSquareBlock, getSize } from '../../../utils'
 
 export const getGameBoardAction = ({
   heroPlacement,
   gameBoardTiles,
+  gameBoardSize,
 }: {
   heroPlacement: Placement
-  gameBoardTiles: Array<GameBoardRow>
+  gameBoardTiles: Array<TileWIthPosition>
+  gameBoardSize: Dimensions
 }): GameBoardAction | null => {
   let gameBoardAction = null
 
@@ -21,8 +28,9 @@ export const getGameBoardAction = ({
     return gameBoardAction
   }
 
-  outerForLoop: for (let { x: columnIndex, y: rowIndex } of heroPlacement) {
-    const tile = gameBoardTiles[rowIndex][columnIndex]
+  outerForLoop: for (let coordinates of heroPlacement) {
+    const tileIndex = calcTileIndex({ coordinates, gameBoardSize })
+    const tile = gameBoardTiles[tileIndex]
 
     if (tile && tile.type === TileType.gameAction) {
       const { action } = tile

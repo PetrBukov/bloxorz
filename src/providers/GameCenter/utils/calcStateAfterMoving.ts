@@ -21,6 +21,7 @@ export const calcStateAfterMoving = (
   const isHeroBlockOutOfMap = checkForHeroBlockOutOfMap({
     heroPlacement: updatedHero.placement,
     gameBoardTiles: board.tiles,
+    gameBoardSize: board.size,
   })
   if (isHeroBlockOutOfMap) {
     gameBoardAction = {
@@ -31,6 +32,7 @@ export const calcStateAfterMoving = (
   const isHeroBlockOnFragileSurface = checkForHeroBlockOnFragileSurface({
     heroPlacement: updatedHero.placement,
     gameBoardTiles: board.tiles,
+    gameBoardSize: board.size,
   })
   if (isHeroBlockOnFragileSurface) {
     gameBoardAction = {
@@ -40,7 +42,11 @@ export const calcStateAfterMoving = (
 
   gameBoardAction =
     gameBoardAction ??
-    getGameBoardAction({ heroPlacement: updatedHero.placement, gameBoardTiles: board.tiles })
+    getGameBoardAction({
+      heroPlacement: updatedHero.placement,
+      gameBoardTiles: board.tiles,
+      gameBoardSize: board.size,
+    })
 
   const isPlayerHasNoMoves = updatedMoves <= 0
   if (!gameBoardAction && isPlayerHasNoMoves) {
