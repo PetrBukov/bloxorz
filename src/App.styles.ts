@@ -71,8 +71,9 @@ export const globalStyles = css`
   #root {
     display: grid;
 
-    background: var(--spaceViolet) url(${whitegrit});
-    background-size: 500px;
+    background:
+      radial-gradient(circle, transparent, var(--trueBlack)),
+      var(--spaceViolet) url(${whitegrit}) center / 500px;
   }
 
   /* Scrollbar Styles */
