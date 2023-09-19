@@ -87,19 +87,24 @@ export const GameBoard: React.FC<GameBoardProps> = ({ currentGame }) => {
           totalRows={size.height}
           gameStatus={status}
         >
-          {tiles.map((tile, tileIndex) => {
+          {tiles.map((row, rowIndex) => {
             // Tiles can not be moved from one position to another so it is safe to use index as a key here
             return (
-              <GameBoardTile
-                key={tileIndex}
-                tile={tile}
-                moves={moves}
-                levelSequenceNumber={levelSequenceNumber}
-                hero={hero}
-                activeActionType={activeAction?.type}
-              />
+              <React.Fragment key={rowIndex}>
+                {row.map((tile, columnsIndex) => (
+                  <GameBoardTile
+                    key={columnsIndex}
+                    tile={tile}
+                    moves={moves}
+                    levelSequenceNumber={levelSequenceNumber}
+                    hero={hero}
+                    activeActionType={activeAction?.type}
+                  />
+                ))}
+              </React.Fragment>
             )
           })}
+
           {renderTileTexts(tileTexts)}
           <Hero {...hero} activeActionType={activeAction?.type} />
         </GameBoardContainer>

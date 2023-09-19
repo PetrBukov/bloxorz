@@ -19,7 +19,6 @@ export type {
   GameBoardAction,
   TileGameAction,
   Tile,
-  TileWIthPosition,
 } from './tile'
 export { TileType, TileStatus, GameBoardActionType } from './tile'
 

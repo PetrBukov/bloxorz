@@ -1,21 +1,18 @@
-import { TileStatus, TileType, TileWIthPosition } from '../../../types'
-import { Dimensions, Placement } from '../../../types/common'
-import { calcTileIndex } from '../../../utils'
+import { TileStatus, TileType } from '../../../types'
+import { Placement } from '../../../types/common'
+import { GameBoardRow } from '../../../types/gameBoard'
 
 export const checkForHeroBlockOutOfMap = ({
   heroPlacement,
   gameBoardTiles,
-  gameBoardSize,
 }: {
   heroPlacement: Placement
-  gameBoardTiles: Array<TileWIthPosition>
-  gameBoardSize: Dimensions
+  gameBoardTiles: Array<GameBoardRow>
 }): boolean => {
   let isHeroBlockOutOfMap = false
 
-  for (let coordinates of heroPlacement) {
-    const tileIndex = calcTileIndex({ coordinates, gameBoardSize })
-    const tile = gameBoardTiles[tileIndex]
+  for (let { x: columnIndex, y: rowIndex } of heroPlacement) {
+    const tile = gameBoardTiles[rowIndex]?.[columnIndex]
 
     if (!tile || tile.type === TileType.empty || tile.status === TileStatus.hidden) {
       isHeroBlockOutOfMap = true
