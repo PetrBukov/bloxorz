@@ -1,14 +1,15 @@
-import { TileType } from '../../../types'
-import { Placement } from '../../../types/common'
-import { GameBoardRow } from '../../../types/gameBoard'
-import { checkForSquareBlock, getSize } from '../../../utils'
+import { TileType, TileWIthPosition } from '../../../types'
+import { Dimensions, Placement } from '../../../types/common'
+import { calcTileIndex, checkForSquareBlock, getSize } from '../../../utils'
 
 export const checkForHeroBlockOnFragileSurface = ({
   heroPlacement,
   gameBoardTiles,
+  gameBoardSize,
 }: {
   heroPlacement: Placement
-  gameBoardTiles: Array<GameBoardRow>
+  gameBoardTiles: Array<TileWIthPosition>
+  gameBoardSize: Dimensions
 }): boolean => {
   let isHeroBlockOnFragileSurface = false
 
@@ -20,8 +21,9 @@ export const checkForHeroBlockOnFragileSurface = ({
     return isHeroBlockOnFragileSurface
   }
 
-  for (let { x: columnIndex, y: rowIndex } of heroPlacement) {
-    const tile = gameBoardTiles[rowIndex]?.[columnIndex]
+  for (let coordinates of heroPlacement) {
+    const tileIndex = calcTileIndex({ coordinates, gameBoardSize })
+    const tile = gameBoardTiles[tileIndex]
 
     if (tile && tile.type === TileType.fragileSurface) {
       isHeroBlockOnFragileSurface = true

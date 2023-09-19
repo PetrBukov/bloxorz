@@ -1,5 +1,5 @@
-import { GameBoard, GameLevel, TileType } from '../types'
-import { GameBoardRow } from '../types/gameBoard'
+import { GameBoard, GameLevel, TileType, TileWIthPosition } from '../types'
+import { calcTileIndex } from './calcTileIndex'
 import { calcTileStatus } from './calcTileStatus'
 import { getTileCoordinates } from './getTileCoordinates'
 
@@ -7,19 +7,19 @@ export const createGameBoardForLevel = (
   gameLevel: GameLevel,
   lastCompletedLevel: number,
 ): GameBoard => {
-  const { size: gameLevelSize, surfaces } = gameLevel
+  const { size: gameBoardSize, surfaces } = gameLevel
 
   // 1 - Create game board
   const gameBoard: GameBoard = {
-    size: gameLevelSize,
+    size: gameBoardSize,
     tiles: [],
   }
 
   // 2 - Fill game board with empty tiles
-  for (let rowIndex = 0; rowIndex < gameLevelSize.height; rowIndex++) {
-    let row: GameBoardRow = []
+  for (let rowIndex = 0; rowIndex < gameBoardSize.height; rowIndex++) {
+    let row: Array<TileWIthPosition> = []
 
-    for (let columnIndex = 0; columnIndex < gameLevelSize.width; columnIndex++) {
+    for (let columnIndex = 0; columnIndex < gameBoardSize.width; columnIndex++) {
       row.push({
         type: TileType.empty,
         position: {
@@ -29,21 +29,22 @@ export const createGameBoardForLevel = (
       })
     }
 
-    gameBoard.tiles.push(row)
+    gameBoard.tiles.push(...row)
   }
 
   // 3 - Replace some empty tiles with surface tiles
   for (let surface of surfaces) {
     const { placement: surfacePlacement, tile } = surface
 
-    const tileCoordinates = getTileCoordinates(surfacePlacement)
+    const tileCoordinatesList = getTileCoordinates(surfacePlacement)
 
-    tileCoordinates.forEach(({ x: columnIndex, y: rowIndex }) => {
-      const tileWIthPosition = gameBoard.tiles[rowIndex][columnIndex]
+    tileCoordinatesList.forEach(coordinates => {
+      const tileIndex = calcTileIndex({ coordinates, gameBoardSize })
 
+      const tileWIthPosition = gameBoard.tiles[tileIndex]
       const status = calcTileStatus(tile, lastCompletedLevel)
 
-      gameBoard.tiles[rowIndex][columnIndex] = { ...tileWIthPosition, ...tile, status }
+      gameBoard.tiles[tileIndex] = { ...tileWIthPosition, ...tile, status }
     })
   }
 

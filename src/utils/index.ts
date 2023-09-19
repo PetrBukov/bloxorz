@@ -17,6 +17,7 @@ export { getStageBySequenceNumber } from './getStageBySequenceNumber'
 export { getAngles } from './getAngles'
 export { getSize } from './getSize'
 export { calcStageSequenceNumber } from './calcStageSequenceNumber'
+export { calcTileIndex } from './calcTileIndex'
 
 export { saveLocalStorageData } from './saveLocalStorageData'
 export { getLocalStorageData } from './getLocalStorageData'
